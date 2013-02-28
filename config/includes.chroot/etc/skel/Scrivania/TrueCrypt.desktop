@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TrueCrypt
+Comment=Condividi i tuoi file su supporti cifrati
+Exec=/usr/bin/truecrypt
+Icon=truecrypt
+Path=
+Terminal=false
+StartupNotify=false
+

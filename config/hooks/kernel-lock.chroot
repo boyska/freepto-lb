@@ -1,0 +1,1 @@
+aptitude hold linux-image-`uname -r`

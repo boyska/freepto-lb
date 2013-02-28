@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TorBrowser
+Comment=Firefox in modalità anonima
+Exec=/home/paranoid/.opt/tor-browser_en-US/start-tor-browser
+Icon=/home/paranoid/.opt/tor-browser_en-US/App/Firefox/icons/mozicon128.png
+Categories=Freepto;
+Path=
+Terminal=false
+StartupNotify=false
+GenericName=

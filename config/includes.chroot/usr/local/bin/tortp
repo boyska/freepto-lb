@@ -1,0 +1,151 @@
+#!/bin/bash
+#
+# TORtp
+# freepto cryptopen: https://we.riseup.net/avana/cryptopen
+
+clear
+
+# Check user:
+if [ "$(id -u)" = "0" ]; then
+   notify-send TORtp "Non puoi eseguire lo script come root" -i /usr/share/pixmaps/anonymous.ico
+   exit 1
+else
+   user=`id -un`
+fi
+
+export LRED="\e[1;31m"
+export LGREEN="\e[1;32m"
+export Z="\e[0m"
+
+echo '
+   _____ ___  ____    _
+  |_   _/ _ \|  _ \  | |_ _ __
+    | || | | | |_) | | __|  _ \
+    | || |_| |  _ <  | |_| |_) |
+    |_| \___/|_| \_\  \__|  __/
+                         |_|'
+echo -e "$LGREEN TOR Transparent Proxy $Z"
+echo ""
+echo "Redirige in maniera trasparente tutto il traffico TCP ed UDP (dns)"
+echo "generato dal tuo pc verso la rete TOR."
+echo ""
+echo -e "$LRED ATTENZIONE: $Z"
+echo ""
+echo "Dopo aver avviato TORtp assicurati che TOR stia funzionando visitando"
+echo "questa pagina:"
+echo ""
+echo "https://check.torproject.org"
+echo ""
+
+home_user=$(egrep "^${user}:" /etc/passwd|cut -d: -f 6)
+
+[ -d $home_user/.tortp ] || mkdir $home_user/.tortp
+
+SELECTION="start stop reset exit"
+
+select options in $SELECTION; do
+if [ "$options" = "start" ]; then
+
+	# Check
+	if [[ -e $home_user/.tortp/iptables.backup ]] && [[ -e $home_user/.tortp/resolv.conf.backup ]];then
+		notify-send TORtp "Il servizio e' gia' attivo" -i /usr/share/pixmaps/anonymous.ico
+
+	elif [[ -e $home_user/.tortp/iptables.backup ]] && [[ ! -e $home_user/.tortp/resolv.conf.backup ]];then
+		echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+		gksudo iptables-restore < $home_user/.tortp/iptables.backup
+        	sudo rm $home_user/.tortp/iptables.backup
+		notify-send TORtp "Il servizio non è stato chiuso correttamente. Sto riavviando TORtp" -i /usr/share/pixmaps/anonymous.ico
+
+	elif [[ ! -e $home_user/.tortp/iptables.backup ]] && [[ -e $home_user/.tortp/resolv.conf.backup ]];then
+		gksudo iptables -F
+	        sudo iptables -X
+       		sudo iptables -t nat -F
+        	sudo iptables -t nat -X
+	        sudo iptables-restore < $home_user/.tortp/iptables.backup
+	        sudo rm $home_user/.tortp/iptables.backup
+		notify-send TORtp "Il servizio non è stato chiuso correttamente. Sto riavviando TORtp" -i /usr/share/pixmaps/anonymous.ico
+        fi
+
+	# Start TOR
+	if [ ! -e /var/run/tor/tor.pid ]; then
+        	gksudo /etc/init.d/tor start &>/dev/null
+	fi
+
+	# Change DNS server
+	if [ ! -e $home_user/.tortp/resolv.conf.backup ];then
+	gksudo cp /etc/resolv.conf $home_user/.tortp/resolv.conf.backup
+	fi
+	echo "nameserver 127.0.0.1" | sudo tee /etc/resolv.conf > /dev/null
+	notify-send TORtp "DNS modificato" -i /usr/share/pixmaps/anonymous.ico
+
+	# Iptables backup
+	if [ ! -e $home_user/.tortp/iptables.backup ];then
+	sudo iptables-save > $home_user/.tortp/iptables.backup
+	fi
+
+	# Delete all Iptables rules
+	sudo iptables -F
+	sudo iptables -X
+	sudo iptables -t nat -F
+	sudo iptables -t nat -X
+
+	# Redirec all DNS traffic trought TOR
+	sudo iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner $user -m udp --dport 53 -j REDIRECT --to-ports 53
+	sudo iptables -t filter -A OUTPUT -p udp -m owner --uid-owner $user -m udp --dport 53 -j ACCEPT
+
+	# Rediret all traffic throught TOR
+	sudo iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner $user -m tcp -j REDIRECT --to-ports 9040
+	sudo iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner $user -m tcp --dport 9040 -j ACCEPT
+	sudo iptables -t filter -A OUTPUT ! -o lo -m owner --uid-owner $user -j DROP
+
+	# control port
+	sudo iptables -t nat -A OUTPUT -p tcp -m owner --uid-owner $user -m tcp --syn -d 127.0.0.1 --dport 9051 -j ACCEPT
+
+	notify-send TORtp "IPtables modificato" -i /usr/share/pixmaps/anonymous.ico
+
+	# Check my new IP address
+	notify-send TORtp "TOR si sta connettendo alla rete..." -i /usr/share/pixmaps/anonymous.ico
+	sleep 10s
+	curl -s http://ipecho.net/plain | xargs -0 notify-send "TORtp attivo. Il tuo nuovo indirizzo IP:" -i /usr/share/pixmaps/anonymous.ico
+
+elif [ "$options" = "stop" ]; then
+
+	if [[ ! -e $home_user/.tortp/iptables.backup ]] && [[ ! -e $home_user/.tortp/resolv.conf.backup ]];then
+	notify-send TORtp "TOR Transparent Proxy non è stato attivato" -i /usr/share/pixmaps/anonymous.ico
+	exit 0
+	fi
+
+	# Restore DNS server backup
+	gksudo rm /etc/resolv.conf
+	sudo cp $home_user/.tortp/resolv.conf.backup /etc/resolv.conf
+	sudo rm $home_user/.tortp/resolv.conf.backup
+
+	# Delete all Iptables rules
+	sudo iptables -F
+	sudo iptables -X
+	sudo iptables -t nat -F
+	sudo iptables -t nat -X
+
+	# Restore Iptables backup
+	sudo iptables-restore < $home_user/.tortp/iptables.backup
+	sudo rm $home_user/.tortp/iptables.backup
+	notify-send TORtp "TOR Transparent Proxy disattivato" -i /usr/share/pixmaps/anonymous.ico
+	exit 0
+
+elif [ "$options" = "exit" ]; then
+
+	exit 0
+
+elif [ "$options" = "reset" ]; then
+
+	gksudo 'iptables -F'
+	sudo iptables -X
+	sudo iptables -t nat -F
+	sudo iptables -t nat -X
+	sudo rm -rf $home_user/.tortp/*
+	echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+	notify-send TORtp "Connettività ripristinata" -i /usr/share/pixmaps/anonymous.ico
+else
+	echo "Seleziona una delle opzioni"
+fi
+done

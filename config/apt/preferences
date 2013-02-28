@@ -1,0 +1,26 @@
+# Rimuovo i pacchetti installati di default 
+# dl metapacchetto "task-desktop-xfce"
+
+Package: icedove
+Pin: version *
+Pin-Priority: -1
+
+Package: iceweasel
+Pin: version *
+Pin-Priority: -1
+
+Package: brasero
+Pin: version *
+Pin-Priority: -1
+
+Package: k3b
+Pin: version *
+Pin-Priority: -1
+
+Package: exfalso
+Pin: version *
+Pin-Priority: -1
+
+Package: uzbl
+Pin: version *
+Pin-Priority: -1

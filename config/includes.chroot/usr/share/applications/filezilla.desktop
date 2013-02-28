@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=TorFileZilla
+GenericName=FTP client
+Comment=Download ed upload di file via FTP, FTPS ed SFTP attraverso la rete TOR
+Exec=filezilla
+Terminal=false
+Icon=filezilla
+Type=Application
+Categories=Freepto;
+Version=1.0

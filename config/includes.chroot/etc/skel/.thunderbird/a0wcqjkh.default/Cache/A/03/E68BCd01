@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<searchresults total_results="69">
+          <addon id="71">
+  <name>Enigmail</name>
+  <type id="1">estensioni</type>
+  <guid>{847b3a00-7ab1-11d4-8f02-006008948af5}</guid>
+  <slug>enigmail</slug>
+  <version>1.5.1</version>
+  <status id="4">Revisione completa effettuata</status>
+  <authors>
+        <author id="53">
+      <name>Patrick Brunschwig</name>
+      <link>https://addons.mozilla.org/it/thunderbird/user/patrick-brunschwig/?src=api</link>
+    </author>      </authors>
+  <summary>OpenPGP message encryption and authentication for Thunderbird and SeaMonkey.</summary>
+  <description>Enigmail adds OpenPGP message encryption and authentication to your email client. It features automatic encryption, decryption and integrated key management functionality. Enigmail requires GnuPG (&lt;a href=&#34;http://outgoing.mozilla.org/v1/fc3479912bf6a483540d227594400b3fc060ab6c/http%3A//www.gnupg.org&#34; rel=&#34;nofollow&#34;&gt;www.gnupg.org&lt;/a&gt;) for the cryptographic functions. Note: GnuPG is not part of the installation.
+The addon offered here supports Windows, Linux (32 and 64-bit) and Mac OS X. Versions for more platforms are available from the &lt;a href=&#34;http://outgoing.mozilla.org/v1/a7a4dacf99b63b0da576676722ec4e193ed3aa7d/http%3A//www.enigmail.net/download/&#34; rel=&#34;nofollow&#34;&gt;homepage&lt;/a&gt;.</description><license>
+    <name>Licenza Mozilla Public License, versione 1.1</name>
+    <url>http://www.mozilla.org/MPL/MPL-1.1.html</url>
+  </license>  <icon size="64">https://addons.cdn.mozilla.net/img/uploads/addon_icons/0/71-64.png?modified=1351232127</icon>
+  <icon size="32">https://addons.cdn.mozilla.net/img/uploads/addon_icons/0/71-32.png?modified=1351232127</icon>
+  <compatible_applications><application>
+      <name>SeaMonkey</name>
+      <application_id>59</application_id>
+      <min_version>2.14</min_version>
+      <max_version>2.16.*</max_version>
+      <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+    </application><application>
+      <name>Thunderbird</name>
+      <application_id>18</application_id>
+      <min_version>17.0</min_version>
+      <max_version>19.*</max_version>
+      <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
+    </application></compatible_applications>
+  <all_compatible_os><os>ALL</os></all_compatible_os>
+  <eula></eula><previews><preview position="0">
+      <full type="image/png">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/0/179.png?src=api&amp;modified=1331247702
+      </full>
+      <thumbnail type="image/png">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/0/179.png?src=api&amp;modified=1331247702
+      </thumbnail></preview></previews><rating>4</rating>
+  <learnmore>https://addons.mozilla.org/it/thunderbird/addon/enigmail/?src=api</learnmore><install hash="sha256:5c603b1985b6317da6f5f00af602f218453dc168fd9ff73ecdf6924a00c99e3b"
+    os="ALL"
+    size="1626910">https://addons.mozilla.org/thunderbird/downloads/file/190790/enigmail-1.5.1-sm+tb.xpi?src=api</install>
+      <developer_comments>The source code is available at &lt;a href=&#34;http://outgoing.mozilla.org/v1/deca723536cd26c9e98fe7e2c2d2257969d9261d/http%3A//www.enigmail.net/download/source.php&#34; rel=&#34;nofollow&#34;&gt;http://www.enigmail.net/download/source.php&lt;/a&gt;</developer_comments>
+    <reviews num="140">
+      https://addons.mozilla.org/it/thunderbird/addon/enigmail/reviews/?src=api
+    </reviews>
+    <total_downloads>2948941</total_downloads>
+    <weekly_downloads>4664</weekly_downloads>
+    <daily_users>124053</daily_users>
+    <created epoch="1087264003">
+      2004-06-15T01:46:43Z
+    </created>
+    <last_updated epoch="1362089147">
+      2013-02-28T22:05:47Z
+    </last_updated>
+    <homepage>http://www.enigmail.net/</homepage>
+    <support>http://www.enigmail.net/support/</support>
+    <featured>1</featured>
+        <performance>
+      </performance>
+    </addon>
+  <addon id="4490">
+  <name>X-notifier (for Gmail,Hotmail,Yahoo,AOL ...)</name>
+  <type id="1">estensioni</type>
+  <guid>{37fa1426-b82d-11db-8314-0800200c9a66}</guid>
+  <slug>xnotifier</slug>
+  <version>3.1.3</version>
+  <status id="4">Revisione completa effettuata</status>
+  <authors>
+        <author id="104093">
+      <name>Byungwook Kang</name>
+      <link>https://addons.mozilla.org/it/thunderbird/user/tobwithu/?src=api</link>
+    </author>      </authors>
+  <summary>Notifier for gmail, yahoo, hotmail, aol and more webmails.
+X-notifier(aka WebMail Notifier) checks your webmail accounts and notifies the number of unread emails...
+Supports : gmail, yahoo, hotmail, POP3/IMAP, facebook, twitter and more</summary>
+  <description>X-notifier(aka WebMail Notifier) checks your webmail accounts and notifies the number of unread emails.
+You can use multiple accounts in a same host.
+
+Currently supports
+ - Gmail (Gmail &amp;amp; Google Apps)
+ - Yahoo (&lt;a href=&#34;http://outgoing.mozilla.org/v1/c30e788b5bc87010971185b66aec0f7d2ef9fc0aa04209a6e3d7eb7a8c782754/http%3A//yahoo.com&#34; rel=&#34;nofollow&#34;&gt;yahoo.com&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/e671e2d985c29f60bbe11c05318b72f546c5784d0c552df1f8e46dfcd70a3659/http%3A//ymail.com&#34; rel=&#34;nofollow&#34;&gt;ymail.com&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/86ba081094d45ef4ddb0c6dd46e9bde188215e76512a07087325694aecde52b5/http%3A//rocketmail.com&#34; rel=&#34;nofollow&#34;&gt;rocketmail.com&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/bf6835ed9018b76a44122f8e5496b6b24b38ccbf26e45648b9cd83132551b508/http%3A//yahoo.co.jp&#34; rel=&#34;nofollow&#34;&gt;yahoo.co.jp&lt;/a&gt;)
+ - Hotmail (&lt;a href=&#34;http://outgoing.mozilla.org/v1/15692169aeffbb13145025891d2d14272fc405e63e6ecf8bdbe144f1fe8021f3/http%3A//hotmail.com&#34; rel=&#34;nofollow&#34;&gt;hotmail.com&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/b08fb7c152062bd8732740b61319985ff4136e9a4a935ad249b61538cf641b27/http%3A//msn.com&#34; rel=&#34;nofollow&#34;&gt;msn.com&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/dbfc13b09923ffee137ec82e00b48d2e59b80ce7c8e06e38f0ea23ebd7bb70b1/http%3A//live.com&#34; rel=&#34;nofollow&#34;&gt;live.com&lt;/a&gt;)
+ - AOL (&lt;a href=&#34;http://outgoing.mozilla.org/v1/edff2ac240d89c8b774da11c809c838447e78a3a38ebec9133c7a500fee16cd5/http%3A//aol.com&#34; rel=&#34;nofollow&#34;&gt;aol.com&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/fc14062ae4d4624a73cc51098dd1d4e8717ef0e012fcbce88ffc8d656c770486/http%3A//aim.com&#34; rel=&#34;nofollow&#34;&gt;aim.com&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/6b59bf8b94224a366968d483216df0e725c9c203992ca62f2fd4a4f66ebeeb53/http%3A//mail.com&#34; rel=&#34;nofollow&#34;&gt;mail.com&lt;/a&gt;)
+ - Daum (&lt;a href=&#34;http://outgoing.mozilla.org/v1/73586d10ae2d8d4e428fba8b42418ee53ec1a718db150121eab8d3533fb6741a/http%3A//daum.net&#34; rel=&#34;nofollow&#34;&gt;daum.net&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/5396d4c149ed7cf25437bad9d4bcf3530777ca590ad418927931858d22f42eb1/http%3A//hanmail.net&#34; rel=&#34;nofollow&#34;&gt;hanmail.net&lt;/a&gt;)
+ - Naver
+ - Nate (&lt;a href=&#34;http://outgoing.mozilla.org/v1/589827927a513149b8efd8f626be1890a5dea973553954146c83d3f8066ee7f2/http%3A//nate.com&#34; rel=&#34;nofollow&#34;&gt;nate.com&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/48778d584f37a240859a240fc00c82ceb091fc87bfda30bb06218a14d642a842/http%3A//empas.com&#34; rel=&#34;nofollow&#34;&gt;empas.com&lt;/a&gt;)
+ - POP3/IMAP
+
+Below sites are supported by user script.
+ - Facebook
+ - AdSense
+ - Twitter
+ - LinkedIn
+ - &lt;a href=&#34;http://outgoing.mozilla.org/v1/8e90ef2e665f065ba5ce5cd2136bc335af9b76ac6bf947f79b97dafa6d941ea2/http%3A//sina.com&#34; rel=&#34;nofollow&#34;&gt;sina.com&lt;/a&gt;
+ - &lt;a href=&#34;http://outgoing.mozilla.org/v1/e53f8d53f1f0714f6c8ee399b64721c2e64536fa1f588908771e6f8958cdcc66/http%3A//yandex.ru&#34; rel=&#34;nofollow&#34;&gt;yandex.ru&lt;/a&gt;
+ - &lt;a href=&#34;http://outgoing.mozilla.org/v1/e9472a22c41474fa0457bff3adf953dcb92a4082dc902fb400f1c8f8d607238d/http%3A//163.com&#34; rel=&#34;nofollow&#34;&gt;163.com&lt;/a&gt;(&lt;a href=&#34;http://outgoing.mozilla.org/v1/a30c876502bb7d8e7105c522497d49bf641cba6823f71aee786abbf9c4e55980/http%3A//126.com&#34; rel=&#34;nofollow&#34;&gt;126.com&lt;/a&gt;, &lt;a href=&#34;http://outgoing.mozilla.org/v1/9182c60a1caa8af906426c42f97f92556a3d191eccea6918d2b135d56434f870/http%3A//yeah.net&#34; rel=&#34;nofollow&#34;&gt;yeah.net&lt;/a&gt;)
+ - &lt;a href=&#34;http://outgoing.mozilla.org/v1/f174e397acedd250ff8d7e8df23b2d1776b75f88c8c74c88f6c3c85903dc6315/http%3A//mail.ru&#34; rel=&#34;nofollow&#34;&gt;mail.ru&lt;/a&gt;
+ - &lt;a href=&#34;http://outgoing.mozilla.org/v1/2761252591a61e7239c66c190499c11f4721eff221191d13fa68705ed7558c9d/http%3A//www.gmx.net&#34; rel=&#34;nofollow&#34;&gt;www.gmx.net&lt;/a&gt;
+ - &lt;a href=&#34;http://outgoing.mozilla.org/v1/b5e039d25f0babbc2953a283da15adcc81c350d02acd6beba17eeae4e8eb8058/http%3A//www.gmx.com&#34; rel=&#34;nofollow&#34;&gt;www.gmx.com&lt;/a&gt;
+ - &lt;a href=&#34;http://outgoing.mozilla.org/v1/03ac595b91a1e30fa72dae5eaf554b0b7d619f35e4d6cc38a422ee4a40046c9d/http%3A//freemail.web.de&#34; rel=&#34;nofollow&#34;&gt;freemail.web.de&lt;/a&gt;
+ - &lt;a href=&#34;http://outgoing.mozilla.org/v1/fa129c995ad6f1eaee728593015f28cc3e4bacf97b99a54d7fc4d6af63dca03a/http%3A//poczta.fm&#34; rel=&#34;nofollow&#34;&gt;poczta.fm&lt;/a&gt;(&lt;a href=&#34;http://outgoing.mozilla.org/v1/cc647434b9b64d382f1b83a39778d3a284081e8ebb750d717a7e54432f874d8e/http%3A//poczta.interia.pl&#34; rel=&#34;nofollow&#34;&gt;poczta.interia.pl&lt;/a&gt;)
+ - &lt;a href=&#34;http://outgoing.mozilla.org/v1/016cac7a1ca07bfaec374859680ddfdcff70fb96e477dafa624452f2ca2879e8/http%3A//www.qq.com&#34; rel=&#34;nofollow&#34;&gt;www.qq.com&lt;/a&gt;
+ ......
+
+&lt;a href=&#34;http://outgoing.mozilla.org/v1/d319bfb89aca2483f54d62e21a404e448b6d090b9fbb6a7c95787f5388870402/http%3A//xnotifier.tobwithu.com/scripts.php&#34; rel=&#34;nofollow&#34;&gt;You can find more scripts for X-notifier 3 here.&lt;/a&gt;
+If you want other webmail provider, you can make your own script.
+
+&lt;b&gt;
+########################################################################
+Please don&#39;t bug report here. Use &lt;a href=&#34;http://outgoing.mozilla.org/v1/557729c081eb2f0d6a1fab9732c2de0929f208e2074106a57a9dda263e9bd6b0/http%3A//xnotifier.tobwithu.com/wp/&#34; rel=&#34;nofollow&#34;&gt;Forum&lt;/a&gt; or &lt;a href=&#34;http://outgoing.mozilla.org/v1/819bdbd038db671151276c1a30fc8c2e8495c09c384212016ca40825b5507e4c/https%3A//twitter.com/xnotifier&#34; rel=&#34;nofollow&#34;&gt;Twitter&lt;/a&gt;.
+
+&lt;a href=&#34;http://outgoing.mozilla.org/v1/2ef80cffbd6ace2fb37deccedd41650ffaf274b10b7e08fda4a2f2a05cad1e3a/http%3A//xnotifier.tobwithu.com&#34; rel=&#34;nofollow&#34;&gt;You can always download the latest version here.&lt;/a&gt;
+########################################################################
+&lt;/b&gt;</description><license>
+    <name>Licenza GNU General Public License, versione 2.0</name>
+    <url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+  </license>  <icon size="64">https://addons.cdn.mozilla.net/img/uploads/addon_icons/4/4490-64.png?modified=1353809387</icon>
+  <icon size="32">https://addons.cdn.mozilla.net/img/uploads/addon_icons/4/4490-32.png?modified=1353809387</icon>
+  <compatible_applications><application>
+      <name>Thunderbird</name>
+      <application_id>18</application_id>
+      <min_version>3.0</min_version>
+      <max_version>22.0</max_version>
+      <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
+    </application><application>
+      <name>Firefox</name>
+      <application_id>1</application_id>
+      <min_version>1.5</min_version>
+      <max_version>22.0</max_version>
+      <appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>
+    </application><application>
+      <name>SeaMonkey</name>
+      <application_id>59</application_id>
+      <min_version>1.0</min_version>
+      <max_version>2.19</max_version>
+      <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+    </application></compatible_applications>
+  <all_compatible_os><os>ALL</os></all_compatible_os>
+  <eula></eula><previews><preview position="0">
+      <full type="image/png" width="210" height="280">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/40/40657.png?src=api&amp;modified=1350904389
+      </full>
+      <thumbnail type="image/png" width="112" height="150">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/40/40657.png?src=api&amp;modified=1350904389
+      </thumbnail><caption>Popup menu</caption></preview><preview position="1">
+      <full type="image/png" width="240" height="317">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/15/15233.png?src=api&amp;modified=1350904389
+      </full>
+      <thumbnail type="image/png" width="113" height="150">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/15/15233.png?src=api&amp;modified=1350904389
+      </thumbnail><caption>WebMail Notifier window</caption></preview><preview position="2">
+      <full type="image/png" width="360" height="252">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/40/40658.png?src=api&amp;modified=1350904389
+      </full>
+      <thumbnail type="image/png" width="200" height="140">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/40/40658.png?src=api&amp;modified=1350904389
+      </thumbnail><caption>WebMail Notifier sidebar</caption></preview><preview position="3">
+      <full type="image/png" width="119" height="65">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/40/40659.png?src=api&amp;modified=1350904389
+      </full>
+      <thumbnail type="image/png" width="119" height="65">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/40/40659.png?src=api&amp;modified=1350904389
+      </thumbnail><caption>Statusbar icon</caption></preview><preview position="4">
+      <full type="image/png" width="244" height="100">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/40/40660.png?src=api&amp;modified=1350904389
+      </full>
+      <thumbnail type="image/png" width="200" height="81">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/40/40660.png?src=api&amp;modified=1350904389
+      </thumbnail><caption>Toolbar button</caption></preview></previews><rating>4</rating>
+  <learnmore>https://addons.mozilla.org/it/thunderbird/addon/xnotifier/?src=api</learnmore><install hash="sha256:e9ed168c1296359387017c3b37f616d4dcecd336dab04908580a82eb280ed0fe"
+    os="ALL"
+    size="194575">https://addons.mozilla.org/thunderbird/downloads/file/196676/x_notifier_for_gmailhotmailyahooaol-3.1.3-tb+fx+sm.xpi?src=api</install>
+  <contribution_data>
+      <link>https://addons.mozilla.org/it/thunderbird/addon/xnotifier/contribute/?src=api</link>
+                <suggested_amount currency="USD" amount="5.00">
+            US$ 5,00
+          </suggested_amount>
+            <meet_developers>
+        https://addons.mozilla.org/it/thunderbird/addon/xnotifier/developers?src=api
+      </meet_developers>
+    </contribution_data>    <developer_comments>&lt;a href=&#34;http://outgoing.mozilla.org/v1/819bdbd038db671151276c1a30fc8c2e8495c09c384212016ca40825b5507e4c/https%3A//twitter.com/xnotifier&#34; rel=&#34;nofollow&#34;&gt;Twitter https://twitter.com/xnotifier&lt;/a&gt;
+
+X-notifier is as safe as Firefox itself. It uses Firefox&#39;s password manager.
+To ensure privacy, set master password of Firefox and disable auto login
+&lt;b&gt;
+##########################################################################
+Please don&#39;t bug report here. Use &lt;a href=&#34;http://outgoing.mozilla.org/v1/557729c081eb2f0d6a1fab9732c2de0929f208e2074106a57a9dda263e9bd6b0/http%3A//xnotifier.tobwithu.com/wp/&#34; rel=&#34;nofollow&#34;&gt;Forum&lt;/a&gt; or &lt;a href=&#34;http://outgoing.mozilla.org/v1/819bdbd038db671151276c1a30fc8c2e8495c09c384212016ca40825b5507e4c/https%3A//twitter.com/xnotifier&#34; rel=&#34;nofollow&#34;&gt;Twitter&lt;/a&gt;.
+
+&lt;a href=&#34;http://outgoing.mozilla.org/v1/2ef80cffbd6ace2fb37deccedd41650ffaf274b10b7e08fda4a2f2a05cad1e3a/http%3A//xnotifier.tobwithu.com&#34; rel=&#34;nofollow&#34;&gt;You can always download the latest version here.&lt;/a&gt;
+##########################################################################
+&lt;/b&gt;</developer_comments>
+    <reviews num="1355">
+      https://addons.mozilla.org/it/thunderbird/addon/xnotifier/reviews/?src=api
+    </reviews>
+    <total_downloads>7287609</total_downloads>
+    <weekly_downloads>8871</weekly_downloads>
+    <daily_users>230356</daily_users>
+    <created epoch="1171024447">
+      2007-02-09T12:34:07Z
+    </created>
+    <last_updated epoch="1362654071">
+      2013-03-07T11:01:11Z
+    </last_updated>
+    <homepage>http://xnotifier.tobwithu.com/</homepage>
+    <support>http://xnotifier.tobwithu.com/wp/</support>
+    <featured>0</featured>
+        <performance>
+            <application name="fx" version="8.0.1">
+                <platform name="Fedora" version="12 - Constantine">
+          <result type="ts" baseline="479.26" average="502.16"
+                  above_threshold="false" />
+        </platform>        <platform name="WINNT" version="6.1">
+          <result type="ts" baseline="548.47" average="570.37"
+                  above_threshold="false" />
+        </platform>        <platform name="MacOSX" version="10.6 (rev4)">
+          <result type="ts" baseline="637.58" average="640.95"
+                  above_threshold="false" />
+        </platform></application>      <application name="fx" version="6.0.2">
+                <platform name="WINNT" version="6.1">
+          <result type="ts" baseline="519.79" average="609.37"
+                  above_threshold="false" />
+        </platform>        <platform name="Fedora" version="12 - Constantine">
+          <result type="ts" baseline="476.21" average="586.74"
+                  above_threshold="false" />
+        </platform>        <platform name="MacOSX" version="10.6.2">
+          <result type="ts" baseline="654.42" average="659.42"
+                  above_threshold="false" />
+        </platform></application>      <application name="fx" version="7.0.1">
+                <platform name="WINNT" version="6.1">
+          <result type="ts" baseline="547.16" average="637.26"
+                  above_threshold="false" />
+        </platform>        <platform name="Fedora" version="12 - Constantine">
+          <result type="ts" baseline="479.68" average="601.11"
+                  above_threshold="true" />
+        </platform>        <platform name="MacOSX" version="10.6.2 (rev3)">
+          <result type="ts" baseline="667.37" average="683.32"
+                  above_threshold="false" />
+        </platform>        <platform name="MacOSX" version="10.6.2">
+          <result type="ts" baseline="671.16" average="676.42"
+                  above_threshold="false" />
+        </platform></application>      <application name="fx" version="8.0">
+                <platform name="MacOSX" version="10.6 (rev4)">
+          <result type="ts" baseline="624.84" average="638.58"
+                  above_threshold="false" />
+        </platform>        <platform name="WINNT" version="6.1">
+          <result type="ts" baseline="541.58" average="581.63"
+                  above_threshold="false" />
+        </platform>        <platform name="Fedora" version="12 - Constantine">
+          <result type="ts" baseline="477.95" average="481.74"
+                  above_threshold="false" />
+        </platform>        <platform name="MacOSX" version="10.6.2 (rev3)">
+          <result type="ts" baseline="657.21" average="664.21"
+                  above_threshold="false" />
+        </platform></application></performance>
+    </addon>
+  <addon id="47144">
+  <name>Mail Merge</name>
+  <type id="1">estensioni</type>
+  <guid>mailmerge@example.net</guid>
+  <slug>mail-merge</slug>
+  <version>3.4.1</version>
+  <status id="4">Revisione completa effettuata</status>
+  <authors>
+        <author id="4830636">
+      <name>Alexander Bergmann</name>
+      <link>https://addons.mozilla.org/it/thunderbird/user/tempuser/?src=api</link>
+    </author>      </authors>
+  <summary>Mass Mail and Personal Mail</summary>
+  <description>&lt;strong&gt;Mail Merge:&lt;/strong&gt;
+If you want to send a mail to multiple recipients, there are three common problems: First you can&#39;t personalize the mail. Second you can&#39;t send a mail to more than 25, 100, ... recipients at once. Third the recipients should not see the other recipients.
+
+&lt;strong&gt;Mail Merge solves these problems by creating one single mail for each recipient from a draft!&lt;/strong&gt;
+
+&lt;strong&gt;Step by Step:&lt;/strong&gt; (Address Book)
+Screenshots: &lt;a href=&#34;http://outgoing.mozilla.org/v1/2896f94140554c358dfb1bd2d30b066bb88dc7285c935f4e7b770d6a61cda3bf/https%3A//addons.cdn.mozilla.net/img/uploads/previews/full/82/82710.png&#34; rel=&#34;nofollow&#34;&gt;Draft Message&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/b8c1c83826aed0da4feb1566c9341d1a6d1aec108e6528c3e0da145ca4a2eca5/https%3A//addons.cdn.mozilla.net/img/uploads/previews/full/82/82706.png&#34; rel=&#34;nofollow&#34;&gt;Mail Merge Dialog&lt;/a&gt;
+&lt;ol&gt;&lt;li&gt;Create a New Message (&#34;File -&amp;gt; New -&amp;gt; Message&#34;)&lt;/li&gt;&lt;li&gt;Add the Recipients to To&lt;/li&gt;&lt;li&gt;Add the Recipients to Cc (optional) (variables are supported)&lt;/li&gt;&lt;li&gt;Add the Recipients to Bcc (optional) (variables are supported)&lt;/li&gt;&lt;li&gt;Add the Subject (variables are supported)&lt;/li&gt;&lt;li&gt;Add the Body (variables are supported)&lt;/li&gt;&lt;li&gt;Add the Attachments (optional)&lt;/li&gt;&lt;li&gt;Click &#34;File -&amp;gt; Mail Merge&#34;&lt;/li&gt;&lt;li&gt;Select &#34;Address Book&#34; and check &#34;Deliver Mode&#34; and &#34;Format&#34;&lt;/li&gt;&lt;li&gt;Add (individual) Attachments (optional) (variables are supported)&lt;/li&gt;&lt;li&gt;Check &#34;Start&#34;, &#34;Stop&#34; and &#34;Pause&#34; (optional)&lt;/li&gt;&lt;li&gt;Click &#34;OK&#34;&lt;/li&gt;&lt;/ol&gt;The Draft Message is saved as Template in your Current Account and for each Recipient a New Message is automagically saved in your Outbox (&#34;Local Folders -&amp;gt; Outbox&#34;). Ready for Delivery: &#34;File -&amp;gt; Send Unsent Messages&#34;
+
+&lt;strong&gt;Step by Step:&lt;/strong&gt; (CSV)
+Screenshots: &lt;a href=&#34;http://outgoing.mozilla.org/v1/ce942752306c373d3e91a61eec8e51c4fe92faa60529a3b6be3a8df61f643903/https%3A//addons.cdn.mozilla.net/img/uploads/previews/full/82/82712.png&#34; rel=&#34;nofollow&#34;&gt;Draft Message&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/2ccabe4e5a9248d5c722eab17f9e6b306e230ad17f0809719a8d75f1721abb35/https%3A//addons.cdn.mozilla.net/img/uploads/previews/full/82/82714.png&#34; rel=&#34;nofollow&#34;&gt;Draft Message&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/8c3aea70f62cf35ba9653d052a9613b7230ad14705fc3af8324023f601567220/https%3A//addons.cdn.mozilla.net/img/uploads/previews/full/82/82708.png&#34; rel=&#34;nofollow&#34;&gt;Mail Merge Dialog&lt;/a&gt;
+&lt;ol&gt;&lt;li&gt;Create a New Message (&#34;File -&amp;gt; New -&amp;gt; Message&#34;)&lt;/li&gt;&lt;li&gt;Add the Variable(s) to To, e.g.: &lt;em&gt;{{Email}}&lt;/em&gt; or &lt;em&gt;{{FirstName}} {{LastName}} &amp;lt;{{Email}}&amp;gt;&lt;/em&gt;&lt;/li&gt;&lt;li&gt;Add the Recipients to Cc (optional) (variables are supported)&lt;/li&gt;&lt;li&gt;Add the Recipients to Bcc (optional) (variables are supported)&lt;/li&gt;&lt;li&gt;Add the Subject (variables are supported)&lt;/li&gt;&lt;li&gt;Add the Body (variables are supported)&lt;/li&gt;&lt;li&gt;Add the Attachments (optional)&lt;/li&gt;&lt;li&gt;Click &#34;File -&amp;gt; Mail Merge&#34;&lt;/li&gt;&lt;li&gt;Select &#34;CSV&#34; and check &#34;Deliver Mode&#34; and &#34;Format&#34;&lt;/li&gt;&lt;li&gt;Add (individual) Attachments (optional) (variables are supported)&lt;/li&gt;&lt;li&gt;Select &#34;Filename&#34; and check &#34;Character Set&#34;, &#34;Field Delimiter&#34; and &#34;Text Delimiter&#34;&lt;/li&gt;&lt;li&gt;Check &#34;Start&#34;, &#34;Stop&#34; and &#34;Pause&#34; (optional)&lt;/li&gt;&lt;li&gt;Click &#34;OK&#34;&lt;/li&gt;&lt;/ol&gt;The Draft Message is saved as Template in your Current Account and for each Recipient a New Message is automagically saved in your Outbox (&#34;Local Folders -&amp;gt; Outbox&#34;). Ready for Delivery: &#34;File -&amp;gt; Send Unsent Messages&#34;
+
+&lt;strong&gt;Attachments:&lt;/strong&gt;
+You can add Attachments in the Mail Merge Dialog, e.g.:
+&lt;em&gt;Attachments&lt;/em&gt;: &lt;em&gt;{{Attachment}}&lt;/em&gt;
+&lt;em&gt;Attachments&lt;/em&gt;: &lt;em&gt;C:\{{Attachment}}&lt;/em&gt;
+&lt;em&gt;Attachments&lt;/em&gt;: &lt;em&gt;C:\PDF\{{Attachment}}&lt;/em&gt;
+&lt;em&gt;Attachments&lt;/em&gt;: &lt;em&gt;C:\PDF\{{Attachment}},C:\PDF\{{FirstName}}-{{LastName}}.pdf&lt;/em&gt;
+
+&lt;strong&gt;Batch:&lt;/strong&gt;
+&lt;em&gt;Start&lt;/em&gt;: Number of First Message (optional)
+&lt;em&gt;Stop&lt;/em&gt;: Number of Last Message (optional)
+&lt;em&gt;Pause&lt;/em&gt;: Pause between Messages in Seconds (optional) (variables are supported)
+
+&lt;strong&gt;Date:&lt;/strong&gt;
+&lt;a href=&#34;http://outgoing.mozilla.org/v1/8db90dd100ece9351ff374ae2f3ccd30bc6955335a4996a30ed11e75a6a8483c/http%3A//blog.kamens.us/send-later/%23mailmerge&#34; rel=&#34;nofollow&#34;&gt;Send Later &amp;amp; Mail Merge&lt;/a&gt;
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name}}&lt;/em&gt;
+The variable will be replaced by the value of the field &lt;em&gt;name&lt;/em&gt;, e.g.:
+&lt;em&gt;{{FirstName}}&lt;/em&gt;: the variable will be replaced by the value of the field &lt;em&gt;FirstName&lt;/em&gt;
+&lt;em&gt;{{LastName}}&lt;/em&gt;: the variable will be replaced by the value of the field &lt;em&gt;LastName&lt;/em&gt;
+&lt;em&gt;{{Email}}&lt;/em&gt;: the variable will be replaced by the value of the field &lt;em&gt;Email&lt;/em&gt;
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|if|then}}&lt;/em&gt;
+If the value of the field &lt;em&gt;name&lt;/em&gt; equals &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;.
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|if|then|else}}&lt;/em&gt;
+If the value of the field &lt;em&gt;name&lt;/em&gt; equals &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;, else by &lt;em&gt;else&lt;/em&gt;.
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|*|if|then|else}}&lt;/em&gt; (contains) (regexp)
+If the value of the field &lt;em&gt;name&lt;/em&gt; &lt;em&gt;contains&lt;/em&gt; &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;, else by &lt;em&gt;else&lt;/em&gt;.
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|^|if|then|else}}&lt;/em&gt; (begins with) (regexp)
+If the value of the field &lt;em&gt;name&lt;/em&gt; &lt;em&gt;begins with&lt;/em&gt; &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;, else by &lt;em&gt;else&lt;/em&gt;.
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|$|if|then|else}}&lt;/em&gt; (ends with) (regexp)
+If the value of the field &lt;em&gt;name&lt;/em&gt; &lt;em&gt;ends with&lt;/em&gt; &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;, else by &lt;em&gt;else&lt;/em&gt;.
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|==|if|then|else}}&lt;/em&gt; (equal to) (number)
+If the value of the field &lt;em&gt;name&lt;/em&gt; is &lt;em&gt;equal to&lt;/em&gt; &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;, else by &lt;em&gt;else&lt;/em&gt;.
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|&amp;gt;|if|then|else}}&lt;/em&gt; (greater than) (number)
+If the value of the field &lt;em&gt;name&lt;/em&gt; is &lt;em&gt;greater than&lt;/em&gt; &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;, else by &lt;em&gt;else&lt;/em&gt;.
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|&amp;gt;=|if|then|else}}&lt;/em&gt; (greater than or equal to) (number)
+If the value of the field &lt;em&gt;name&lt;/em&gt; is &lt;em&gt;greater than or equal to&lt;/em&gt; &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;, else by &lt;em&gt;else&lt;/em&gt;.
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|&amp;lt;|if|then|else}}&lt;/em&gt; (less than) (number)
+If the value of the field &lt;em&gt;name&lt;/em&gt; is &lt;em&gt;less than&lt;/em&gt; &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;, else by &lt;em&gt;else&lt;/em&gt;.
+
+&lt;strong&gt;Variable:&lt;/strong&gt; &lt;em&gt;{{name|&amp;lt;=|if|then|else}}&lt;/em&gt; (less than or equal to) (number)
+If the value of the field &lt;em&gt;name&lt;/em&gt; is &lt;em&gt;less than or equal to&lt;/em&gt; &lt;em&gt;if&lt;/em&gt;, then the variable will be replaced by &lt;em&gt;then&lt;/em&gt;, else by &lt;em&gt;else&lt;/em&gt;.
+
+&lt;strong&gt;Address Book:&lt;/strong&gt;
+&lt;a href=&#34;http://outgoing.mozilla.org/v1/a50e6f0ce81560b9d8e5f8469afcad06d9b17a94bb9ee70f0f625836c1a37c75/http%3A//mxr.mozilla.org/comm-central/source/mailnews/addrbook/public/nsIAbCard.idl&#34; rel=&#34;nofollow&#34;&gt;Addressbook Properties Supported by Thunderbird&lt;/a&gt;
+&lt;code&gt;&lt;em&gt;{{FirstName}}&lt;/em&gt;
+&lt;em&gt;{{LastName}}&lt;/em&gt;
+&lt;em&gt;{{DisplayName}}&lt;/em&gt;
+&lt;em&gt;{{NickName}}&lt;/em&gt;
+&lt;em&gt;{{PrimaryEmail}}&lt;/em&gt;
+&lt;em&gt;{{HomePhone}}&lt;/em&gt;
+&lt;em&gt;{{WorkPhone}}&lt;/em&gt;
+&lt;em&gt;{{FaxNumber}}&lt;/em&gt;
+&lt;em&gt;{{PagerNumber}}&lt;/em&gt;
+&lt;em&gt;{{CellularNumber}}&lt;/em&gt;
+&lt;em&gt;{{HomeAddress}}&lt;/em&gt;
+&lt;em&gt;{{HomeCity}}&lt;/em&gt;
+&lt;em&gt;{{HomeState}}&lt;/em&gt;
+&lt;em&gt;{{HomeZipCode}}&lt;/em&gt;
+&lt;em&gt;{{HomeCountry}}&lt;/em&gt;
+&lt;em&gt;{{WorkAddress}}&lt;/em&gt;
+&lt;em&gt;{{WorkCity}}&lt;/em&gt;
+&lt;em&gt;{{WorkState}}&lt;/em&gt;
+&lt;em&gt;{{WorkZipCode}}&lt;/em&gt;
+&lt;em&gt;{{WorkCountry}}&lt;/em&gt;
+&lt;em&gt;{{Company}}&lt;/em&gt;
+&lt;em&gt;{{BirthDay}}&lt;/em&gt;
+&lt;em&gt;{{BirthMonth}}&lt;/em&gt;
+&lt;em&gt;{{BirthYear}}&lt;/em&gt;
+&lt;em&gt;{{Custom1}}&lt;/em&gt;
+&lt;em&gt;{{Custom2}}&lt;/em&gt;
+&lt;em&gt;{{Custom3}}&lt;/em&gt;
+&lt;em&gt;{{Custom4}}&lt;/em&gt;
+&lt;em&gt;{{Notes}}&lt;/em&gt;&lt;/code&gt;
+
+&lt;strong&gt;Address Book:&lt;/strong&gt;
+&lt;a href=&#34;http://outgoing.mozilla.org/v1/158643223461f693afc3e9a20437fc0cfd1ae6ae228f5c7c6b6de6a3b06b805e/http%3A//nic-nac-project.de/%7Ekaosmos/morecols-en.html&#34; rel=&#34;nofollow&#34;&gt;MoreFunctionsForAddressBook&lt;/a&gt;
+&lt;code&gt;&lt;em&gt;{{MFFABcustom1}}&lt;/em&gt;
+&lt;em&gt;{{MFFABcustom2}}&lt;/em&gt;
+&lt;em&gt;{{MFFABcustom3}}&lt;/em&gt;
+&lt;em&gt;{{MFFABcustom4}}&lt;/em&gt;
+&lt;em&gt;{{MFFABcustom5}}&lt;/em&gt;
+&lt;em&gt;{{MFFABcustom6}}&lt;/em&gt;
+&lt;em&gt;{{MFFABcustom7}}&lt;/em&gt;
+&lt;em&gt;{{MFFABcustom8}}&lt;/em&gt;
+&lt;em&gt;{{MFFABcustom9}}&lt;/em&gt;
+&lt;em&gt;{{MFFABcustom10}}&lt;/em&gt;
+&lt;em&gt;{{MFFABemail1}}&lt;/em&gt;
+&lt;em&gt;{{MFFABemail2}}&lt;/em&gt;
+&lt;em&gt;{{MFFABemail3}}&lt;/em&gt;
+&lt;em&gt;{{MFFABemail4}}&lt;/em&gt;
+&lt;em&gt;{{MFFABemail5}}&lt;/em&gt;
+&lt;em&gt;{{AnniversaryDay}}&lt;/em&gt;
+&lt;em&gt;{{AnniversaryMonth}}&lt;/em&gt;
+&lt;em&gt;{{AnniversaryYear}}&lt;/em&gt;&lt;/code&gt;
+
+&lt;strong&gt;CSV:&lt;/strong&gt;
+&lt;a href=&#34;http://outgoing.mozilla.org/v1/e9ab42c14e9e2f255fa426caed170ce1ef50ca23c8d61b12c1f994095069a21a/https%3A//developer.mozilla.org/en/Character_Sets_Supported_by_Gecko&#34; rel=&#34;nofollow&#34;&gt;Character Sets Supported by Thunderbird&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/4538b9db668b2db2c7ba395693be3dab9b85cdd85f3d86e6a06eb02e6c22bb25/http%3A//en.wikipedia.org/wiki/Comma-separated_values&#34; rel=&#34;nofollow&#34;&gt;Comma-separated values&lt;/a&gt;
+&lt;code&gt;records are separated by line breaks (\r, \n, \r\n)
+fields are separated by field delimiters (comma, semicolon, colon, tab)
+fields may be enclosed within text delimiters (double quote, single quote, none)
+fields with embedded line breaks must be enclosed within text delimiters
+fields with embedded field delimiters must be enclosed within text delimiters
+fields with embedded text delimiters must be enclosed within text delimiters
+embedded text delimiters must be doubled
+first record must contain columnnames&lt;/code&gt;
+
+&lt;strong&gt;CSV:&lt;/strong&gt; (Example)
+&lt;code&gt;FirstName,LastName,Sex,Email,Attachment
+John,Doe,m,john.doe@example.com,C:\MyFile.pdf&lt;/code&gt;
+
+&lt;strong&gt;Error Message:&lt;/strong&gt; (Check the Filename)
+&lt;code&gt;Component returned failure code: 0x80520012 (NS_ERROR_FILE_NOT_FOUND) [nsIFileInputStream.init]&lt;/code&gt;
+
+&lt;strong&gt;Error Message:&lt;/strong&gt; (Check the Character Set)
+&lt;code&gt;Component returned failure code: 0x80500001 [nsIConverterInputStream.init]&lt;/code&gt;
+
+&lt;strong&gt;Error Message:&lt;/strong&gt; (Check the Character Set)
+&lt;code&gt;Component returned failure code: 0x8050000e [nsIConverterInputStream.readString]&lt;/code&gt;
+
+&lt;strong&gt;Error Message:&lt;/strong&gt; (Check the Character Set)
+&lt;code&gt;Component returned failure code: 0x8050000e (NS_ERROR_ILLEGAL_INPUT) [nsIConverterInputStream.readString]&lt;/code&gt;
+
+&lt;strong&gt;Error Message:&lt;/strong&gt; (Check the Body)
+&lt;code&gt;Component returned failure code: 0x80004002 (NS_NOINTERFACE) [nsIHTMLEditor.rebuildDocumentFromSource]&lt;/code&gt;
+
+&lt;strong&gt;Bug:&lt;/strong&gt;
+Mail Merge does not support LDAP
+
+&lt;strong&gt;Debug:&lt;/strong&gt;
+View Log Messages in the Error Console (&#34;Tools -&amp;gt; Error Console&#34;)
+
+&lt;strong&gt;Donation:&lt;/strong&gt;
+Please support the development of Mail Merge with a donation (PayPal): &lt;a href=&#34;http://outgoing.mozilla.org/v1/1572377b83007a37008d42ab2eb664de3f3fd6cc175274127fe4b765d503f4f4/https%3A//www.paypal.com/cgi-bin/webscr%3Fcmd=_donations&amp;amp;business=myaddons%40gmx.de&amp;amp;lc=US&amp;amp;item_name=Mail%2BMerge&amp;amp;amount=5&amp;amp;currency_code=EUR&#34; rel=&#34;nofollow&#34;&gt;5 Euro&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/9361dd43de41d28f03402164335a83a5035b1bc21cf333e513ecac1f0536987a/https%3A//www.paypal.com/cgi-bin/webscr%3Fcmd=_donations&amp;amp;business=myaddons%40gmx.de&amp;amp;lc=US&amp;amp;item_name=Mail%2BMerge&amp;amp;amount=10&amp;amp;currency_code=EUR&#34; rel=&#34;nofollow&#34;&gt;10 Euro&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/c041f64ed92951d15805ab59b7d6eae586fa49f2bacd5d102ee76fa0492db87c/https%3A//www.paypal.com/cgi-bin/webscr%3Fcmd=_donations&amp;amp;business=myaddons%40gmx.de&amp;amp;lc=US&amp;amp;item_name=Mail%2BMerge&amp;amp;amount=15&amp;amp;currency_code=EUR&#34; rel=&#34;nofollow&#34;&gt;15 Euro&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/40e70af0dfef59763cc9efd47e50e9ba7c3f735af496d2e190100965a087f756/https%3A//www.paypal.com/cgi-bin/webscr%3Fcmd=_donations&amp;amp;business=myaddons%40gmx.de&amp;amp;lc=US&amp;amp;item_name=Mail%2BMerge&amp;amp;amount=25&amp;amp;currency_code=EUR&#34; rel=&#34;nofollow&#34;&gt;25 Euro&lt;/a&gt;</description><license>
+    <name>Licenza GNU General Public License, versione 3.0</name>
+    <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+  </license>  <icon size="64"></icon>
+  <icon size="32"></icon>
+  <compatible_applications><application>
+      <name>SeaMonkey</name>
+      <application_id>59</application_id>
+      <min_version>2.7</min_version>
+      <max_version>2.18.*</max_version>
+      <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+    </application><application>
+      <name>Thunderbird</name>
+      <application_id>18</application_id>
+      <min_version>10.0</min_version>
+      <max_version>21.*</max_version>
+      <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
+    </application></compatible_applications>
+  <all_compatible_os><os>ALL</os></all_compatible_os>
+  <eula></eula><previews><preview position="0">
+      <full type="" width="418" height="371">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/82/82706.png?src=api&amp;modified=1353358247
+      </full>
+      <thumbnail type="" width="169" height="150">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/82/82706.png?src=api&amp;modified=1353358247
+      </thumbnail><caption>Mail Merge Dialog (Address Book)</caption></preview><preview position="1">
+      <full type="" width="418" height="508">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/82/82708.png?src=api&amp;modified=1353358247
+      </full>
+      <thumbnail type="" width="123" height="150">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/82/82708.png?src=api&amp;modified=1353358247
+      </thumbnail><caption>Mail Merge Dialog (CSV)</caption></preview><preview position="2">
+      <full type="" width="644" height="507">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/82/82710.png?src=api&amp;modified=1353358248
+      </full>
+      <thumbnail type="" width="191" height="150">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/82/82710.png?src=api&amp;modified=1353358248
+      </thumbnail><caption>Example (Address Book)</caption></preview><preview position="3">
+      <full type="" width="644" height="507">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/82/82712.png?src=api&amp;modified=1353358247
+      </full>
+      <thumbnail type="" width="191" height="150">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/82/82712.png?src=api&amp;modified=1353358247
+      </thumbnail><caption>Example (CSV)</caption></preview><preview position="4">
+      <full type="" width="644" height="507">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/82/82714.png?src=api&amp;modified=1353358247
+      </full>
+      <thumbnail type="" width="191" height="150">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/82/82714.png?src=api&amp;modified=1353358247
+      </thumbnail><caption>Example (CSV)</caption></preview></previews><rating>5</rating>
+  <learnmore>https://addons.mozilla.org/it/thunderbird/addon/mail-merge/?src=api</learnmore><install hash="sha256:1e824afddb3d74e11b0a88be5363669540da5a332778829a5904fb7081dbfcf2"
+    os="ALL"
+    size="23202">https://addons.mozilla.org/thunderbird/downloads/file/178282/mail_merge-3.4.1-sm+tb.xpi?src=api</install>
+      <developer_comments>&lt;strong&gt;If you need help, feel free to contact me (English &amp;amp; German):&lt;/strong&gt; myaddons@gmx.de
+Please support the development of Mail Merge with a donation (PayPal): &lt;a href=&#34;http://outgoing.mozilla.org/v1/073003c117f08ebcb1b2f965e6d145987d035c7a/https%3A//www.paypal.com/cgi-bin/webscr%3Fcmd=_donations&amp;amp;business=myaddons%40gmx.de&amp;amp;lc=US&amp;amp;item_name=Mail%2BMerge&amp;amp;amount=5&amp;amp;currency_code=EUR&#34; rel=&#34;nofollow&#34;&gt;5 Euro&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/10713bde5fddcdc07bdfd844343d304932ae75ea/https%3A//www.paypal.com/cgi-bin/webscr%3Fcmd=_donations&amp;amp;business=myaddons%40gmx.de&amp;amp;lc=US&amp;amp;item_name=Mail%2BMerge&amp;amp;amount=10&amp;amp;currency_code=EUR&#34; rel=&#34;nofollow&#34;&gt;10 Euro&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/7270c7715fdeae1ba1479e6d4a3d172c0ea72b99/https%3A//www.paypal.com/cgi-bin/webscr%3Fcmd=_donations&amp;amp;business=myaddons%40gmx.de&amp;amp;lc=US&amp;amp;item_name=Mail%2BMerge&amp;amp;amount=15&amp;amp;currency_code=EUR&#34; rel=&#34;nofollow&#34;&gt;15 Euro&lt;/a&gt; | &lt;a href=&#34;http://outgoing.mozilla.org/v1/286b28837d3bae1c0bcd008f3e0e0d1420ebc827/https%3A//www.paypal.com/cgi-bin/webscr%3Fcmd=_donations&amp;amp;business=myaddons%40gmx.de&amp;amp;lc=US&amp;amp;item_name=Mail%2BMerge&amp;amp;amount=25&amp;amp;currency_code=EUR&#34; rel=&#34;nofollow&#34;&gt;25 Euro&lt;/a&gt;</developer_comments>
+    <reviews num="99">
+      https://addons.mozilla.org/it/thunderbird/addon/mail-merge/reviews/?src=api
+    </reviews>
+    <total_downloads>278844</total_downloads>
+    <weekly_downloads>2398</weekly_downloads>
+    <daily_users>36597</daily_users>
+    <created epoch="1257416356">
+      2009-11-05T10:19:16Z
+    </created>
+    <last_updated epoch="1353329533">
+      2012-11-19T12:52:13Z
+    </last_updated>
+    <homepage>https://addons.mozilla.org/addon/mail-merge/</homepage>
+    <support></support>
+    <featured>1</featured>
+        <performance>
+      </performance>
+    </addon>
+  <addon id="287743">
+  <name>MailHops</name>
+  <type id="1">estensioni</type>
+  <guid>thunderbird@mailhops.com</guid>
+  <slug>mailhops</slug>
+  <version>0.8.2</version>
+  <status id="4">Revisione completa effettuata</status>
+  <authors>
+        <author id="1226917">
+      <name>Andrew Van Tassel</name>
+      <link>https://addons.mozilla.org/it/thunderbird/user/avantassel/?src=api</link>
+    </author>      </authors>
+  <summary>MailHops maps the route an email took to get to you.  Displaying the senders location in the mail headers box.  Click on the sender location to view a map of the mail route.</summary>
+  <description>Using the MailHops API from &lt;a href=&#34;http://outgoing.mozilla.org/v1/e7bbc1fc7a424bc70c6e4759187e834a50318d31/http%3A//mailhops.com&#34; rel=&#34;nofollow&#34;&gt;http://mailhops.com&lt;/a&gt; this Add-on will show the location of the sender.  From there you can click on the location and view a map of the IP hops that a message took to get to your inbox.  Distance is also calculated to give you the miles that a message traveled.</description>  <icon size="64">https://addons.cdn.mozilla.net/img/uploads/addon_icons/287/287743-64.png?modified=1338401104</icon>
+  <icon size="32">https://addons.cdn.mozilla.net/img/uploads/addon_icons/287/287743-32.png?modified=1338401104</icon>
+  <compatible_applications><application>
+      <name>Thunderbird</name>
+      <application_id>18</application_id>
+      <min_version>3.0</min_version>
+      <max_version>17.*</max_version>
+      <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
+    </application></compatible_applications>
+  <all_compatible_os><os>ALL</os></all_compatible_os>
+  <eula></eula><previews><preview position="0">
+      <full type="" width="564" height="182">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/68/68368.png?src=api&amp;modified=1330739331
+      </full>
+      <thumbnail type="" width="200" height="64">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/68/68368.png?src=api&amp;modified=1330739331
+      </thumbnail><caption>When you view a message MailHops will show the sender location in the header.</caption></preview><preview position="1">
+      <full type="" width="700" height="220">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/68/68369.png?src=api&amp;modified=1330739332
+      </full>
+      <thumbnail type="" width="200" height="62">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/68/68369.png?src=api&amp;modified=1330739332
+      </thumbnail><caption>Click on hops to view all the hops your message took.</caption></preview><preview position="2">
+      <full type="" width="700" height="374">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/68/68370.png?src=api&amp;modified=1330739333
+      </full>
+      <thumbnail type="" width="200" height="106">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/68/68370.png?src=api&amp;modified=1330739333
+      </thumbnail><caption>When you click on the sender location, MailHops will show a mail route map.</caption></preview></previews><rating>4</rating>
+  <learnmore>https://addons.mozilla.org/it/thunderbird/addon/mailhops/?src=api</learnmore><install hash="sha256:2a24db7a0047c8c0ed0af12631bdb7b945279b089fed10a4ab9586979927b141"
+    os="ALL"
+    size="133854">https://addons.mozilla.org/thunderbird/downloads/file/174621/mailhops-0.8.2-tb.xpi?src=api</install>
+  <contribution_data>
+      <link>https://addons.mozilla.org/it/thunderbird/addon/mailhops/contribute/?src=api</link>
+            <meet_developers>
+        https://addons.mozilla.org/it/thunderbird/addon/mailhops/developers?src=api
+      </meet_developers>
+    </contribution_data>    <developer_comments></developer_comments>
+    <reviews num="13">
+      https://addons.mozilla.org/it/thunderbird/addon/mailhops/reviews/?src=api
+    </reviews>
+    <total_downloads>17778</total_downloads>
+    <weekly_downloads>181</weekly_downloads>
+    <daily_users>3225</daily_users>
+    <created epoch="1299030492">
+      2011-03-02T01:48:12Z
+    </created>
+    <last_updated epoch="1351368740">
+      2012-10-27T20:12:20Z
+    </last_updated>
+    <homepage>http://mailhops.com/plugins/thunderbird</homepage>
+    <support>http://mailhops.com</support>
+    <featured>0</featured>
+        <performance>
+      </performance>
+    </addon>
+  <addon id="562">
+  <name>Display Mail User Agent</name>
+  <type id="1">estensioni</type>
+  <guid>{F8147CF4-B9E3-445B-AA87-081ED66548F8}</guid>
+  <slug>display-mail-user-agent</slug>
+  <version>1.6.9</version>
+  <status id="4">Revisione completa effettuata</status>
+  <authors>
+        <author id="403475">
+      <name>Jürgen Ernst</name>
+      <link>https://addons.mozilla.org/it/thunderbird/user/j%C3%BCrgen-ernst/?src=api</link>
+    </author>      </authors>
+  <summary>Visualizza il programma utilizzato per comporre il messaggio selezionato</summary>
+  <description>Adds an image on the right side of the &#34;header view&#34; which displays the icon of the application with which the selected mail was written. So if the person who sent the mail used e.g. mozilla to send the mail, a mozilla icon will be displayed.
+
+In feedback window the link to the website of that mail client is shown. And you can click on it.</description><license>
+    <name>Licenza GNU General Public License, versione 3.0</name>
+    <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+  </license>  <icon size="64">https://addons.cdn.mozilla.net/img/uploads/addon_icons/0/562-64.png?modified=1342726683</icon>
+  <icon size="32">https://addons.cdn.mozilla.net/img/uploads/addon_icons/0/562-32.png?modified=1342726683</icon>
+  <compatible_applications><application>
+      <name>SeaMonkey</name>
+      <application_id>59</application_id>
+      <min_version>2.0</min_version>
+      <max_version>2.4.*</max_version>
+      <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+    </application><application>
+      <name>Thunderbird</name>
+      <application_id>18</application_id>
+      <min_version>2.0</min_version>
+      <max_version>17.*</max_version>
+      <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
+    </application></compatible_applications>
+  <all_compatible_os><os>ALL</os></all_compatible_os>
+  <eula></eula><previews><preview position="0">
+      <full type="image/png" width="178" height="100">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/32/32033.png?src=api&amp;modified=1331247702
+      </full>
+      <thumbnail type="image/png" width="178" height="100">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/32/32033.png?src=api&amp;modified=1331247702
+      </thumbnail></preview><preview position="1">
+      <full type="image/png">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/0/442.png?src=api&amp;modified=1331247702
+      </full>
+      <thumbnail type="image/png">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/0/442.png?src=api&amp;modified=1331247702
+      </thumbnail><caption>displaying mail written with KMail</caption></preview><preview position="1">
+      <full type="image/png">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/0/443.png?src=api&amp;modified=1331247702
+      </full>
+      <thumbnail type="image/png">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/0/443.png?src=api&amp;modified=1331247702
+      </thumbnail><caption>http://cweiske.de/graphics/misc/dispMUA_large.png</caption></preview><preview position="1">
+      <full type="image/png" width="647" height="525">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/32/32034.png?src=api&amp;modified=1331247702
+      </full>
+      <thumbnail type="image/png" width="185" height="150">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/32/32034.png?src=api&amp;modified=1331247702
+      </thumbnail></preview></previews><rating>4</rating>
+  <learnmore>https://addons.mozilla.org/it/thunderbird/addon/display-mail-user-agent/?src=api</learnmore><install hash="sha256:04234d69eea706f884df5c43942b01df0af0db346d7038e47373450d84b59fb6"
+    os="ALL"
+    size="3390464">https://addons.mozilla.org/thunderbird/downloads/file/159255/display_mail_user_agent-1.6.9-sm+tb.xpi?src=api</install>
+      <developer_comments>If you want to use a couple of your own icons, you can use a csv file.
+How to do this, please read my documentation about customizing dispMUA at &lt;a href=&#34;http://outgoing.mozilla.org/v1/ba4a520be710c149ef10a9597476aa38718be82f/http%3A//www.juergen-ernst.de/addons/dispmua.html&#34;&gt;http://www.juergen-ernst.de/addons/dispmua.html&lt;/a&gt;
+
+Addon Enigmail OR Mnenhy isn&#39;t needed anymore to get special agents with X-NewsReader or X-MimeOLE identified correctly. (since version 1.6.0 of dispMUA)</developer_comments>
+    <reviews num="96">
+      https://addons.mozilla.org/it/thunderbird/addon/display-mail-user-agent/reviews/?src=api
+    </reviews>
+    <total_downloads>547248</total_downloads>
+    <weekly_downloads>734</weekly_downloads>
+    <daily_users>45366</daily_users>
+    <created epoch="1113985733">
+      2005-04-20T08:28:53Z
+    </created>
+    <last_updated epoch="1342726651">
+      2012-07-19T19:37:31Z
+    </last_updated>
+    <homepage>http://www.juergen-ernst.de/addons/dispmua.html</homepage>
+    <support>http://www.juergen-ernst.de/addons/dispmua.html</support>
+    <featured>0</featured>
+        <performance>
+      </performance>
+    </addon>
+  <addon id="2610">
+  <name>Mailbox Alert</name>
+  <type id="1">estensioni</type>
+  <guid>{9c21158b-2c76-4d0a-980a-c51fc9cefaa7}</guid>
+  <slug>mailbox-alert</slug>
+  <version>0.16.3</version>
+  <status id="4">Revisione completa effettuata</status>
+  <authors>
+        <author id="21748">
+      <name>Tjebbe</name>
+      <link>https://addons.mozilla.org/it/thunderbird/user/tjebbe/?src=api</link>
+    </author>      </authors>
+  <summary>Mailbox Alert allows you to specify, for each seperate mail folder, a message, sound and/or a system command that will be executed when new mail is found there. ...</summary>
+  <description>Mailbox Alert allows you to specify, for each seperate mail folder, a message, sound and/or a system command that will be executed when new mail is found there. 
+
+This way, you specify different actions for less important folders, or no action at all.</description><license>
+    <name>Licenza BSD</name>
+    <url>http://www.opensource.org/licenses/bsd-license.php</url>
+  </license>  <icon size="64"></icon>
+  <icon size="32"></icon>
+  <compatible_applications><application>
+      <name>Thunderbird</name>
+      <application_id>18</application_id>
+      <min_version>3.0</min_version>
+      <max_version>17.*</max_version>
+      <appID>{3550f703-e582-4d05-9a08-453d09bdfdc6}</appID>
+    </application><application>
+      <name>SeaMonkey</name>
+      <application_id>59</application_id>
+      <min_version>2.0</min_version>
+      <max_version>2.3.*</max_version>
+      <appID>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</appID>
+    </application></compatible_applications>
+  <all_compatible_os><os>ALL</os></all_compatible_os>
+  <eula></eula><previews><preview position="1">
+      <full type="image/png">
+        https://addons.cdn.mozilla.net/img/uploads/previews/full/6/6481.png?src=api&amp;modified=1331247702
+      </full>
+      <thumbnail type="image/png">
+        https://addons.cdn.mozilla.net/img/uploads/previews/thumbs/6/6481.png?src=api&amp;modified=1331247702
+      </thumbnail><caption>Setting up Mailbox Alert for a folder</caption></preview></previews><rating>4</rating>
+  <learnmore>https://addons.mozilla.org/it/thunderbird/addon/mailbox-alert/?src=api</learnmore><install hash="sha256:d5846e927b5c155171f54a8a0f7c90654a5ad8619e93e893440a8b1fddd7d097"
+    os="ALL"
+    size="194012">https://addons.mozilla.org/thunderbird/downloads/file/181452/mailbox_alert-0.16.3-tb+sm.xpi?src=api</install>
+      <developer_comments></developer_comments>
+    <reviews num="84">
+      https://addons.mozilla.org/it/thunderbird/addon/mailbox-alert/reviews/?src=api
+    </reviews>
+    <total_downloads>173804</total_downloads>
+    <weekly_downloads>671</weekly_downloads>
+    <daily_users>16560</daily_users>
+    <created epoch="1148455460">
+      2006-05-24T07:24:20Z
+    </created>
+    <last_updated epoch="1355088257">
+      2012-12-09T21:24:17Z
+    </last_updated>
+    <homepage>http://tjeb.nl/Projects/Mailbox_Alert</homepage>
+    <support></support>
+    <featured>0</featured>
+        <performance>
+      </performance>
+    </addon>
+    </searchresults>

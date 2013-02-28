@@ -1,0 +1,14 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Florence Virtual Keyboard
+Name[fr]=Clavier virtuel Florence
+Name[ru]=Виртуальная Клавиатура Florence
+Comment=Florence Virtual Keyboard
+Comment[fr]=Clavier virtuel Florence
+Comment[ru]=Виртуальная Клавиатура Florence
+Exec=florence
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/florence.svg
+Categories=Freepto;
+

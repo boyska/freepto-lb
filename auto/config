@@ -1,0 +1,28 @@
+#!/bin/sh
+# Freepto LiveBuild Config
+
+lb config noauto \
+    -a i386 \
+    -b hdd \
+    -d wheezy \
+    --linux-flavours 686-pae \
+    --apt-indices false \
+    --mode debian \
+    --debian-installer live \
+    --debian-installer-gui true \
+    --bootappend-live "\
+    --iso-application "Freepto" \
+    --iso-publisher "Freepto" \
+    --iso-volume "Freepto" \
+    --bootappend-install "noprompt" \
+    boot=live \
+    config \
+    persistence-encryption=luks \
+    username=paranoid \
+    hostname=freepto \
+    persistence \
+    live-config.locales=it_IT.UTF-8 live-config.timezone=Europe/Rome live-config.keyboard-layouts=it \
+    " \
+    --archive-areas "main contrib non-free" \
+    --apt-recommends true \
+"${@}"

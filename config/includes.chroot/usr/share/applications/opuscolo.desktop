@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Opuscolo
+Comment=Opuscolo
+Exec=firefox /usr/share/doc/freepto/opuscolo.html
+Categories=Freepto;
+Path=
+Terminal=false
+StartupNotify=false
+Icon=freepto.ico

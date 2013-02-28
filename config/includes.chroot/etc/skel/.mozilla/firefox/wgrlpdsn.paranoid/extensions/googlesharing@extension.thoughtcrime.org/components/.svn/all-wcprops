@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/src/!svn/ver/133/googlesharing/extension/trunk/components
+END
+Filter.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/src/!svn/ver/117/googlesharing/extension/trunk/components/Filter.js
+END
+LanguagePreferences.js
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/src/!svn/ver/147/googlesharing/extension/trunk/components/LanguagePreferences.js
+END
+Prefetcher.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/src/!svn/ver/149/googlesharing/extension/trunk/components/Prefetcher.js
+END
+DataShuffler.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/src/!svn/ver/135/googlesharing/extension/trunk/components/DataShuffler.js
+END
+Cookie.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/src/!svn/ver/147/googlesharing/extension/trunk/components/Cookie.js
+END
+Identity.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/src/!svn/ver/147/googlesharing/extension/trunk/components/Identity.js
+END
+ConnectionManager.js
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/src/!svn/ver/141/googlesharing/extension/trunk/components/ConnectionManager.js
+END
+ContentPolicy.js
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/src/!svn/ver/152/googlesharing/extension/trunk/components/ContentPolicy.js
+END
+LocalProxy.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/src/!svn/ver/157/googlesharing/extension/trunk/components/LocalProxy.js
+END
+ProxyManager.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/src/!svn/ver/147/googlesharing/extension/trunk/components/ProxyManager.js
+END
+Proxy.js
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/src/!svn/ver/152/googlesharing/extension/trunk/components/Proxy.js
+END
+GoogleSharingManager.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/src/!svn/ver/157/googlesharing/extension/trunk/components/GoogleSharingManager.js
+END
+MainThreadDispatcher.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/src/!svn/ver/135/googlesharing/extension/trunk/components/MainThreadDispatcher.js
+END

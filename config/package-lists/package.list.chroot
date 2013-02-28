@@ -1,0 +1,75 @@
+# SO
+aptitude
+firmware-linux-nonfree
+user-setup 
+sudo 
+cryptsetup 
+apt-utils
+vim
+screen
+git
+curl
+wget
+gksu
+lsof
+unrar
+btrfs-tools
+htop
+
+# Network:
+tor
+tor-arm
+pidgin
+pidgin-otr
+deb.torproject.org-keyring
+xchat
+openvpn
+privoxy
+ufw
+gufw
+transmission
+network-manager-iodine
+network-manager-openvpn
+network-manager-vpnc
+network-manager-strongswan
+network-manager-pptp
+filezilla
+aircrack-ng
+iodine
+
+# Firefox:
+linuxmint-keyring
+firefox
+firefox-l10n-it
+
+# Mail and GPG
+thunderbird
+thunderbird-l10n-it
+seahorse
+
+# Tools
+macchanger
+macchanger-gtk
+wipe
+bleachbit
+secure-delete
+gnome-disk-utility
+gparted
+florence
+
+# Multimedia
+deb-multimedia-keyring
+w32codecs
+libdvdcss2
+vlc
+audacity
+
+# Local Wiki
+zim
+
+## torbrowser-launcher
+python-stdeb
+python-gtk2 
+python-psutil 
+python-twisted 
+wmctrl
