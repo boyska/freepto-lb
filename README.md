@@ -1,7 +1,8 @@
 freepto-lb
 ==========
 
-crypto-usb for activist
+encrypted distro for usb-key (starting from debian live build)
+
 
 Chroot Debian Sid
 =================
@@ -15,7 +16,7 @@ Chroot Debian Sid
  $ sudo chroot ~/freepto-lb /bin/bash
 
 
-Cache for APT (optional):
+Cache for APT (if you use a non-chroot debian sid):
 =========================
 
 1. Install apt-cacher-ng
@@ -28,6 +29,7 @@ Cache for APT (optional):
  
  $ export http_proxy=http://localhost:3142/
 
+
 Build
 =====
 
@@ -36,6 +38,7 @@ Build
  $ git clone https://github.com/vinc3nt/freepto-lb.git
 
  $ lb config && lb build
+ 
 
 Make Freepto
 ============
@@ -47,6 +50,7 @@ Make Freepto
 2. Run make-freepto.sh
 
  $ bash make-freepto.sh /dev/sdd
+ 
  
 Read Documentation
 ==================
