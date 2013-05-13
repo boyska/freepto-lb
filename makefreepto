@@ -8,7 +8,6 @@ Options:
     -b         skip badblocks check
     -r         skip random filling (use only if you know what you are doing)
     -w         skip dd of binary.img
-    -s	       hash
     -i IMAGE   put IMAGE on DEVICE (default is binary.img)
 EOF
 }
@@ -22,7 +21,6 @@ fi
 skip_badblocks=0
 skip_random=0
 skip_img=0
-skip_hash=0
 img=binary.img
 
 while getopts 'brwsi:' opt; do
@@ -35,9 +33,6 @@ while getopts 'brwsi:' opt; do
         ;;
     i)
         img=$OPTARG
-        ;;
-    s)
-        skip_hash=1
         ;;
     w)
         skip_img=1
@@ -112,11 +107,6 @@ if [[ $skip_img -eq 0 ]]; then
 	echo "[+] Completed!"
 fi
 
-# Hash OS partition:
-if [[ $skip_hash -eq 0 ]]; then
-    echo "[+] Calculate hash!"
-    hash=`sha512sum "${device}1"`
-fi
 
 # Make the partition
 echo "[+] Make ecnrypted and persistent partition"
@@ -148,12 +138,6 @@ mount /dev/mapper/my_usb.$$ /mnt/my_usb.$$/ -o noatime,nodiratime,compress=lzo
 # Make the persistence.conf file
 echo "/ union" > ~/persistence.conf
 mv ~/persistence.conf /mnt/my_usb.$$
-
-# Make freepto.sha512 file
-if [[ $skip_hash -eq 0 ]]; then
-   echo $hash > /mnt/my_usb.$$/freepto.sha512
-   echo "[+] Hash copiato nella persistenza cifrata!"
-fi
 
 # Umount
 umount /dev/mapper/my_usb.$$
