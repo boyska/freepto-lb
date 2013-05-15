@@ -23,7 +23,7 @@ skip_random=0
 skip_img=0
 img=binary.img
 
-while getopts 'brwi:' opt; do
+while getopts 'brwsi:' opt; do
     case $opt in
     b)
         skip_badblocks=1
@@ -38,7 +38,7 @@ while getopts 'brwi:' opt; do
         skip_img=1
         ;;
     \?)
-        echo "Invalid option: -$OPTARG" >&2
+        echo "[-] Invalid option: -$OPTARG" >&2
         usage
         exit 1
         ;;
@@ -47,7 +47,7 @@ done
 shift $((OPTIND-1))
 
 if ! [[ -f "$img" ]]; then
-    echo "Image $img is not valid"
+    echo "[-] Image $img is not valid"
     exit 1
 fi
 
@@ -74,6 +74,9 @@ if ! which cryptsetup &> /dev/null; then
      sudo apt-get --force-yes --yes install cryptsetup && echo "[+] Cryptsetup installed!"
 fi
 
+# Start
+echo "[+] Start"
+
 # Check for bad block on the device:
 if [[ $skip_badblocks -eq 0 ]]; then
     badblocks -c 10240 -s -w -t random -v "${device}"
@@ -87,7 +90,7 @@ if [[ $skip_random -eq 0 ]]; then
     echo "[+] Completed!"
 fi
 
-# DD THE binary.img to a usb
+# DD the .img to a usb
 echo -n "[+] Starting copy"
 if [[ $skip_img -eq 0 ]]; then
 	dd "if=$img" of="${device}" &
@@ -104,6 +107,7 @@ if [[ $skip_img -eq 0 ]]; then
 	echo "[+] Completed!"
 fi
 
+
 # Make the partition
 echo "[+] Make ecnrypted and persistent partition"
 img_bytes=$(stat -c %s "$img")
@@ -117,7 +121,7 @@ parted "${device}" -- mkpart primary "${img_bytes}B" -1
 partprobe #it was fun, let's do it again
 
 # Ecnrypt partition
-cryptsetup --verbose --batch-mode luksFormat "${device}2" <<<freepto || exit 1
+cryptsetup --verbose --batch-mode --key-size 512 --hash sha512 --cipher aes-xts-plain --use-random luksFormat "${device}2" <<<freepto || exit 1
 
 # Open partition
 cryptsetup luksOpen "${device}2" my_usb.$$ <<<freepto || exit 1
@@ -141,6 +145,5 @@ umount /dev/mapper/my_usb.$$
 # Close LUKS
 cryptsetup luksClose /dev/mapper/my_usb.$$
 
+# Remove mount dir
 rm -rf /mnt/my_usb.$$
-
-# vim: set et ts=4 sw=4:
