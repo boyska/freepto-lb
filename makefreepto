@@ -23,7 +23,7 @@ skip_random=0
 skip_img=0
 img=binary.img
 
-while getopts 'brwsi:' opt; do
+while getopts 'brwi:' opt; do
     case $opt in
     b)
         skip_badblocks=1
