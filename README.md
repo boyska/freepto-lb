@@ -56,3 +56,4 @@ Read Documentation
 ==================
 
  https://we.riseup.net/avana/freepto-docs
+ http://avana.forteprenestino.net/freepto
