@@ -6,14 +6,13 @@ lb config noauto \
     -b hdd \
     -d wheezy \
     --linux-flavours 686-pae \
+    --security true \
     --apt-indices false \
     --mode debian \
-    --debian-installer live \
-    --debian-installer-gui true \
+    --memtest none \
+    --source false \
+    --debian-installer false \
     --bootappend-live "\
-    --iso-application "Freepto" \
-    --iso-publisher "Freepto" \
-    --iso-volume "Freepto" \
     --bootappend-install "noprompt" \
     boot=live \
     config \
