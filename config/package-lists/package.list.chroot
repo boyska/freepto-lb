@@ -28,14 +28,18 @@ privoxy
 ufw
 gufw
 transmission
-network-manager-iodine
 network-manager-openvpn
 network-manager-vpnc
 network-manager-strongswan
 network-manager-pptp
 filezilla
+
+# Wireless Tools:
 aircrack-ng
-iodine
+wifite
+tshark
+reaver
+pyrit
 
 # Firefox:
 linuxmint-keyring
