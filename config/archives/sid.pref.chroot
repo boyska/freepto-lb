@@ -1,4 +1,4 @@
-Package: iodine
+Package: wifite
 Pin: release n=sid
 Pin-Priority: 600
 
