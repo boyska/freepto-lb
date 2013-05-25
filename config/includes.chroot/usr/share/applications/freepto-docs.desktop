@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Freepto Docs
+Comment=Freepto Docs
+Exec=firefox /usr/share/doc/freepto/freepto-docs.html
+Categories=Freepto;
+Path=
+Terminal=false
+StartupNotify=false
+Icon=freepto.ico

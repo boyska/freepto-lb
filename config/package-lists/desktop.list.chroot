@@ -1,7 +1,13 @@
-libreoffice
-network-manager-gnome
+# Desktop environment
 task-laptop
 task-print-server
-flashplugin-nonfree
 xfce4-utils
 task-xfce-desktop
+
+# Flash (shit)
+flashplugin-nonfree
+
+# Libre Office
+libreoffice-writer
+libreoffice-calc
+libreoffice-impress

@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Opuscolo
-Comment=Opuscolo
+Name=Crypt or Die
+Comment=Manualetto di autodifesa dalla repressione digitale
 Exec=firefox /usr/share/doc/freepto/opuscolo.html
 Categories=Freepto;
 Path=

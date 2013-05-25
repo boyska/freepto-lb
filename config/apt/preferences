@@ -24,3 +24,11 @@ Pin-Priority: -1
 Package: uzbl
 Pin: version *
 Pin-Priority: -1
+
+Package: xterm
+Pin: version *
+Pin-Priority: -1
+
+Package: uxterm
+Pin: version *
+Pin-Priority: -1
