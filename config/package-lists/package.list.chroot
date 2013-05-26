@@ -24,6 +24,7 @@ pidgin-otr
 deb.torproject.org-keyring
 xchat
 openvpn
+iodine
 privoxy
 ufw
 gufw
@@ -34,6 +35,7 @@ network-manager-openvpn
 network-manager-vpnc
 network-manager-strongswan
 network-manager-pptp
+network-manager-iodine
 filezilla
 
 # Wireless Tools:
@@ -69,6 +71,7 @@ w32codecs
 libdvdcss2
 vlc
 audacity
+sox
 
 # Local Wiki
 zim
