@@ -1,5 +1,4 @@
-# Rimuovo i pacchetti installati di default 
-# dl metapacchetto "task-desktop-xfce"
+# Rimuovo pacchetti superflui
 
 Package: icedove
 Pin: version *
