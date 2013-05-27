@@ -33,6 +33,6 @@ Package: uxterm
 Pin: version *
 Pin-Priority: -1
 
-Package: vala-terminale
+Package: vala-terminal
 Pin: version *
 Pin-Priority: -1
