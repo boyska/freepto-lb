@@ -27,10 +27,6 @@ source*.tar*
 source*.contents
 source*.packages
 source*.zsync
-config/includes.chroot/etc/skel/.mozilla/firefox/wgrlpdsn.paranoid/.parentlock
-config/includes.chroot/etc/skel/.mozilla/firefox/Crash Reports/
-config/includes.chroot/etc/skel/.thunderbird/Crash Reports/
 *.swp
 *.swo
 *~
-config/includes.chroot/etc/skel/.mozilla/firefox/wgrlpdsn.paranoid/Cache
