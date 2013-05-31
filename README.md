@@ -35,7 +35,7 @@ Build
 
 1. Make your build.img
 
- $ git clone https://github.com/vinc3nt/freepto-lb.git
+ $ git clone https://github.com/AvANa-BBS/freepto-lb.git
 
  $ lb config && lb build
  
@@ -56,4 +56,5 @@ Read Documentation
 ==================
 
  https://we.riseup.net/avana/freepto-docs
+ 
  http://avana.forteprenestino.net/freepto
