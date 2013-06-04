@@ -47,9 +47,9 @@ Make Freepto
 
  $ dmesg
 
-2. Run make-freepto.sh
+2. Run makefreepto
 
- $ bash make-freepto.sh /dev/sdd
+ $ bash makefreepto -i binary.img /dev/sdX
  
  
 Read Documentation
