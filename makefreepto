@@ -77,6 +77,12 @@ fi
 # Start
 echo "[+] Start"
 
+
+# Umount and clean all partition on the device:
+umount ${device}
+mkfs.ext4 -F ${device}
+
+
 # Check for bad block on the device:
 if [[ $skip_badblocks -eq 0 ]]; then
     badblocks -c 10240 -s -w -t random -v "${device}"
