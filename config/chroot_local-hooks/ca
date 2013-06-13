@@ -1,2 +1,2 @@
 #!/bin/bash
-dpkg-reconfigure ca-certificates
+update-ca-certificates
