@@ -15,6 +15,7 @@ lsof
 unrar
 btrfs-tools
 htop
+ca-certificates
 
 # Network:
 tor
