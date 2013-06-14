@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/ DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>freepto-docs - AvANa</title>
+  <title>freepto-docs - AvANa - Gruppi - we.riseup.net</title>
   <style>
     a.anchor {display:none;}
-  </style>	
+  </style>
 </head>
 <body>
 
@@ -14,17 +14,16 @@
 
 
 <div class="wiki">
-  <p><strong>In questa pagina e’ raccolta la documentazione sull’uso di freepto</strong></p>
-<ul class="toc">
+  <ul class="toc">
 <li class="toc1"><a href="#cose-freepto"><span>1</span> Cos’e’ freepto?</a></li>
 <li class="toc1"><a href="#come-avvio-freepto"><span>2</span> Come avvio freepto?</a></li>
 <li class="toc1"><a href="#come-faccio-ad-avviare-il-sistema-cifrato"><span>3</span> Come faccio ad avviare il sistema cifrato?</a></li>
 <li class="toc1"><a href="#cosa-devo-fare-la-prima-volta-che-uso-freepto"><span>4</span> Cosa devo fare la prima volta che uso freepto?</a></li>
 <ul>
-<li class="toc2"><a href="#modificare-la-passphrase-di-cifratura"><span>4.1</span> Modificare la passphrase di cifratura:</a></li>
-<li class="toc2"><a href="#modificare-la-password-dellutente-paranoid"><span>4.2</span> Modificare la password dell’utente paranoid:</a></li>
+<li class="toc2"><a href="#modificare-la-passphrase-di-cifratura"><span>4.1</span> Modificare la passphrase di cifratura</a></li>
+<li class="toc2"><a href="#modificare-la-password-dellutente-paranoid"><span>4.2</span> Modificare la password dell’utente paranoid</a></li>
 </ul>
-<li class="toc1"><a href="#freepto-menu"><span>5</span> Freepto Menu</a></li>
+<li class="toc1"><a href="#tools-installati"><span>5</span> Tools installati</a></li>
 <li class="toc1"><a href="#come-rendo-anonima-la-mia-navigazione-sul-web"><span>6</span> Come rendo anonima la mia navigazione sul web?</a></li>
 <ul>
 <li class="toc2"><a href="#tor-browser-bundle"><span>6.1</span> Tor Browser Bundle</a></li>
@@ -43,6 +42,7 @@
 <li class="toc2"><a href="#wipe"><span>8.1</span> wipe</a></li>
 <li class="toc2"><a href="#bleachbit"><span>8.2</span> Bleachbit</a></li>
 <li class="toc2"><a href="#truecrypt"><span>8.3</span> Truecrypt</a></li>
+<li class="toc2"><a href="#tomb-the-crypto-undertaker"><span>8.4</span> Tomb – The Crypto Undertaker</a></li>
 </ul>
 <li class="toc1"><a href="#accesso-agli-hidden-service-tor"><span>9</span> Accesso agli Hidden Service TOR.</a></li>
 <li class="toc1"><a href="#avviare-freepto-su-pc-non-fidati"><span>10</span> Avviare freepto su pc non fidati</a></li>
@@ -62,30 +62,32 @@ sistema operativo sempre in tasca, utilizzarlo sul sistema che si
 preferisce, senza bisogno di installare niente.</p>
 <p>Esistono molti altri sistemi live, ma freepto si contraddistingue per
  l’attenzione alla sicurezza e all’usabilita’, offrendo un sistema 
-pensato per le necessita’ di attivismo.</p>
+pensato per le necessita’ dell’attivismo.</p>
 <h2><a name="come-avvio-freepto"></a>Come avvio freepto?<a class="anchor" href="#come-avvio-freepto">¶</a></h2>
 <p>Per avviare freepto è necessario settare il proprio <span class="caps">BIOS</span> per effettuare il boot da <span class="caps">USB</span>.<br>
 Per accedere al <span class="caps">BIOS</span> solitamente è sufficiente durante l’avvio del computer premere uno di questi tasti: “F2”, “Canc” o “F10”.</p>
 <p>Purtroppo è impossibile indicare una procedura valida per tutti i casi, perchè ovviamente il menu del <span class="caps">BIOS</span> è differente da modello a modello.</p>
 <p>Quindi, almeno in questo caso, Google è tuo amico: cerca, ad esempio “boot usb” seguito dal modello / marca del tuo computer.</p>
 <p>Configurato il <span class="caps">BIOS</span> per l’avvio da <span class="caps">USB</span>, puoi semplicemente riavviare ed aspettare che freepto venga avviata.</p>
+<p>Se tutto va per il verso giusto vedrai una schermata simile a questa:</p>
+<p><img src="freepto-docs_files/freepto1_large.png" alt=""></p>
 <h2><a name="come-faccio-ad-avviare-il-sistema-cifrato"></a>Come faccio ad avviare il sistema cifrato?<a class="anchor" href="#come-faccio-ad-avviare-il-sistema-cifrato">¶</a></h2>
 <p>Durante la fase di boot di freepto ti verrà chiesto di inserire una 
-passphrase per sbloccare la persistenza cifrata, con una stringa simile a
- questa:</p>
+passphrase per sbloccare la persistenza cifrata, con una stringa come 
+questa:</p>
 <p><a href="https://we.riseup.net/assets/134431/luks-pass.png"><img src="freepto-docs_files/luks-pass_large.png" alt=""></a></p>
 <p>E’ possibile ignorare questa richiesta ed avviare freepto in modalità
  live, in questo modo però qualsiasi modifica fatta durante l’utilizzo 
 di freepto verrà persa al successivo riavvio.</p>
 <p>Montando la persistenza è invece possibile conservare i documenti creati e portarli con se in un sistema sicuro e cifrato.</p>
 <h2><a name="cosa-devo-fare-la-prima-volta-che-uso-freepto"></a>Cosa devo fare la prima volta che uso freepto?<a class="anchor" href="#cosa-devo-fare-la-prima-volta-che-uso-freepto">¶</a></h2>
-<h3><a name="modificare-la-passphrase-di-cifratura"></a>Modificare la passphrase di cifratura:<a class="anchor" href="#modificare-la-passphrase-di-cifratura">¶</a></h3>
+<h3><a name="modificare-la-passphrase-di-cifratura"></a>Modificare la passphrase di cifratura<a class="anchor" href="#modificare-la-passphrase-di-cifratura">¶</a></h3>
 <p>Tutte le crypto-usb freepto hanno una passphrase di cryptseutp di 
 default uguale per tutte (“freepto”), questo è necessario per permettere
  di automatizzare la procedura di installazione e distrbuire un sistema 
 già installato e funzionante.</p>
 <p>E’ <strong><span class="caps">ASSOLUTAMENTE</span> <span class="caps">NECESSARIO</span></strong> modificare la passphrase di default, con una scelta da voi. <a href="https://we.riseup.net/avana/opuscolo#gestione-password">Qui</a> potete trovare alcune indicazioni su come scegliere una passphrase sicura.</p>
-<p>Per cambiare passphrase bastano tre semplici passaggi:</p>
+<p>Per cambiare passphrase bastano tre semplici passaggi</p>
 <ul>
 	<li>1. Aprire il menù delle applicazioni in alto a sinistra quindi “Accessori” —&gt; “Gestore Dischi”</li>
 </ul>
@@ -98,7 +100,7 @@ già installato e funzionante.</p>
 	<li>3. Dal menù scegliere “modifica passphrase”</li>
 </ul>
 <p><img src="freepto-docs_files/luks3_large.png" alt=""></p>
-<h3><a name="modificare-la-password-dellutente-paranoid"></a>Modificare la password dell’utente paranoid:<a class="anchor" href="#modificare-la-password-dellutente-paranoid">¶</a></h3>
+<h3><a name="modificare-la-password-dellutente-paranoid"></a>Modificare la password dell’utente paranoid<a class="anchor" href="#modificare-la-password-dellutente-paranoid">¶</a></h3>
 <p>L’utentenza configurata di default è la seguente:</p>
 <ul>
 	<li>user: <code>paranoid</code></li>
@@ -113,14 +115,14 @@ Immettere una nuova password UNIX:
 Reimmettere la nuova password UNIX:
 passwd: password aggiornata correttamente
 </code></pre>
-<h2><a name="freepto-menu"></a>Freepto Menu<a class="anchor" href="#freepto-menu">¶</a></h2>
+<h2><a name="tools-installati"></a>Tools installati<a class="anchor" href="#tools-installati">¶</a></h2>
 <p>Nel classico menu delle applicazioni abbiamo voluto mettere in 
 evidenza quelle piu’ “particolari” per la tutela della sicurezza con un 
 menu dedicato.</p>
-<p>Tra di esse ci sono strumenti per la navigazione con tor, strumenti 
+<p>Tra di esse ci sono strumenti per la navigazione anonima, strumenti 
 per la pulizia dei file temporanei, strumenti di cifratura. La 
-descrizione di questi programmi e’ approfondita piu’ avanti</p>
-<p><a href="https://we.riseup.net/assets/134412/freepto-menu.png"><img src="freepto-docs_files/freepto-menu_large.png" alt=""></a></p>
+descrizione di questi programmi e’ approfondita piu’ avanti.</p>
+<p><a href="https://we.riseup.net/assets/142158/freepto3.png"><img src="freepto-docs_files/freepto3_large.png" alt=""></a></p>
 <h2><a name="come-rendo-anonima-la-mia-navigazione-sul-web"></a>Come rendo anonima la mia navigazione sul web?<a class="anchor" href="#come-rendo-anonima-la-mia-navigazione-sul-web">¶</a></h2>
 <p>Tutti i seguenti tool sono già installati di default su freepto</p>
 <h3><a name="tor-browser-bundle"></a>Tor Browser Bundle<a class="anchor" href="#tor-browser-bundle">¶</a></h3>
@@ -207,6 +209,11 @@ disco. Puoi vederlo come l’equivalente libero di CCleaner.</p>
 <h3><a name="truecrypt"></a>Truecrypt<a class="anchor" href="#truecrypt">¶</a></h3>
 <p>Truecrypt è un software che permette la gestione di file o volumi cifrati.<br>
 Grazie a questo software potrai scambiare in sicurezza documenti con altre persone.</p>
+<p>Maggiori informazioni possono essere trovate sul sito ufficiale: <a href="http://www.truecrypt.org/">www.truecrypt.org</a></p>
+<h3><a name="tomb-the-crypto-undertaker"></a>Tomb – The Crypto Undertaker<a class="anchor" href="#tomb-the-crypto-undertaker">¶</a></h3>
+<p>Tomb è un software opensource a riga di comando che permette la gestione di file cifrati.<br>
+L’assenza di un’interfaccia grafica, lo rende idoneo ad un’utenza più esperta.</p>
+<p>Maggiori informazioni si possono trovare sul sito ufficiale: <a href="http://www.dyne.org/software/tomb/">www.dyne.org/software/tomb</a></p>
 <h2><a name="accesso-agli-hidden-service-tor"></a>Accesso agli Hidden Service <span class="caps">TOR</span>.<a class="anchor" href="#accesso-agli-hidden-service-tor">¶</a></h2>
 <p>Firefox su freepto è configurato per utilizzare privoxy per l’accesso
  agli Hidden Service Tor, è però necessario abilitare questa 
@@ -222,16 +229,21 @@ anonimato è comunque consigliato utilizzarlo.</p>
 <p>Se stai utilizzando freepto su un pc facilmente accessibile a 
 chiunque (magari in un internet point, nell’auletta occupata di qualche 
 università o in uno spazio occupato) considera che potrebbe esserci un 
-keylogger capace di registrare tutte le tue password.</p>
+keylogger (hardware) capace di registrare tutte le tue password.</p>
 <p>Quindi evita, durante l’avvio di freepto, di inserire la password di 
-cifartura perchè questo renderebbe del tutto vana la protezione offerta 
-dalla cifratura.</p>
-<p>Puoi avviare freepto nella versione “live” (senza fornire la tua password di cifratura <span class="caps">LUKS</span>
- il sistema al suo stato originale) e successivamente potrai scrivere in
- sicurezza le tue password (per loggarti su webmail, etc) utilizzando 
-Florence, una tastiera virtuale che ti permette di proteggerti dalla 
-presenza di keylogger hardware.</p>
-<p>Puoi avviare florence attraverso il menu freepto ed avrai una finestre simile a questa:</p>
+cifratura perchè questo renderebbe del tutto vana la protezione del file
+ system cifrato.</p>
+<p>Puoi avviare freepto nella versione “live” (senza fornire la tua 
+password di cifratura, quindi usando il sistema al suo stato originale) e
+ successivamente potrai scrivere in sicurezza le tue password (per 
+loggarti su webmail, etc) avendo l’accortezza di utilizzare Florence, 
+una tastiera virtuale che ti permette di avere protezione dalla presenza
+ di keylogger hardware.</p>
+<p>Ovviamente Florence non ti protegge dalla presenza di telecamere o da
+ occhi indiscreti, quindi evita di utilizzare postazioni controllabili 
+da telecamere (e’ successo che alcune password siano state captate in 
+questo modo, quindi attenzione!)</p>
+<p>Puoi avviare Florence attraverso il menu freepto ed avrai una finestre simile a questa:</p>
 <p><a href="https://we.riseup.net/assets/140592/florence.png"><img src="freepto-docs_files/florence_large.png" alt=""></a></p>
 <h2><a name="personalizzare-freepto"></a>Personalizzare freepto<a class="anchor" href="#personalizzare-freepto">¶</a></h2>
 <p>Freepto e’ un sistema operativo completo, quindi e’ possibile 
@@ -239,15 +251,18 @@ aggiornarlo, installare nuovi programmi, personalizzarlo. Il modo
 migliore per installare nuovi programmi e’ <code>synaptic</code>; dalla 
 sua interfaccia e’ possibile cercare “pacchetti” aggiuntivi, 
 installarli, rimuoverli, aggiornarli. Al suo interno si trovano 
-centinaia di pacchetti per fare di tutto: grafica, musica, 
-presentazioni…</p>
+centinaia di programmi per fare qualsiasi cosa di cui abbiate bisogno: 
+grafica, musica, presentazioni…</p>
 <h2><a name="crea-un-nuova-freepto"></a>Crea un nuova freepto<a class="anchor" href="#crea-un-nuova-freepto">¶</a></h2>
-<p>Abbiamo installato dentro freepto un programmino che può tornarti 
-utile nel caso volessi creare una nuova freepto per qualcuno/a.</p>
+<p>Per creare freepto, purtroppo, e’ necessario avere gia’ un sistema Linux a disposizione. E’ infatti necessario il programma <code>makefreepto</code>.</p>
+<p>Dentro freepto questo programma e’ gia’ incluso, e può tornarti utile
+ nel caso volessi creare una nuova freepto per qualcuno/a. Anche da un 
+altro sistema operativo, scaricarlo e’ semplicissimo.</p>
 <p>Non farti spaventare dal terminale bastano pochi semplici passaggi:</p>
 <h3><a name="1-scarica-lultima-versione-di-freepto"></a>1. scarica l’ultima versione di freepto:<a class="anchor" href="#1-scarica-lultima-versione-di-freepto">¶</a></h3>
 <p>Apri il terminale e copia-incolla il seguente comando:</p>
-<pre><code>wget http://avana.forteprenestino.net/freepto/download/freepto_latest.img</code></pre>
+<pre><code>wget http://avana.forteprenestino.net/freepto/iso/{makefreepto,freepto-lb_0.1_079fc4d.img}</code></pre>
+<p>Questo scarichera’ sia <code>makefreepto</code> che l’immagine effettiva.</p>
 <h3><a name="2-identifica-la-nuova-pennetta-usb"></a>2. identifica la nuova pennetta usb:<a class="anchor" href="#2-identifica-la-nuova-pennetta-usb">¶</a></h3>
 <p>Inserisci la pennetta usb ed esegui il comando seguente per identificare il “device” a cui corrisponde.</p>
 <p>Copia-incolla sul terminale il seguente comando:</p>
@@ -264,8 +279,8 @@ utile nel caso volessi creare una nuova freepto per qualcuno/a.</p>
 [ 3773.562705] sd 5:0:0:0: [sdc] Assuming drive cache: write through
 [ 3773.562708] sd 5:0:0:0: [sdc] Attached SCSI removable disk</code></pre>
 <p>La parte “importante” di tutto l’output è quella racchiusa tra le parentesi quadre, nell’esempio precedente il device è: <code>/dev/sdc</code></p>
-<p><strong><span class="caps">ATTENZIONE</span>:</strong> indicando il device sbagliato puoi richistae di cancellare per sbaglio tutti i dati presenti sul tuo computer. <br>
-quindi se hai dei dubbi ripeti l’operazione per essere certo di aver individuato il device giusto.<br>
+<p><strong><span class="caps">ATTENZIONE</span>:</strong> indicando il device sbagliato puoi rischiare di cancellare per sbaglio <span class="caps">TUTTI</span> I <span class="caps">DATI</span> <span class="caps">PRESENTI</span> <span class="caps">SUL</span> <span class="caps">TUO</span> <span class="caps">COMPUTER</span>!<br>
+Quindi se hai dei dubbi ripeti l’operazione per essere certo di aver individuato il device giusto.<br>
 Per essere piu’ sicuri, puoi lanciare questo comando<br>
 </p><pre><code>echo $(( $(blockdev --getsize64 /dev/sdc) / (1024*1024) ))</code></pre><br>
 ovviamente devi sostituire a <code>sdc</code> il nome del device che hai rilevato precedentemente.<br>
@@ -274,6 +289,8 @@ questo e’ un buon metodo empirico per non confondere le pennine esterne
 (da pochi giga) con il disco del computer (da centinaia di giga).<p></p>
 <h3><a name="3-installa-freepto"></a>3. Installa freepto<a class="anchor" href="#3-installa-freepto">¶</a></h3>
 <p>Dal terminale lancia il seguente comando:</p>
-<pre><code>makefreepto -i freepto_latest.img /dev/sdc</code></pre>
+<pre><code>bash makefreepto -i freepto-lb_0.1_079fc4d.img /dev/sdc</code></pre>
 </div><!-- end wiki -->
+
+
 </body></html>
