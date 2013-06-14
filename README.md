@@ -1,7 +1,8 @@
 freepto-lb
 ==========
 
-Encrypted GNU/Linux OS (based on Debian Wheezy) wich can be installed on USB flash drive. 
+Encrypted GNU/Linux OS (based on Debian Wheezy) wich can be installed on USB flash drive.
+
 Freepto is designed for encrypt your communications (OTR, GPG, SSL), carry your documents in secure way (LUKS) and save your anonymity (TOR, OPENVPN)
 
 
