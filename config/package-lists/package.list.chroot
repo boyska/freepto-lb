@@ -17,6 +17,20 @@ btrfs-tools
 htop
 ca-certificates
 
+# XFCE4
+task-laptop
+task-print-server
+xfce4-utils
+task-xfce-desktop
+
+# Flash (Shit!)
+flashplugin-nonfree
+
+# LibreOffice
+libreoffice-writer
+libreoffice-calc
+libreoffice-impress
+
 # Network:
 tor
 tor-arm
@@ -78,7 +92,7 @@ sox
 # Local Wiki
 zim
 
-## torbrowser-launcher
+## Torbrowser-launcher
 python-stdeb
 python-gtk2 
 python-psutil 
