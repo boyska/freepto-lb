@@ -173,5 +173,5 @@ umount /mnt/freepto.$$ >> $log 2>&1 && cryptsetup luksClose /dev/mapper/my_usb.$
 rm -rf /mnt/freepto.$$ >> $log 2>&1
 
 #start
-echo -e "$LGREEN[+]$Z Freepto è prota per l'uso"
+echo -e "$LGREEN[+]$Z Freepto is ready for use"
 
