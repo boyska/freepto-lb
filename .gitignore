@@ -31,3 +31,6 @@ source*.zsync
 *.swp
 *.swo
 *~
+
+config/includes.chroot/etc/skel/.thunderbird/Crash Reports/
+
