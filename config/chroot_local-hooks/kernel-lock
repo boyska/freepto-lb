@@ -1,2 +1,2 @@
 #!/bin/sh
-aptitude hold linux-image-`uname -r`
+sudo apt-mark hold linux-image-`uname -r`
