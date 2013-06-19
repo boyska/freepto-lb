@@ -112,7 +112,6 @@ if mount | grep -q "${device}2"; then
 fi
 echo -e "$LGREEN[+]$Z Remove all partition on ${device}"
 mkfs.ext4 -F ${device} > $log 2>&1
-mount -a
 
 # check for bad block on the device:
 if [[ $skip_badblocks -eq 0 ]]; then
