@@ -2,7 +2,7 @@
 #set -x
 
 usage() {
-    cat <<EOF
+cat <<EOF
 $0 [-br] DEVICE
 Options:
     -b         skip badblocks check
@@ -16,7 +16,7 @@ EOF
 
 # set color:
 export LRED="\e[1;31m"
-export LGREEN="\e[1;32m"                                                                                                                                               
+export LGREEN="\e[1;32m"
 export Z="\e[0m"
 
 # check if user is root:
@@ -97,8 +97,14 @@ if ! which cryptsetup &> /dev/null; then
 fi
 
 # umount device and clean all partition:
-echo -e "$LGREEN[+]$Z Umount device ${device}"
-umount ${device} > $log 2>&1
+if mount | grep -q "${device}1"; then
+     echo -e "$LGREEN[+]$Z Umount device ${device}1"
+     umount "${device}1" > $log 2>&1
+fi
+if mount | grep -q "${device}2"; then
+     echo -e "$LGREEN[+]$Z Umount device ${device}2"
+     umount "${device}2" > $log 2>&1
+fi
 echo -e "$LGREEN[+]$Z Remove all partition on ${device}"
 mkfs.ext4 -F ${device} > $log 2>&1
 
@@ -174,4 +180,3 @@ rm -rf /mnt/freepto.$$ >> $log 2>&1
 
 # stop
 echo -e "$LGREEN[+]$Z Freepto is ready for use"
-
