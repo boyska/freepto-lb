@@ -2,8 +2,9 @@
 #set -x
 
 usage() {
-    cat <<EOF
+cat <<EOF
 $0 [-br] DEVICE
+
 Options:
     -b         skip badblocks check
     -r         skip random filling (use only if you know what you are doing)
@@ -11,12 +12,16 @@ Options:
     -i IMAGE   put IMAGE on DEVICE (default is binary.img)
     -p         set password (defaul is "freepto")
     -s         set secure random password (default is "freepto")
+
+Example:
+    sudo ./makefreepto -i freepto-lb.img -p password /dev/sdd
+
 EOF
 }
 
 # set color:
 export LRED="\e[1;31m"
-export LGREEN="\e[1;32m"                                                                                                                                               
+export LGREEN="\e[1;32m"
 export Z="\e[0m"
 
 # check if user is root:
@@ -97,8 +102,14 @@ if ! which cryptsetup &> /dev/null; then
 fi
 
 # umount device and clean all partition:
-echo -e "$LGREEN[+]$Z Umount device ${device}"
-umount ${device} > $log 2>&1
+if mount | grep -q "${device}1"; then
+     echo -e "$LGREEN[+]$Z Umount device ${device}1"
+     umount "${device}1" > $log 2>&1
+fi
+if mount | grep -q "${device}2"; then
+     echo -e "$LGREEN[+]$Z Umount device ${device}2"
+     umount "${device}2" > $log 2>&1
+fi
 echo -e "$LGREEN[+]$Z Remove all partition on ${device}"
 mkfs.ext4 -F ${device} > $log 2>&1
 
@@ -119,18 +130,18 @@ fi
 # copy binay image with dd:
 echo -e "$LGREEN[+]$Z Starting copy"
 if [[ $skip_img -eq 0 ]]; then
-	dd "if=$img" of="${device}" &
-	ddpid=$!
-	echo " with PID $ddpid"
-	totchar=$(stat -c '%s' "$img")
-	humansize=$(du -h "$img" | cut -f1)
-	while kill -0 $ddpid; do
-	    wchar=$(egrep '^wchar:' /proc/$ddpid/io | awk '{ print $2 }')
-	    echo -en "\rWriting $humansize: $((wchar * 100 / totchar))%"
-	    sleep 10
-	done
-	wait
-	echo -e "$LGREEN[+]$Z Completed!"
+    dd "if=$img" of="${device}" &
+    ddpid=$!
+    echo " with PID $ddpid"
+    totchar=$(stat -c '%s' "$img")
+    humansize=$(du -h "$img" | cut -f1)
+    while kill -0 $ddpid; do
+        wchar=$(egrep '^wchar:' /proc/$ddpid/io | awk '{ print $2 }')
+        echo -en "\rWriting $humansize: $((wchar * 100 / totchar))%"
+        sleep 10
+    done
+    wait
+    echo -e "$LGREEN[+]$Z Completed!"
 fi
 
 # make the partition:
@@ -138,7 +149,7 @@ echo -e "$LGREEN[+]$Z Make encrypted persistent partition"
 img_bytes=$(stat -c %s "$img")
 img_bytes=$((img_bytes+1))
 
-if [ -e "${device}"2 ]; then
+if [ -e "${device}2" ]; then
 	echo -e "$LRED[-]$Z warning: ${device}2 seems to already exist!"
 fi
 partprobe 
@@ -158,15 +169,15 @@ mkfs.btrfs -L persistence /dev/mapper/my_usb.$$ >> $log 2>&1 || exit 1
 mkdir -p /mnt/freepto.$$
 
 # mount the partition
-sleep 2
 mount /dev/mapper/my_usb.$$ /mnt/freepto.$$/ -o noatime,nodiratime,compress=lzo
 
 # make the persistence.conf file
-sleep 2
+sleep 4
 echo "/ union" > ~/persistence.conf
 mv ~/persistence.conf /mnt/freepto.$$
 
 # umount partition and close LUKS
+sleep 4
 umount /mnt/freepto.$$ >> $log 2>&1 && cryptsetup luksClose /dev/mapper/my_usb.$$ >> $log 2>&1
 
 # remove mount dir
@@ -174,4 +185,3 @@ rm -rf /mnt/freepto.$$ >> $log 2>&1
 
 # stop
 echo -e "$LGREEN[+]$Z Freepto is ready for use"
-
