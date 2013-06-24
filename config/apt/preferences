@@ -1,4 +1,4 @@
-# Rimuovo pacchetti superflui
+# Remove extra package
 
 Package: icedove
 Pin: version *
@@ -33,5 +33,13 @@ Pin: version *
 Pin-Priority: -1
 
 Package: vala-terminal
+Pin: version *
+Pin-Priority: -1
+
+Package: libreoffice-draw
+Pin: version *
+Pin-Priority: -1
+
+Package: libreoffice-base
 Pin: version *
 Pin-Priority: -1
