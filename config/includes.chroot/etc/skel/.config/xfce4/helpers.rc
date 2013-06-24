@@ -1,3 +1,4 @@
 WebBrowser=firefox
 FileManager=Thunar
 TerminalEmulator=Terminal
+MailReader=thunderbird
