@@ -55,7 +55,6 @@ network-manager-iodine
 filezilla
 
 # Wireless Tools:
-aircrack-ng
 wifite
 tshark
 reaver

@@ -2,10 +2,6 @@ Package: wifite
 Pin: release n=jessie
 Pin-Priority: 600
 
-Package: aircrack-ng
-Pin: release n=jessie
-Pin-Priority: 600
-
 Package: crda
 Pin: release n=jessie
 Pin-Priority: 600
