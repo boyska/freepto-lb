@@ -36,10 +36,6 @@ Package: vala-terminal
 Pin: version *
 Pin-Priority: -1
 
-Package: libreoffice-draw
-Pin: version *
-Pin-Priority: -1
-
 Package: libreoffice-base
 Pin: version *
 Pin-Priority: -1
