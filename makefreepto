@@ -100,6 +100,11 @@ if ! which cryptsetup &> /dev/null; then
      sudo apt-get --force-yes --yes install cryptsetup >> $log 2>&1
      echo -e "$LGREEN[+]$Z cryptsetup pakcage installed!"
 fi
+if ! which parted &> /dev/null; then
+     echo -e "$LRED[-] No parted. Setting up parted $Z"
+     sudo apt-get --force-yes --yes install parted >> $log 2>&1
+     echo -e "$LGREEN[+]$Z parted pakcage installed!"
+fi
 
 # umount device and clean all partition:
 if mount | grep -q "${device}1"; then
