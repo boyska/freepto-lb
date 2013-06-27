@@ -11,12 +11,18 @@ lb config noauto \
     --mode debian \
     --memtest none \
     --source false \
+    --backports true \
+    --checksums sha256 \
+    --system live \
+    --apt-source-archives false \
     --debian-installer false \
     --bootappend-live "\
     --bootappend-install "noprompt" \
     boot=live \
     config \
+    quickreboot \
     persistence-encryption=luks \
+    persistence-media=removable-usb \
     username=paranoid \
     hostname=freepto \
     persistence \
