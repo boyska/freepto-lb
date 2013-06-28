@@ -24,6 +24,7 @@ lb config noauto \
     persistence-encryption=luks \
     persistence-media=removable-usb \
     username=paranoid \
+    live-config.hooks=filesystem|medium \
     hostname=freepto \
     persistence \
     live-config.locales=it_IT.UTF-8 live-config.timezone=Europe/Rome live-config.keyboard-layouts=it \
