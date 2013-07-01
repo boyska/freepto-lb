@@ -39,6 +39,8 @@ Build
 
  $ git clone https://github.com/AvANa-BBS/freepto-lb.git
 
+ $ cd freepto-lb
+ 
  $ lb config && lb build
  
 
@@ -51,7 +53,9 @@ Make Freepto
 
 2. Run makefreepto
 
- $ bash makefreepto -i binary.img /dev/sdX
+ $ bash makefreepto -h
+
+ $ bash makefreepto -i binary.img -p myS3cr3t#luksp4ssw0rd /dev/sdX
  
  
 Read Documentation
