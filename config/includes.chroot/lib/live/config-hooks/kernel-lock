@@ -2,4 +2,4 @@
 apt-mark hold linux-image-`uname -r`
 apt-mark hold linux-image-686-pae
 apt-mark hold linux-header-`uname -r`
-apt-mark hole linux-source-`uname -r`
+apt-mark hold linux-source-`uname -r`
