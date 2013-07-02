@@ -20,6 +20,7 @@ lb config noauto \
     --bootappend-live "\
     boot=live \
     config \
+    quickreboot \
     persistence-encryption=luks \
     persistence-media=removable-usb \
     username=paranoid \
