@@ -1,66 +1,45 @@
-freepto-lb
-==========
+**# Freepot-lb: crypto-usb for activist**
 
-Encrypted GNU/Linux OS (based on Debian Wheezy) wich can be installed on USB flash drive.
+## Chroot Debian Sid
 
-Freepto is designed for encrypt your communications (OTR, GPG, SSL), carry your documents in secure way (LUKS) and save your anonymity (TOR, OPENVPN)
+Make chroot:
+> $ sudo debootstrap --include=debian-keyring,debian-archive-keyring,cryptsetup,live-build,git,ca-certificates --arch i386 sid ~/freepto-lb/
 
+User chroot:
+> $ sudo chroot ~/freepto-lb /bin/bash
 
-Chroot Debian Sid
-=================
+Cache for APT (optional):
+> $ apt-get install apt-cacher-ng
 
-1. Make chroot:
+> $ /etc/init.d/apt-cacher-ng start
 
- $ sudo debootstrap --include=debian-keyring,debian-archive-keyring,cryptsetup,live-build,git,ca-certificates --arch i386 sid ~/freepto-lb/
+> $ export http_proxy=http://localhost:3142/
 
-2. User chroot:
+## Build
+Make your build.img:
+> $ git clone https://github.com/AvANa-BBS/freepto-lb.git
 
- $ sudo chroot ~/freepto-lb /bin/bash
+> $ cd freepto-lb
 
+> $ lb config && lb build
 
-Cache for APT (if you use a non-chroot debian sid):
-=========================
+## Make Freepto:
+Use "dmesg" to identify the usb device:
+> $ dmesg
 
-1. Install apt-cacher-ng
+Run make-freepto.sh:
 
- $ apt-get install apt-cacher-ng
- 
- $ /etc/init.d/apt-cacher-ng start
- 
-2. Set http_proxy:
- 
- $ export http_proxy=http://localhost:3142/
+> $ bash makefreepto -h
 
+> $ bash makefreepto -i binary.img -p myS3cr3t#luksp4ssw0rd /dev/sdX
 
-Build
-=====
+## Read documentation:
+https://we.riseup.net/avana/freepto-docs
 
-1. Make your build.img
+http://avana.forteprenestino.net/freepto
 
- $ git clone https://github.com/AvANa-BBS/freepto-lb.git
+## Start Freepto:
 
- $ cd freepto-lb
- 
- $ lb config && lb build
- 
-
-Make Freepto
-============
-
-1. Use "dmesg" to identify the usb device:
-
- $ dmesg
-
-2. Run makefreepto
-
- $ bash makefreepto -h
-
- $ bash makefreepto -i binary.img -p myS3cr3t#luksp4ssw0rd /dev/sdX
- 
- 
-Read Documentation
-==================
-
- https://we.riseup.net/avana/freepto-docs
- 
- http://avana.forteprenestino.net/freepto
+![](http://avana.forteprenestino.net/freepto/img/screenshot/freepto1.png)
+![](http://avana.forteprenestino.net/freepto/img/screenshot/freepto3.png)
+![](http://avana.forteprenestino.net/freepto/img/screenshot/freepto4.png)
