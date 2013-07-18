@@ -170,7 +170,7 @@ if [[ $fs == "btrfs" ]]; then
     mount /dev/mapper/my_usb.$$ /mnt/freepto.$$/ -o noatime,nodiratime,compress=lzo
 elif [[ $fs == "ext4" ]]; then
     # make FS with label: "persistence"
-    mkfs.extf4 -L persistence /dev/mapper/my_usb.$$ >> $log 2>&1 || exit 1
+    mkfs.ext4 -L persistence /dev/mapper/my_usb.$$ >> $log 2>&1 || exit 1
     # make a mount point
     mkdir -p /mnt/freepto.$$
     # mount the partition
