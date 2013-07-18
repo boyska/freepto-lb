@@ -161,16 +161,19 @@ cryptsetup --verbose --batch-mode --key-size 512 --hash sha512 --cipher aes-xts-
 # open LUKS
 cryptsetup luksOpen "${device}2" my_usb.$$ <<<${password} || exit 1
 
-# make FS with label: "persistence"
-mkfs.$fs -L persistence /dev/mapper/my_usb.$$ >> $log 2>&1 || exit 1
-
-# make a mount point
-mkdir -p /mnt/freepto.$$
-
-# mount the partition
 if [[ $fs == "btrfs" ]]; then
+    # make FS with label: "persistence"
+    mkfs.btrfs -L persistence /dev/mapper/my_usb.$$ >> $log 2>&1 || exit 1
+    # make a mount point
+    mkdir -p /mnt/freepto.$$
+    # mount the partition
     mount /dev/mapper/my_usb.$$ /mnt/freepto.$$/ -o noatime,nodiratime,compress=lzo
 elif [[ $fs == "ext4" ]]; then
+    # make FS with label: "persistence"
+    mkfs.extf4 -L persistence /dev/mapper/my_usb.$$ >> $log 2>&1 || exit 1
+    # make a mount point
+    mkdir -p /mnt/freepto.$$
+    # mount the partition
     mount /dev/mapper/my_usb.$$ /mnt/freepto.$$/ -o noatime,nodiratime
 fi
 
