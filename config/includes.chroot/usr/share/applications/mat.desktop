@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=MAT
 Comment=Metadata Anonymisation Toolkit
-Exec=mat
+Exec=mat-gui
 Terminal=false
 Type=Application
 Icon=/usr/share/pixmaps/customat.ico
