@@ -19,7 +19,7 @@
 <action>
 	<icon>gcr-key</icon>
 	<name>Cancellazione Sicura dei File</name>
-	<command>srm %F</command>
+	<command>srm -l %F</command>
 	<description>Elimina in maniera sicura i documenti dal tuo computer</description>
 	<patterns>*</patterns>
 	<text-files/>
@@ -31,7 +31,7 @@
 <action>
         <icon>gcr-key</icon>
         <name>Cancellazione Sicura delle Directory</name>
-        <command>srm -r %F</command>
+        <command>srm -l -r %F</command>
         <description>Elimina in maniera sicura i documenti dal tuo computer</description>
         <patterns>*</patterns>
         <directories/>
