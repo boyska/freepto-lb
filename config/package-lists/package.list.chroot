@@ -1,5 +1,9 @@
+linux-image-amd64
+linux-image-486
+
 # SO
 aptitude
+firmware-linux-free
 firmware-linux-nonfree
 user-setup 
 sudo 

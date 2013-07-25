@@ -5,8 +5,8 @@ lb config noauto \
     -a i386 \
     -b hdd \
     -d wheezy \
-    --linux-flavours "686-pae" \
     --security true \
+    --linux-flavours "amd64 486" \
     --apt-indices false \
     --mode debian \
     --memtest none \

@@ -29,7 +29,7 @@ getTempFile()
 
 # Set defaults values
 USERNAME="paranoid"
-LINUX_FLAVOURS="686-pae"
+LINUX_FLAVOURS="amd64 486"
 LOCALE="it_IT"
 ZONE="Europe/Rome"
 KEYMAP="it"
