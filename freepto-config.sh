@@ -146,6 +146,7 @@ lb config noauto \
     --backports true \
     --checksums sha256 \
     --system live \
+    --hdd-label FREEPTO \
     --apt-source-archives false \
     --debian-installer false \
     --debian-installer-gui false \
