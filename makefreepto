@@ -188,8 +188,5 @@ umount /mnt/freepto.$$ >> $log 2>&1 && cryptsetup luksClose /dev/mapper/my_usb.$
 # remove mount dir
 rm -rf /mnt/freepto.$$ >> $log 2>&1
 
-# setting freepto label
-mlabel -i "${device}1" ::FREEPTO
-
 # stop
 echo -e "$LGREEN[+]$Z Freepto is ready for use"
