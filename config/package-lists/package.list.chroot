@@ -20,6 +20,7 @@ unrar
 btrfs-tools
 htop
 ca-certificates
+dnsutils
 
 # XFCE4
 task-laptop
