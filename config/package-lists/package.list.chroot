@@ -118,4 +118,5 @@ python-stdeb
 python-gtk2 
 python-psutil 
 python-twisted 
+python-lzma
 wmctrl
