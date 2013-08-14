@@ -47,6 +47,6 @@ http://avana.forteprenestino.net/freepto
 
 ### Screenshots:
 
-![](http://avana.forteprenestino.net/freepto/img/screenshot/011/boot.png)
-![](http://avana.forteprenestino.net/freepto/img/screenshot/011/menu.png)
-![](http://avana.forteprenestino.net/freepto/img/screenshot/011/desktop.png)
+![](http://avana.forteprenestino.net/freepto/materiale/screenshot/011/boot.png)
+![](http://avana.forteprenestino.net/freepto/materiale/screenshot/011/menu.png)
+![](http://avana.forteprenestino.net/freepto/materiale/screenshot/011/desktop.png)
