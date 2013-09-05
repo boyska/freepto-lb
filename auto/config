@@ -26,6 +26,7 @@ lb config noauto \
     persistence-encryption=luks \
     persistence-media=removable-usb \
     username=paranoid \
+    nottyautologin \
     hostname=freepto \
     user-fullname=paranoid \
     persistence \
