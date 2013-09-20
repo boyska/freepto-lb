@@ -9,6 +9,7 @@ $0 [ -b ] [ -r ] [-f file_system_type ] [ -s ] [ -p luks_password ] [ -i image_p
 Options:
     -b         skip badblocks check
     -r         skip random filling (use only if you know what you are doing)
+    -R DEV     use DEV as random source instead of urandom (i.e.: /dev/frandom)
     -i IMAGE   put IMAGE on DEVICE (default is binary.img)
     -p         set password (defaul is "freepto")
     -s         set secure random password (default is "freepto")
@@ -35,11 +36,12 @@ fi
 skip_badblocks=0
 skip_random=0
 password="freepto"
+random_device="${random_device:-/dev/urandom}"
 img=binary.img
 log="./makefreepto.log"
 fs="ext4"
 
-while getopts 'brf:p:si:' opt; do
+while getopts 'brf:R:p:si:' opt; do
     case $opt in
     b)
         skip_badblocks=1
@@ -56,8 +58,11 @@ while getopts 'brf:p:si:' opt; do
     p)
         password=$OPTARG
         ;;
+    R)
+        random_device=$OPTARG
+	;;
     s)
-        password=`tr -dc 'a-zA-H0-9' < /dev/urandom | head -c 12`
+        password=`tr -dc 'a-zA-H0-9' < "${random_device}" | head -c 12`
         echo -e "$LGREEN[+]$Z Your LUKS random passphrase is: $LRED$password$Z"
         ;;
     \?)
@@ -86,6 +91,10 @@ if ! [[ -b $1 ]]; then
     usage
     exit 1
 fi
+if [ "${random_device}" != /dev/urandom ]; then
+	echo "ATTENZIONE: STAI USANDO UN GENERATORE RANDOM ERETICO" ${random_device}
+fi
+
 
 # set device
 device=$1
@@ -127,7 +136,7 @@ fi
 # write random data on crypto partition:
 if [[ $skip_random -eq 0 ]]; then
     echo -e "$LGREEN[+]$Z Writing random data on crypto partition!"
-    dd if=/dev/urandom of="${device}2"
+    dd "if=${random_device}" of="${device}2"
     echo -e "$LGREEN[+]$Z Random writing completed!"
 fi
 
@@ -190,3 +199,5 @@ rm -rf /mnt/freepto.$$ >> $log 2>&1
 
 # stop
 echo -e "$LGREEN[+]$Z Freepto is ready for use"
+
+# vim: set ts=4 sw=4 et:
