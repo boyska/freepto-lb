@@ -168,4 +168,18 @@ lb config noauto \
     --archive-areas "main contrib non-free" \
     --apt-recommends true
 
+cd config/package-lists
 
+LOCALE_PACKAGES="locale.list.chroot"
+
+if [ -f $LOCALE_PACKAGES ]
+then
+    rm $LOCALE_PACKAGES
+fi
+
+LINKED_LOCALE="$LOCALE"
+
+if [ -f $LINKED_LOCALE ]
+then
+    ln -s $LINKED_LOCALE $LOCALE_PACKAGES
+fi
