@@ -3,7 +3,7 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
@@ -318,8 +318,7 @@
       <description>&foxyproxy.pattern.description;</description>
       <separator class="thin"/>
       <hbox>
-        <checkbox id="noInternalIPs" 
-                  command="noInternalIPsCmd"/>
+        <checkbox id="noInternalIPs" command="noInternalIPsCmd"/>
       </hbox>
       <separator class="thin"/>
       <hbox>

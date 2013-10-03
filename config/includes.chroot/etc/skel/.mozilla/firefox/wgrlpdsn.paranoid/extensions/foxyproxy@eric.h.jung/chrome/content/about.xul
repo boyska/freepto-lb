@@ -3,8 +3,8 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
-  
+  eric.jung@getfoxyproxy.org
+
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -71,18 +71,18 @@
           </hbox>
           <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.createdBy;" />
-            <label value="Eric H. Jung" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mailto:eric.jung@yahoo.com" />
+            <label value="Eric H. Jung" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('mailto:eric.jung@getfoxyproxy.org');" tooltiptext="mailto:eric.jung@getfoxyproxy.org" />
           </hbox>
           <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.contributionsBy;" />
 	    <vbox>
               <label value="Jesper Staun Hansen"/>
-	      <label value="Georg Koppen"/> 
+	      <label value="Georg Koppen"/>
               <label value="Wladimir Palant"/>
 	    </vbox>
           </hbox>
           <hbox style="margin-left: 1em;">
-            <label value="&foxyproxy.copyright; 2006-2012 FoxyProxy, Inc." />
+            <label value="&foxyproxy.copyright; 2006-2013 FoxyProxy, Inc." />
             <spacer />
           </hbox>
           <hbox style="margin-left: 1em;">

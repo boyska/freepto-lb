@@ -2,7 +2,7 @@
   FoxyProxy
   Copyright (C) 2006-2013 FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation

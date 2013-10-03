@@ -2,7 +2,7 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
@@ -163,7 +163,7 @@ function _updateLogView(keepSelection) {
     getCellValue: function(row, col) {},
     cycleHeader: function(aColId, aElt) {},
     getRowProperties: function(row, col, props) {
-      /*if (foxyproxy.logg.item(row) && foxyproxy.logg.item(row).matchPattern == NA) {      
+      /*if (foxyproxy.logg.item(row) && foxyproxy.logg.item(row).matchPattern == NA) {
 	  	  var a = Components.classes["@mozilla.org/atom-service;1"].
 		      getService(Components.interfaces.nsIAtomService);
 		    col.AppendElement(a.getAtom("grey"));
@@ -413,7 +413,7 @@ function onCopySelection() {
       dom = orig.toDOM(document, true),
       p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
 	  p.fromDOM(dom, true);
-	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id 
+	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id
 	  foxyproxy.proxies.push(p);
 	  utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 	  // Reselect what was previously selected
@@ -793,10 +793,10 @@ function importSettings() {
 
     if (overlay.ask(this, foxyproxy.
       getMessage("import.success", [picker.file.path]))) {
-      // We have to handle the import and export of pattern subscriptions a bit 
-      // differently here as they are in JSON and not in XML. See as well the 
+      // We have to handle the import and export of pattern subscriptions a bit
+      // differently here as they are in JSON and not in XML. See as well the
       // comment in exportSettings(). "True" and "false" as arguments means that
-      // we have an import (probably of pattern subscriptions as well) and they 
+      // we have an import (probably of pattern subscriptions as well) and they
       // should be removed from the normal FoxyProxy settings file afterwards.
       patternSubscriptions.handleImportExport("pattern", true, false);
       proxySubscriptions.handleImportExport("proxy", true, false);
@@ -916,7 +916,7 @@ function toggleStatusBarText(checked) {
   // document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", true);
   // Call removeAttribute() instead of setAttribute("disabled", "false") or setAttribute("disabled", false);
   if (checked)
-    document.getElementById("statusBarWidthBroadcaster").removeAttribute("disabled"); // enables!    
+    document.getElementById("statusBarWidthBroadcaster").removeAttribute("disabled"); // enables!
   else
     document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", "true");
 }

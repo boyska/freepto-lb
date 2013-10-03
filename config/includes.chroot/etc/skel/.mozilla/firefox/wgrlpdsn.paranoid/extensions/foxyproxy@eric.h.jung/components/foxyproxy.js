@@ -2,7 +2,7 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
@@ -102,7 +102,7 @@ function foxyproxy() {
   SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;
   // That CU call has to be here, otherwise it would not work. See:
   // https://developer.mozilla.org/en/JavaScript/Code_modules/Using section
-  // "Custom modules and XPCOM components" 
+  // "Custom modules and XPCOM components"
   CU.import("resource://foxyproxy/subscriptions.jsm", this);
   CU.import("resource://foxyproxy/defaultprefs.jsm", this);
   CU.import("resource://foxyproxy/cookiesAndCache.jsm", this);
@@ -259,6 +259,11 @@ foxyproxy.prototype = {
     // If the user is about to enter pattern mode AND has different cookie
     // related settings in her proxies we show a warning.
     this.utils.displayPatternCookieWarning(mode, this);
+    // Make sure the authCounter is 0 if we change the mode. Otherwise users
+    // might get strange "Access Denied" errors.
+    if (this.authCounter !== 0) {
+      this.authCounter = 0;
+    }
     // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all
     // URLs), random, roundrobin, disabled, previous.
     // Note that "previous" isn't used anywhere but this method: it is

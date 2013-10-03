@@ -2,7 +2,7 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
@@ -446,12 +446,12 @@ end-foxyproxy-simple !*/
             BrowserToolboxCustomizeDone(true);
           } catch (e) {}
           // We have to duplicate this code here as adding the icon via the
-          // above code does not trigger the customizeChange event in 
+          // above code does not trigger the customizeChange event in
           // findToolbarIcon(). Thus, the proper color would not be applied
           // to the toolbar icon.
           foxyproxy.svgIcons.init();
           if (document.getElementById("fp-toolbar-icon-3")) {
-            // Our toolbar icon was added. Apply the proper icon coloring 
+            // Our toolbar icon was added. Apply the proper icon coloring
             // to the toolbar icon by setting the mode again.
             foxyproxy.setMode(foxyproxy.fp.mode);
           }
@@ -905,7 +905,7 @@ end-foxyproxy-simple !*/
             p.animatedIcons,
             this.fp.getMessage("foxyproxy.animatedicons.accesskey"),
             this.fp.getMessage("foxyproxy.animatedicons.label"),
-            this.fp.getMessage("foxyproxy.animatedicons.tooltip"));          
+            this.fp.getMessage("foxyproxy.animatedicons.tooltip"));
         }
 
         itm = _createRadioMenuItem(sbm,
@@ -935,7 +935,7 @@ end-foxyproxy-simple !*/
                 m.pattern,
                 m.name);
             }
-          }     
+          }
         }
       }
 
@@ -965,7 +965,6 @@ end-foxyproxy-simple !*/
         }
       }
       menupopup.appendChild(document.createElement("menuseparator"));
-      
       /* add the option to "Set xx.xx.xx.xx:yyyy" as new host and port" if applicable selection is made */
       var sel = this.selection.parseSelection();
       if (sel.reason == 0) {
@@ -974,8 +973,8 @@ end-foxyproxy-simple !*/
           "foxyproxy.selection.onChangeHost();", this.fp.getMessage("change.host.accesskey"), null);
         menupopup.appendChild(document.createElement("menuseparator"));
         itm.setAttribute("key", "key_foxyproxychangeproxy");
-      }      
-      
+      }
+
       // Advanced menuing
       if (this.fp.advancedMenus) {
         var submenu = document.createElement("menu");
@@ -997,7 +996,7 @@ end-foxyproxy-simple !*/
           this.fp.toolbarIcon,
           this.fp.getMessage("foxyproxy.toolbaricon.accesskey"),
           this.fp.getMessage("foxyproxy.toolbaricon.label"),
-          this.fp.getMessage("foxyproxy.toolbaricon.tooltip")); 
+          this.fp.getMessage("foxyproxy.toolbaricon.tooltip"));
 
         _createCheckMenuItem(gssubmenupopup,
           "foxyproxy.fp.statusbar.iconEnabled=!foxyproxy.fp.statusbar.iconEnabled;foxyproxy.updateViews(false);",
@@ -1042,7 +1041,7 @@ end-foxyproxy-simple !*/
             this.fp.getMessage("foxyproxy.tab.logging.label"),
             this.fp.getMessage("foxyproxy.tab.logging.accesskey"),
             this.fp.getMessage("foxyproxy.tab.logging.tooltip"));
-  
+
           _createCheckMenuItem(logsubmenupopup,
             // no need to write settings because changing the attribute makes the fp service re-write the settings
             "foxyproxy.fp.logging=!foxyproxy.fp.logging;foxyproxy.updateViews(false);",
@@ -1050,20 +1049,20 @@ end-foxyproxy-simple !*/
             this.fp.getMessage("foxyproxy.enabled.accesskey"),
             this.fp.getMessage("foxyproxy.enabled.label"),
             this.fp.getMessage("foxyproxy.enabled.tooltip"));
-  
+
           _createMenuItem(logsubmenupopup,
             this.fp.getMessage("foxyproxy.clear.label"),
             "foxyproxy.fp.logg.clear();foxyproxy.updateViews(false, true);",
             this.fp.getMessage("foxyproxy.clear.accesskey"),
             this.fp.getMessage("foxyproxy.clear.tooltip"));
-  
+
          _createMenuItem(logsubmenupopup,
              this.fp.getMessage("foxyproxy.refresh.label"),
              // Need to refresh the log view so the refresh button is enabled/disabled appropriately
              "foxyproxy.updateViews(false, true);",
              this.fp.getMessage("foxyproxy.refresh.accesskey"),
              this.fp.getMessage("foxyproxy.refresh.tooltip"));
-  
+
           itm =_createMenuItem(submenupopup,
             this.fp.getMessage("foxyproxy.quickadd.label"),
             "foxyproxy.onQuickAddDialog(event)",
@@ -1112,7 +1111,7 @@ end-foxyproxy-simple !*/
           this.fp.getMessage("foxyproxy.options.tooltip"));
         itm.setAttribute("key", "key_foxyproxyfocus");
 
-        
+
         /* Do the Set Host items. */
         /*var sel = foxyproxy.parseSelection(p),
             tmp = curProxy.substring(0, curProxy.length - 1); // because curProxy includes a final "."
@@ -1122,9 +1121,9 @@ end-foxyproxy-simple !*/
           itm.setAttribute("disabled", disabledSetHost);
           itm = _createMenuItem(sbm, this.fp.getMessage("change.host.reload", [sel.selection]),
               "foxyproxy.changeHost({proxy:" + tmp + ", host:'" + sel.parsedSelection[0] + "', port:'" + sel.parsedSelection[1] + "', reloadcurtab:true});", null, null);
-          itm.setAttribute("disabled", sel.disabled);     
+          itm.setAttribute("disabled", sel.disabled);
           */
-        
+
         if (!isFoxyProxySimple) {
           // No quickadd for FoxyProxy Simple
           itm =_createMenuItem(menupopup,
@@ -1135,7 +1134,7 @@ end-foxyproxy-simple !*/
           itm.setAttribute("key", "key_foxyproxyquickadd");
           itm.setAttribute("disabled", disableQuickAdd(this.fp));
         }
-        
+
         _createCheckMenuItem(menupopup,
           "foxyproxy.fp.advancedMenus = true;foxyproxy.updateViews(false);",
           this.fp.advancedMenus,
@@ -1144,7 +1143,7 @@ end-foxyproxy-simple !*/
           this.fp.getMessage("foxyproxy.advancedmenus.tooltip"));
       }
     }
-    
+
     function disableQuickAdd(fp) {
       return fp.mode == "disabled" || !fp.quickadd.enabled;
     }

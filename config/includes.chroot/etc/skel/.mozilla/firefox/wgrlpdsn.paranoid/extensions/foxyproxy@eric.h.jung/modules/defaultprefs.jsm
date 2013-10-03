@@ -2,7 +2,7 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license, available in the LICENSE
   file at the root of this installation and also online at
@@ -20,12 +20,12 @@
 let CI = Components.interfaces, CC = Components.classes, CU = Components.utils,
   gObsSvc = CC["@mozilla.org/observer-service;1"].
     getService(CI.nsIObserverService),
-   
+
   EXPORTED_SYMBOLS = ["defaultPrefs"];
 
 let defaultPrefs = {
   FALSE : 0x10,
-  TRUE : 0x11,    
+  TRUE : 0x11,
   CLEARED : 0x12,
   // These values are just reasonable defaults. The user-specific original
   // values will be read in saveOriginals().
@@ -56,7 +56,7 @@ let defaultPrefs = {
     this.prefs = this.utils.getPrefsService("");
     if (!this.ps.prefHasUserValue("cache.memory.enable")) {
       // We are new in a profile, save the currently used cache and cookie
-      // preferences. 
+      // preferences.
       this.saveOriginals();
     }
     if (this.ps.prefHasUserValue("autoconfig_url")) {
@@ -96,9 +96,9 @@ let defaultPrefs = {
           that.beingDisabled = false;
         }
       }
-    }; 
+    };
 
-    this.AddonManager.addAddonListener(extensionListener); 
+    this.AddonManager.addAddonListener(extensionListener);
     } catch (e) {dump(e + "\n")}
   },
 
@@ -114,10 +114,11 @@ let defaultPrefs = {
 
   addGeneralObservers : function() {
     for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change",
-              "em-action-requested", "quit-application"])
+              "em-action-requested", "quit-application",
+              "addon-options-displayed"])
       gObsSvc.addObserver(this, i, false);
   },
-  
+
   removePrefsObservers : function() {
     // we're not initialized and calling .removeObserver() will throw
     if (!this.networkDNSPrefs)
@@ -132,9 +133,10 @@ let defaultPrefs = {
     // Getting the exception in case we already removed these observers
     try {
       for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change",
-                "em-action-requested", "quit-application"])
+                "em-action-requested", "quit-application",
+                "addon-options-displayed"])
         gObsSvc.removeObserver(this, i);
-    } catch(e) {} 
+    } catch(e) {}
   },
 
   addCookieObserver : function() {
@@ -190,7 +192,7 @@ let defaultPrefs = {
           // be sure that 1) No proxy is messing with the user's cookie/cache
           // values and 2) the new user chosen values are saved.
           this.ps.setIntPref(data,
-            this.prefs.getIntPref("network.cookie.cookieBehavior")); 
+            this.prefs.getIntPref("network.cookie.cookieBehavior"));
         } else if (data == "memory.enable") {
           this.ps.setBoolPref("cache." + data,
             this.prefs.getBoolPref("browser.cache.memory.enable"));
@@ -204,11 +206,9 @@ let defaultPrefs = {
           this.ps.setBoolPref("cache." + data,
             this.prefs.getBoolPref("browser.cache.disk_cache_ssl"));
         }
-      }
-      else if (topic == "em-action-requested") {
+      } else if (topic == "em-action-requested") {
         this.restoreOnExit(data, subj.QueryInterface(CI.nsIUpdateItem));
-      }
-      else if (topic == "quit-application") {
+      } else if (topic == "quit-application") {
         if (this.beingUninstalled || this.beingDisabled) {
           this.restoreOriginals("all", false);
           if (this.beingUninstalled) {
@@ -232,7 +232,7 @@ let defaultPrefs = {
           // This case means being or getting enabled and shutting down...
           this.uninit();
           // Now the safeguards against IP and DNS leaks due to a compatibility
-          // check on restart if the application got upgraded. This affects 
+          // check on restart if the application got upgraded. This affects
           // Gecko 2 and later Gecko versions. That workaround is necessary as
           // FoxyProxy is _not_ available at that moment yet but rather
           // initialized after it. Nevertheless, the user is expecting to get
@@ -240,8 +240,7 @@ let defaultPrefs = {
           // (although that is wrong strictly speaking).
           this.saveFoxyProxyProxyMode();
         }
-      }
-      else if (topic == "foxyproxy-mode-change") {
+      } else if (topic == "foxyproxy-mode-change") {
         if (this.fp._mode == "disabled") {
           // We need to reset this value in order to not miss changes while
           // disabling FoxyProxy and enabling the same proxy again.
@@ -258,15 +257,59 @@ let defaultPrefs = {
         this.setOrUnsetPrefetch();
         // Start listening for pref changes if we aren't already
         this.addPrefsObservers();
-      }
-      else if (topic == "foxyproxy-proxy-change") {
+      } else if (topic == "foxyproxy-proxy-change") {
         if (this.fp._mode == "disabled") return;
         this.setOrUnsetPrefetch();
         // Start listening for pref changes if we aren't already
         this.addPrefsObservers();
+      } else if (topic == "addon-options-displayed" && data ==
+                 "foxyproxy@eric.h.jung") {
+        //if (this.fp.fpc.isFennec()) {
+        /*  let proxyList = subj.getElementById("mode-list");
+          let popup = proxyList.firstChild;
+          this.fp.fpc.removeChildren(popup);
+          for (var i=0,p; i<this.fp.proxies.length &&
+               ((p=this.fp.proxies.item(i)) || 1); i++)
+            popup.appendChild(this.fp.fpc.createMenuItem({idVal:p.id, labelId:
+              "mode.custom.label", labelArgs:[p.name],
+              name:"foxyproxy-enabled-type", document:subj, style:"color: " +
+              p.color}));
+          popup.appendChild(this.fp.fpc.createMenuItem({idVal:"disabled",
+            labelId: "mode.disabled.label", labelArgs:"", name:"",
+            document:subj, style: "color: red"}));
+          proxyList.value = this.fp.mode;
+
+          if (this.fp.mode != "disabled") {
+            if (!this.fp.proxies.item(proxyList.selectedIndex).enabled) {
+              // User disabled or deleted the proxy; select default setting.
+              this.fp.setMode("disabled", true);
+              proxyList.value = "disabled";
+            }
+          }
+
+          // Set color of selected menu item.
+          switch (this.fp.mode) {
+            case "disabled":
+              proxyList.setAttribute("style", "color:red");
+              break;
+            default:
+              proxyList.setAttribute("style", "color:" + this.fp._selectedProxy.
+                color);
+              break;
+          }*/
+        /*} else {
+          // The user is not running Fennec and not below Gecko 7. Thus we open
+          // the "usual" options dialog despite having inline options. That
+          // seems to be the best solution compared to overlaying extensions.xul
+          // or showing an options panel on desktop computers which don't
+          // offer all the options available or making yet another special
+          // FoxyProxy (Basic) version.
+          this.fp.fpc.getMostRecentWindow().
+            openDialog("chrome://foxyproxy/content/options.xul", "",
+             "minimizable,dialog,chrome,resizable=yes").focus();
+        }*/
       }
-    }
-    catch (e) { this.utils.dumpp(e); }
+    } catch (e) { this.utils.dumpp(e); }
   },
 
   setOrUnsetPrefetch : function() {
@@ -274,8 +317,8 @@ let defaultPrefs = {
       this.disablePrefetch();
     else
       this.restoreOriginalPreFetch(true);
-  }, 
-  
+  },
+
   shouldDisableDNSPrefetch : function() {
     if (this.fp._mode == "disabled") return false;
     // Is mode "Use proxy xyz for all URLs"? Does the selected proxy require dns
@@ -298,7 +341,7 @@ let defaultPrefs = {
     // start observing the prefs again
     this.addPrefsObservers();
   },
-  
+
   // FoxyProxy being disabled/uninstalled. Should we restore the original
   // pre-FoxyProxy values?
   restoreOnExit : function(d, updateItem) {
@@ -356,7 +399,7 @@ let defaultPrefs = {
       }
     }
   },
-  
+
   // Restore the original pre-FoxyProxy dnsPrefetch value and
   // optionally stop observing changes
   restoreOriginalPreFetch : function(contObserving) {
@@ -405,7 +448,7 @@ let defaultPrefs = {
     if (!contObserving)
       this.removeGeneralObservers();
   },
-  
+
   // Save the original prefs for restoring when FoxyProxy is disabled or
   // uninstalled or restarted.
   saveOriginals : function() {
@@ -434,7 +477,7 @@ let defaultPrefs = {
     // nevertheless have to save the FoxyProxy proxy settings to the prefs file
     // even on systems using a Gecko version < 2 as they might (and should)
     // upgrade to a version > 2.
-    // TODO: Do we really need all prefs? We should only save those we gonna 
+    // TODO: Do we really need all prefs? We should only save those we gonna
     // overwrite.
     this.ps.setCharPref("autoconfig_url",
       this.networkPrefs.getCharPref("autoconfig_url"));
@@ -517,7 +560,7 @@ let defaultPrefs = {
     this.networkPrefs.setBoolPref("socks_remote_dns",
       this.ps.getBoolPref("socks_remote_dns"));
   },
-  
+
   fromDOM : function(doc) {
     let n = doc.getElementsByTagName("defaultPrefs").item(0);
     // for pre-2.17 foxyproxy.xml files that don't have this node
@@ -525,7 +568,7 @@ let defaultPrefs = {
     // Default: does not exist
     this.origPrefetch = this.utils.getSafeAttr(n, "origPrefetch", null);
   },
-  
+
   toDOM : function(doc) {
     let e = doc.createElement("defaultPrefs");
     e.setAttribute("origPrefetch", this.origPrefetch);

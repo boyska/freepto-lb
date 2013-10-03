@@ -3,8 +3,8 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
-  
+  eric.jung@getfoxyproxy.org
+
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -32,7 +32,7 @@
           accesskey="&foxyproxy.menubar.file.accesskey;"
           tooltiptext="&foxyproxy.menubar.file.tooltip;">
           <menupopup id="file-popup">
-            <menuitem id="createProxyFile" class="menuitem-iconic" 
+            <menuitem id="createProxyFile" class="menuitem-iconic"
               command="createProxyCmd"
               tooltiptext="&foxyproxy.addnewproxy.tooltip;"/>
             <!-- tooltiptext is necessary for tooltip, dunno why -->

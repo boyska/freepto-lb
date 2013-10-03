@@ -2,7 +2,7 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license, available in the LICENSE
   file at the root of this installation and also online at
@@ -342,7 +342,7 @@ var subscriptions = {
     // Estimating whether the user wants to have the subscription base64
     // encoded. We use this as a parameter to show the proper dialog if there
     // is a mismatch between the users choice and the subscription's
-    // encoding.  
+    // encoding.
     var base64Encoded = aSubscription.metadata.obfuscation === "Base64";
     error = this.loadSubscription(aSubscription.metadata, base64Encoded,
       function(refreshedSubscription, userValues) {
@@ -807,7 +807,7 @@ patternSubscriptions.subscriptionsFile = "patternSubscriptions.json";
 
 // TODO: Where do we need the specific values? Wouldn't it not be enough to
 // have just the properties in an array?
-// TODO: If we use it put it in the constructor directly or better try to 
+// TODO: If we use it put it in the constructor directly or better try to
 // reuse it in ProxySubscriptions and put it therefore into subproto.
 patternSubscriptions.defaultMetaValues = {
   formatVersion : 1,
@@ -1104,28 +1104,30 @@ proxySubscriptions.getObjectFromText = function(subscriptionText,
   try {
     let ipPort = [];
     let proxySubscription = {};
-    let proxyArray = proxySubscription.proxies = [];
+    let proxyArray = [];
     let proxies = subscriptionText.split(/\n/);
+    let hostPort = "";
     for (let i = 0, length = proxies.length; i < length; ++i) {
       // TODO: Think about more tests to make sure we have an IP:Port format!?
       // Empty lines are useless. We do not add them to the proxy array.
-      if (proxies[i]) {
-        proxyArray[i] = {};
-        ipPort = proxies[i].split(":");
-        // We do the trimming here as we never know whether we have patterns
-        // like "123.123.123.123 : 456" as well.
-        proxyArray[i].ip = ipPort[0].replace(/^\s*|\s*$/g, "");
-        proxyArray[i].port = ipPort[1].replace(/^\s*|\s*$/g, "");
-        // TODO: Addapt this simple error checking to work with IPv6 addresses
+      // Removing all other whitespace as well to avoid patterns like
+      // "123.123.123.123 : 456", too.
+      hostPort = proxies[i].replace(/\s*/g, "");
+      if (hostPort) {
+        ipPort = hostPort.split(":");
+        // TODO: Adapt this simple error checking to work with IPv6 addresses
         // as well.
-        let isIP = this.ipRegExpSimple.test(proxyArray[i].ip);
-        let isPort = /^\d+$/.test(proxyArray[i].port);
+        let isIP = this.ipRegExpSimple.test(ipPort[0]);
+        let isPort = /^\d+$/.test(ipPort[1]);
         if (!(isIP && isPort)) {
           errorMessages.push(this.fp.getMessage("proxysubscription.error.txt"));
           return errorMessages;
         }
+        // We are still here. Add a new proxy.
+        proxyArray.push({ip: ipPort[0], port: ipPort[1]});
       }
     }
+    proxySubscription.proxies = proxyArray;
     return proxySubscription;
   } catch (e) {
     errorMessages.push(this.fp.getMessage("proxysubscription.error.txt"));
@@ -1139,7 +1141,7 @@ proxySubscriptions.addProxies = function(proxies, userValues) {
   let socksProxies = false;
   if (userValues.proxyType === 2) {
     socksProxies = true;
-  } 
+  }
   for (let i = 0, length = proxies.length; i < length; ++i) {
     proxy = Cc["@leahscape.org/foxyproxy/proxy;1"].createInstance().
       wrappedJSObject;

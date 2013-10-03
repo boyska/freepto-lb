@@ -2,7 +2,7 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
@@ -792,8 +792,16 @@ Proxy.prototype = {
         if (this.fp.isGecko17) {
           proxyString = this.sysProxyService.getProxyForURI(uri);
         } else {
-          proxyString = this.sysProxyService.getProxyForURI(uri.asciiSpec,
-            uri.scheme, uri.asciiHost, uri.port);
+          // Since bug 824341 landed we can't be sure anymore that we get a
+          // string back, thus we use a try-catch block here.
+          try {
+            proxyString = this.sysProxyService.getProxyForURI(uri.asciiSpec,
+              uri.scheme, uri.asciiHost, uri.port);
+          } catch (e) {
+            // An exception got thrown, not sure which proxy to use. Let's make
+            // a direct connection, the fallback Mozilla uses in such cases.
+            return this.direct;
+          }
         }
         if (proxyString == "DIRECT") {
           return this.direct;

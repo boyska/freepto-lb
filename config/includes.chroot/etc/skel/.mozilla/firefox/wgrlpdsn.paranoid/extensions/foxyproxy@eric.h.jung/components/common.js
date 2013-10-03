@@ -2,7 +2,7 @@
   FoxyProxy
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
@@ -312,6 +312,10 @@ Common.prototype = {
 
   isThunderbird : function() {
     return this.appInfo.ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
+  },
+
+  isFennec : function() {
+    return this.appInfo.ID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}";
   },
 
   notify : function(msg, ar, buttons, priority, callback, getNotWithVal, callbackArgs) {
