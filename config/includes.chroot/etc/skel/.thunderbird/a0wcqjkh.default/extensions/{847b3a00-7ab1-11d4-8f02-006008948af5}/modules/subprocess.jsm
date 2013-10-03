@@ -208,6 +208,12 @@ const STILL_ACTIVE = 259;
 const INFINITE = DWORD(0xFFFFFFFF);
 const WAIT_TIMEOUT = 0x00000102;
 
+// stdin pipe states
+const PIPE_STATE_NOT_INIT = 3;
+const PIPE_STATE_OPEN = 2;
+const PIPE_STATE_CLOSEABLE = 1;
+const PIPE_STATE_CLOSED = 0;
+
 /*
 typedef struct _SECURITY_ATTRIBUTES {
  DWORD  nLength;
@@ -453,14 +459,9 @@ function subprocess_win32(options) {
         stderrWorker = null,
         pendingWriteCount = 0,
         readers = options.mergeStderr ? 1 : 2,
-        stdinOpenState = 2,
+        stdinOpenState = PIPE_STATE_NOT_INIT,
         error = '',
         output = '';
-
-    // stdin pipe states
-    const OPEN = 2;
-    const CLOSEABLE = 1;
-    const CLOSED = 0;
 
     //api declarations
     /*
@@ -817,8 +818,12 @@ function subprocess_win32(options) {
                 pendingWriteCount--;
                 debugLog("got OK from stdinWorker - remaining count: "+pendingWriteCount+"\n");
                 break;
+            case "InitOK":
+                stdinOpenState = PIPE_STATE_OPEN;
+                debugLog("Stdin pipe opened\n");
+                break;
             case "ClosedOK":
-                stdinOpenState = CLOSED;
+                stdinOpenState = PIPE_STATE_CLOSED;
                 debugLog("Stdin pipe closed\n");
                 break;
             default:
@@ -842,8 +847,14 @@ function subprocess_win32(options) {
      * ChromeWorker object to write the data).
      */
     function writeStdin(data) {
+        if (stdinOpenState == PIPE_STATE_CLOSED) {
+          LogError("trying to write data to closed stdin");
+          return;
+        }
+
         ++pendingWriteCount;
         debugLog("sending "+data.length+" bytes to stdinWorker\n");
+
         var pipePtr = parseInt(ctypes.cast(child.stdin.address(), ctypes.uintptr_t).value);
 
         stdinWorker.postMessage({
@@ -863,8 +874,8 @@ function subprocess_win32(options) {
 
     function closeStdinHandle() {
         debugLog("trying to close stdin\n");
-        if (stdinOpenState != OPEN) return;
-        stdinOpenState = CLOSEABLE;
+        if (stdinOpenState != PIPE_STATE_OPEN) return;
+        stdinOpenState = PIPE_STATE_CLOSEABLE;
 
         if (stdinWorker) {
             debugLog("sending close stdin to worker\n");
@@ -875,7 +886,7 @@ function subprocess_win32(options) {
             });
         }
         else {
-            stdinOpenState = CLOSED;
+            stdinOpenState = PIPE_STATE_CLOSED;
             debugLog("Closing Stdin\n");
             CloseHandle(child.stdin) || LogError("CloseHandle hInputWrite failed");
         }
@@ -1015,16 +1026,15 @@ function subprocess_win32(options) {
         }
     }
 
-    var cmdStr = getCommandStr(options.command);
-    var workDir = getWorkDir(options.workdir);
+    function startWriting() {
+        debugLog("startWriting called\n");
 
-    //main
-    hChildProcess = popen(cmdStr, workDir, options.arguments, options.environment, child);
-
-    readPipes();
-
-    if (options.stdin) {
-       createStdinWriter();
+        if (stdinOpenState == PIPE_STATE_NOT_INIT) {
+          setTimeout(function _f() {
+              startWriting();
+            }, 1);
+          return;
+        }
 
         if(typeof(options.stdin) == 'function') {
             try {
@@ -1046,6 +1056,21 @@ function subprocess_win32(options) {
             writeStdin(options.stdin);
             closeStdinHandle();
         }
+    }
+
+    //main
+
+    var cmdStr = getCommandStr(options.command);
+    var workDir = getWorkDir(options.workdir);
+
+    hChildProcess = popen(cmdStr, workDir, options.arguments, options.environment, child);
+
+    readPipes();
+
+    if (options.stdin) {
+       createStdinWriter();
+       startWriting();
+
     }
     else
         closeStdinHandle();
@@ -1069,11 +1094,6 @@ function subprocess_win32(options) {
 
 
 function subprocess_unix(options) {
-    // stdin pipe states
-    const OPEN = 2;
-    const CLOSEABLE = 1;
-    const CLOSED = 0;
-
     var libc = ctypes.open(options.libc),
         active = true,
         done = false,
@@ -1086,7 +1106,7 @@ function subprocess_unix(options) {
         stderrWorker = null,
         pendingWriteCount = 0,
         readers = options.mergeStderr ? 1 : 2,
-        stdinOpenState = OPEN,
+        stdinOpenState = PIPE_STATE_NOT_INIT,
         error = '',
         output = '';
 
@@ -1181,6 +1201,13 @@ function subprocess_unix(options) {
                           ctypes.int,
                           ctypes.char.ptr
     );
+
+    //int sleep(int);
+    var sleep = libc.declare("sleep",
+                          ctypes.default_abi,
+                          ctypes.int,
+                          ctypes.int)
+
 
     //int fcntl(int fd, int cmd, ... /* arg */ );
     var fcntl = libc.declare("fcntl",
@@ -1390,8 +1417,12 @@ function subprocess_unix(options) {
                     pendingWriteCount--;
                     debugLog("got OK from stdinWorker - remaining count: "+pendingWriteCount+"\n");
                     break;
+                case "InitOK":
+                    stdinOpenState = PIPE_STATE_OPEN;
+                    debugLog("Stdin pipe opened\n");
+                    break;
                 case "ClosedOK":
-                    stdinOpenState = CLOSED;
+                    stdinOpenState = PIPE_STATE_CLOSED;
                     debugLog("Stdin pipe closed\n");
                     break;
                 default:
@@ -1404,7 +1435,7 @@ function subprocess_unix(options) {
             case "error":
                 LogError("got error from stdinWorker: "+event.data.data+"\n");
                 pendingWriteCount = 0;
-                stdinOpenState = CLOSED;
+                stdinOpenState = PIPE_STATE_CLOSED;
                 exitCode = -2;
             }
         };
@@ -1425,7 +1456,10 @@ function subprocess_unix(options) {
      * ChromeWorker object to write the data).
      */
     function writeStdin(data) {
-        if (stdinOpenState == CLOSED) return; // do not write to closed pipes
+        if (stdinOpenState == PIPE_STATE_CLOSED) {
+          LogError("trying to write data to closed stdin");
+          return;
+        }
 
         ++pendingWriteCount;
         debugLog("sending "+data.length+" bytes to stdinWorker\n");
@@ -1449,8 +1483,8 @@ function subprocess_unix(options) {
 
     function closeStdinHandle() {
         debugLog("trying to close stdin\n");
-        if (stdinOpenState != OPEN) return;
-        stdinOpenState = CLOSEABLE;
+        if (stdinOpenState != PIPE_STATE_OPEN) return;
+        stdinOpenState = PIPE_STATE_CLOSEABLE;
 
         if (stdinWorker) {
             debugLog("sending close stdin to worker\n");
@@ -1462,7 +1496,7 @@ function subprocess_unix(options) {
             });
         }
         else {
-            stdinOpenState = CLOSED;
+            stdinOpenState = PIPE_STATE_CLOSED;
             debugLog("Closing Stdin\n");
             close(child.stdin) && LogError("CloseHandle stdin failed");
         }
@@ -1602,20 +1636,17 @@ function subprocess_unix(options) {
         }
     }
 
-    //main
 
-    var cmdStr = getCommandStr(options.command);
-    var workDir = getWorkDir(options.workdir);
+    function startWriting() {
+        debugLog("startWriting called\n");
 
-    child = {};
-    pid = popen(cmdStr, workDir, options.arguments, options.environment, child);
+        if (stdinOpenState == PIPE_STATE_NOT_INIT) {
+          setTimeout(function _f() {
+              startWriting();
+            }, 2);
+          return;
+        }
 
-    debugLog("subprocess started; got PID "+pid+"\n");
-
-    readPipes();
-
-    if (options.stdin) {
-        createStdinWriter();
         if(typeof(options.stdin) == 'function') {
             try {
                 options.stdin({
@@ -1636,6 +1667,22 @@ function subprocess_unix(options) {
             writeStdin(options.stdin);
             closeStdinHandle();
         }
+    }
+    //main
+
+    var cmdStr = getCommandStr(options.command);
+    var workDir = getWorkDir(options.workdir);
+
+    child = {};
+    pid = popen(cmdStr, workDir, options.arguments, options.environment, child);
+
+    debugLog("subprocess started; got PID "+pid+"\n");
+
+    readPipes();
+
+    if (options.stdin) {
+        createStdinWriter();
+        startWriting();
     }
     else
         closeStdinHandle();

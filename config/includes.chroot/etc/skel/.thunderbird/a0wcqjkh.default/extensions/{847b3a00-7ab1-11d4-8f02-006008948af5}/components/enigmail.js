@@ -990,9 +990,9 @@ Enigmail.prototype = {
 
     function extractAgentInfo(fullStr) {
       if (fullStr) {
+        fullStr = fullStr.replace(/[\r\n]/g, "");
         fullStr = fullStr.replace(/^.*\=/,"");
-        fullStr = fullStr.replace(/^\;.*$/,"");
-        fullStr = fullStr.replace(/[\n\r]*/g,"");
+        fullStr = fullStr.replace(/\;.*$/,"");
         return fullStr;
       }
       else
@@ -1003,7 +1003,7 @@ Enigmail.prototype = {
     function resolveAgentPath(fileName) {
       var filePath = Cc[NS_LOCAL_FILE_CONTRACTID].createInstance(Ci.nsIFile);
 
-      if (gEnigmailSvc.isDosLike) {
+      if (Ec.isDosLike()) {
         fileName += ".exe";
       }
 
@@ -1018,7 +1018,7 @@ Enigmail.prototype = {
         }
       }
 
-      var foundPath = ResolvePath(fileName, gEnigmailSvc.environment.get("PATH"), gEnigmailSvc.isDosLike);
+      var foundPath = ResolvePath(fileName, gEnigmailSvc.environment.get("PATH"), Ec.isDosLike());
       if (foundPath != null) { foundPath.normalize(); }
       return foundPath;
     }
@@ -1108,34 +1108,44 @@ Enigmail.prototype = {
         }
 
         if ((! Ec.isDosLike()) && (this.agentVersion < "2.0.16" )) {
-          args = [ "--sh", "--no-use-standard-socket",
+
+          // create unique tmp file
+          var ds = Cc[DIR_SERV_CONTRACTID].getService();
+          var dsprops = ds.QueryInterface(Ci.nsIProperties);
+          var tmpFile = dsprops.get("TmpD", Ci.nsIFile);
+          tmpFile.append("gpg-wrapper.tmp");
+          tmpFile.createUnique(tmpFile.NORMAL_FILE_TYPE, DEFAULT_FILE_PERMS);
+          args = [ command.path,
+                   tmpFile.path,
+                  "--sh", "--no-use-standard-socket",
                   "--daemon",
                   "--default-cache-ttl", (Ec.getMaxIdleMinutes()*60).toString(),
                   "--max-cache-ttl", "999999" ];  // ca. 11 days
 
           try {
-            var p = subprocess.call({
-              command: command,
-              charset: null,
-              arguments: args,
-              environment: Ec.envList,
-              stdin: null,
-              done: function(result) {
-                Ec.DEBUG_LOG("detectGpgAgent start terminated with "+result.exitCode+"\n");
-                exitCode = result.exitCode;
-                outStr = result.stdout;
-              },
-              mergeStderr: true
-            });
-            p.wait();
+            var process = Cc["@mozilla.org/process/util;1"].createInstance(Ci.nsIProcess);
+            var exec = Ec.getInstallLocation().clone();
+            exec.append("wrappers");
+            exec.append("gpg-agent-wrapper.sh");
+            process.init(exec);
+            process.run(true, args, args.length);
+
+            if (! tmpFile.exists()) {
+              Ec.ERROR_LOG("enigmail.js: detectGpgAgent no temp file created\n");
+            }
+            else {
+              outStr = readFile(tmpFile);
+              tmpFile.remove(false);
+              exitCode = 0;
+            }
           } catch (ex) {
-            Ec.ERROR_LOG("enigmail.js: detectGpgAgent: "+command.path+" failed\n");
+            Ec.ERROR_LOG("enigmail.js: detectGpgAgent: failed with '"+ex+"'\n");
             exitCode = -1;
           }
 
           if (exitCode == 0) {
             this.gpgAgentInfo.envStr = extractAgentInfo(outStr);
-            Ec.DEBUG_LOG("enigmail.js: detectGpgAgent: started -> "+outStr+"\n");
+            Ec.DEBUG_LOG("enigmail.js: detectGpgAgent: started -> "+this.gpgAgentInfo.envStr+"\n");
             this.gpgAgentProcess = this.gpgAgentInfo.envStr.split(":")[1];
           }
           else {
@@ -1264,7 +1274,7 @@ Enigmail.prototype = {
       Ec.DEBUG_LOG("enigmail.js: Enigmail.execCmd: copied command line/env/input to files "+prefix+"enigcmd.txt/enigenv.txt/eniginp.txt\n");
     }
 
-    var blockSeparationObj = new Object();
+    if (input.length == 0 && preInput.length == 0)
 
     Ec.CONSOLE_LOG("enigmail> "+Ec.printCmdLine(command, args)+"\n");
 
@@ -1273,7 +1283,12 @@ Enigmail.prototype = {
       arguments:   args,
       environment: envList,
       charset: null,
-      stdin: preInput + input,
+      stdin: function(pipe) {
+        if (input.length > 0 || preInput.length > 0) {
+          pipe.write(preInput + input);
+        }
+        pipe.close();
+      },
       done: function(result) {
         this.exitCode = result.exitCode;
         this.resultData = result.stdout;
@@ -1310,14 +1325,15 @@ Enigmail.prototype = {
     Ec.DEBUG_LOG("enigmail.js: Enigmail.execCmd: errOutput = "+errOutput+"\n");
 
     var retObj = {};
+
     errorMsgObj.value = Ec.parseErrorOutput(errOutput, retObj);
     statusFlagsObj.value = retObj.statusFlags;
     statusMsgObj.value = retObj.statusMsg;
-    blockSeparationObj.value = retObj.blockSeparation;
+    var blockSeparation = retObj.blockSeparation;
 
     exitCodeObj.value = Ec.fixExitCode(proc.exitCode, statusFlagsObj.value);
 
-    if (blockSeparationObj.value.indexOf(" ") > 0) {
+    if (blockSeparation.indexOf(" ") > 0) {
       exitCodeObj.value = 2;
     }
 
@@ -1565,9 +1581,9 @@ Enigmail.prototype = {
     userIdObj.value      = "";
     errorMsgObj.value    = "";
 
-    var beginIndexObj = new Object();
-    var endIndexObj = new Object();
-    var indentStrObj = new Object();
+    var beginIndexObj = {};
+    var endIndexObj = {};
+    var indentStrObj = {};
     var blockType = this.locateArmoredBlock(cipherText, 0, "",
                                             beginIndexObj, endIndexObj, indentStrObj);
 
@@ -1746,7 +1762,7 @@ Enigmail.prototype = {
         var importedKey = false;
 
         if (innerKeyBlock) {
-          var importErrorMsgObj = new Object();
+          var importErrorMsgObj = {};
           var importFlags2 = nsIEnigmail.UI_INTERACTIVE;
           var exitStatus = this.importKey(parent, importFlags2, innerKeyBlock,
                                           pubKeyId, importErrorMsgObj);
@@ -1798,9 +1814,9 @@ Enigmail.prototype = {
     args = args.concat(["-a", "--export"]);
     args = args.concat(uidList);
 
-    var statusFlagsObj = new Object();
-    var statusMsgObj   = new Object();
-    var cmdErrorMsgObj = new Object();
+    var statusFlagsObj = {};
+    var statusMsgObj   = {};
+    var cmdErrorMsgObj = {};
 
     var keyBlock = this.execCmd(this.agentPath, args, null, "",
                       exitCodeObj, statusFlagsObj, statusMsgObj, cmdErrorMsgObj);
@@ -1868,9 +1884,9 @@ Enigmail.prototype = {
       return 1;
     }
 
-    var beginIndexObj = new Object();
-    var endIndexObj   = new Object();
-    var indentStrObj   = new Object();
+    var beginIndexObj = {};
+    var endIndexObj   = {};
+    var indentStrObj   = {};
     var blockType = this.locateArmoredBlock(msgText, 0, "",
                                             beginIndexObj, endIndexObj,
                                             indentStrObj);
@@ -1900,9 +1916,9 @@ Enigmail.prototype = {
     var args = Ec.getAgentArgs(true);
     args.push("--import");
 
-    var exitCodeObj    = new Object();
-    var statusFlagsObj = new Object();
-    var statusMsgObj   = new Object();
+    var exitCodeObj    = {};
+    var statusFlagsObj = {};
+    var statusMsgObj   = {};
 
     var output = this.execCmd(this.agentPath, args, null, pgpBlock,
                         exitCodeObj, statusFlagsObj, statusMsgObj, errorMsgObj);
@@ -1943,9 +1959,9 @@ Enigmail.prototype = {
     args.push("--import");
     args.push(fileName);
 
-    var statusFlagsObj = new Object();
-    var statusMsgObj   = new Object();
-    var exitCodeObj    = new Object();
+    var statusFlagsObj = {};
+    var statusMsgObj   = {};
+    var exitCodeObj    = {};
 
     var output = this.execCmd(this.agentPath, args, null, "",
                         exitCodeObj, statusFlagsObj, statusMsgObj, errorMsgObj);
@@ -2035,8 +2051,8 @@ Enigmail.prototype = {
 
       statusFlagsObj.value = 0;
 
-      var statusMsgObj   = new Object();
-      var cmdErrorMsgObj = new Object();
+      var statusMsgObj   = {};
+      var cmdErrorMsgObj = {};
 
       var listText = this.execCmd(this.agentPath, args, null, "",
                         exitCodeObj, statusFlagsObj, statusMsgObj, cmdErrorMsgObj);
@@ -2080,9 +2096,9 @@ Enigmail.prototype = {
       return "";
     }
 
-    var statusFlagsObj = new Object();
-    var statusMsgObj   = new Object();
-    var cmdErrorMsgObj = new Object();
+    var statusFlagsObj = {};
+    var statusMsgObj   = {};
+    var cmdErrorMsgObj = {};
 
     var listText = this.execCmd(this.agentPath, args, null, "",
                       exitCodeObj, statusFlagsObj, statusMsgObj, cmdErrorMsgObj);
@@ -2106,10 +2122,10 @@ Enigmail.prototype = {
     args=args.concat([ "--fixed-list-mode", "--with-colons", "--list-keys"]);
     args=args.concat(keyIdList);
 
-    var statusMsgObj   = new Object();
-    var cmdErrorMsgObj = new Object();
-    var statusFlagsObj = new Object();
-    var exitCodeObj = new Object();
+    var statusMsgObj   = {};
+    var cmdErrorMsgObj = {};
+    var statusFlagsObj = {};
+    var exitCodeObj = {};
 
     var listText = this.execCmd(this.agentPath, args, null, "",
                       exitCodeObj, statusFlagsObj, statusMsgObj, cmdErrorMsgObj);
@@ -2170,9 +2186,9 @@ Enigmail.prototype = {
       return "";
     }
 
-    var statusMsgObj   = new Object();
-    var cmdErrorMsgObj = new Object();
-    var statusFlagsObj = new Object();
+    var statusMsgObj   = {};
+    var cmdErrorMsgObj = {};
+    var statusFlagsObj = {};
 
     var listText = this.execCmd(this.agentPath, args, null, "",
                       exitCodeObj, statusFlagsObj, statusMsgObj, cmdErrorMsgObj);
@@ -2222,8 +2238,8 @@ Enigmail.prototype = {
     if (signMessage ) {
       args = args.concat(Ec.passwdCommand());
 
-      var passwdObj = new Object();
-      var useAgentObj = new Object();
+      var passwdObj = {};
+      var useAgentObj = {};
 
       if (!Ec.getPassphrase(parent, passwdObj, useAgentObj, 0)) {
          Ec.ERROR_LOG("enigmail.js: Enigmail.encryptAttachment: Error - no passphrase supplied\n");
@@ -2232,7 +2248,7 @@ Enigmail.prototype = {
          return null;
       }
 
-      passphrase = passwdObj.value;
+      if (!useAgentObj.value) passphrase = passwdObj.value;
     }
 
     var inFilePath  = Ec.getEscapedFilename(getFilePath(inFile.QueryInterface(Ci.nsIFile)));
@@ -2240,8 +2256,8 @@ Enigmail.prototype = {
 
     args = args.concat(["--yes", "-o", outFilePath, inFilePath ]);
 
-    var statusMsgObj   = new Object();
-    var cmdErrorMsgObj = new Object();
+    var statusMsgObj   = {};
+    var cmdErrorMsgObj = {};
 
     var msg = this.execCmd(this.agentPath, args, passphrase, "",
                       exitCodeObj, statusFlagsObj, statusMsgObj, cmdErrorMsgObj);
@@ -2282,16 +2298,27 @@ Enigmail.prototype = {
                               listener, statusFlagsObj);
 
     if (!proc) {
-      return false;
+      return -1;
     }
     proc.wait();
 
-    var statusMsgObj = {};
-    var cmdLineObj   = {};
+    var retObj = {};
 
-    exitCode = Ec.execEnd(listener, statusFlagsObj, statusMsgObj, cmdLineObj, errorMsgObj);
+    Ec.decryptMessageEnd (listener.stderrData, listener.exitCode, 1, true, true, nsIEnigmail.UI_INTERACTIVE, retObj);
 
-    return exitCode;
+    if (listener.exitCode == 0) {
+      var detailArr = retObj.sigDetails.split(/ /);
+      var dateTime = Ec.getDateTime(detailArr[2], true, true);
+      var msg1 = retObj.errorMsg.split(/\n/)[0];
+
+      var msg2 = Ec.getString("keyAndSigDate", ["0x"+retObj.keyId.substr(-8, 8), dateTime ]);
+      errorMsgObj.value = msg1 + "\n" + msg2;
+    }
+    else {
+      errorMsgObj.value = retObj.errorMsg;
+    }
+
+    return listener.exitCode;
   },
 
 
@@ -2326,8 +2353,8 @@ Enigmail.prototype = {
     statusFlagsObj.value = 0;
 
     var passphrase = null;
-    var passwdObj = new Object();
-    var useAgentObj = new Object();
+    var passwdObj = {};
+    var useAgentObj = {};
 
     if (!Ec.getPassphrase(parent, passwdObj, useAgentObj, 0)) {
       Ec.ERROR_LOG("enigmail.js: Enigmail.decryptAttachment: Error - no passphrase supplied\n");
@@ -2358,8 +2385,8 @@ Enigmail.prototype = {
     // Wait for child STDOUT to close
     proc.wait();
 
-    var statusMsgObj = new Object();
-    var cmdLineObj   = new Object();
+    var statusMsgObj = {};
+    var cmdLineObj   = {};
 
     exitCodeObj.value = Ec.execEnd(listener, statusFlagsObj, statusMsgObj, cmdLineObj, errorMsgObj);
 
@@ -2372,8 +2399,8 @@ Enigmail.prototype = {
     var args = Ec.getAgentArgs(false);
 
     args = args.concat(["--status-fd", "2", "--fixed-list-mode", "--with-colons", "--card-status"]);
-    var statusMsgObj = new Object();
-    var statusFlagsObj = new Object();
+    var statusMsgObj = {};
+    var statusFlagsObj = {};
 
     var outputTxt = this.execCmd(this.agentPath, args, null, "",
                   exitCodeObj, statusFlagsObj, statusMsgObj, errorMsgObj);
@@ -2393,7 +2420,7 @@ Enigmail.prototype = {
     args = args.concat(["--no-secmem-warning", "--no-verbose", "--no-auto-check-trustdb", "--batch", "--no-tty", "--status-fd", "1", "--attribute-fd", "2" ]);
     args = args.concat(["--fixed-list-mode", "--list-keys", keyId]);
 
-    var photoDataObj = new Object();
+    var photoDataObj = {};
 
     var outputTxt = this.simpleExecCmd(this.agentPath, args, exitCodeObj, photoDataObj);
 

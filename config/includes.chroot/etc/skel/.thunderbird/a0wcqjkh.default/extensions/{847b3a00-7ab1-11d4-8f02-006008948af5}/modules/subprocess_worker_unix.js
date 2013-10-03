@@ -78,6 +78,13 @@ const POLLNVAL   = 0x0020;         // requested events "invalid"
 
 const WNOHANG    = 0x01;
 
+const ECHILD       =   10;
+const EPIPE        =   32;         /* Broken pipe */
+
+const EAGAIN       =   35;         /* Resource temporarily unavailable */
+const EINPROGRESS  =   36;         /* Operation now in progress */
+const EALREADY     =   37;         /* Operation already in progress */
+
 const pid_t = ctypes.int32_t;
 
 const INDEFINITE = -1;
@@ -135,7 +142,25 @@ function initLibc(libName) {
                                   ctypes.int);
 }
 
+function createNpeError() {
+    let e = new Error("NULL Poiner", "npeError", 1);
+    try {
+        // throw an error and catch it to get a stack trace
+        throw e;
+    }
+    catch (ex) {
+        postMessage({msg: "error", data: "Got NULL pointer error\n" + ex.stack});
+    }
+
+    return;
+}
+
 function closePipe(pipe) {
+    if (pipe == null) {
+        createNpeError()
+        return;
+    }
+
     libcFunc.close(pipe);
 }
 
@@ -153,10 +178,11 @@ function writePipe(pipe, data) {
         }
 
         let bytesWritten = libcFunc.write(pipe, pData, numBytes);
+
         if (bytesWritten != numBytes) {
-            closePipe();
+            postMessage({ msg: "error", data: "error: write failed, errno=" + ctypes.errno });
+            closePipe(pipe);
             libc.close();
-            postMessage({ msg: "error", data: "error: wrote "+bytesWritten+" instead of "+numBytes+" bytes"});
             close();
         }
     }
@@ -199,8 +225,18 @@ function readPipe(pipe, charset, pid, bufferedOutput) {
                 exitCode = parseInt(status.value);
                 postMessage({msg: "debug", data: "waitpid signaled subprocess stop, exitcode="+status.value });
             }
+            else if (result < 0) {
+              postMessage({msg: "debug", data: "waitpid returned with errno="+ctypes.errno });
+              if (ctypes.errno == ECHILD) {
+                pollTimeout = NOWAIT;
+              }
+            }
         }
+        p[i].revents = 0;
         var r = libcFunc.poll(p, 1, pollTimeout);
+        if (pollTimeout == NOWAIT) {
+          readCount = 0;
+        }
         if (r > 0) {
             if (p[i].revents & POLLIN) {
                 // postMessage({msg: "debug", data: "reading next chunk"});
@@ -228,7 +264,7 @@ function readPipe(pipe, charset, pid, bufferedOutput) {
             }
         }
         else
-            if (pollTimeout == 0 || r < 0) break;
+            if (pollTimeout == NOWAIT || r < 0) break;
     }
 
     // continue reading until the buffer is empty
@@ -269,8 +305,14 @@ onmessage = function (event) {
     switch (event.data.msg) {
     case "init":
         initLibc(event.data.libc);
+        postMessage({msg: "info", data: "InitOK"});
         break;
     case "read":
+        if (event.data.pipe == null) {
+          createNpeError();
+          return;
+        }
+
         initLibc(event.data.libc);
         readPipe(event.data.pipe, event.data.charset, event.data.pid, event.data.bufferedOutput);
         break;
@@ -279,11 +321,21 @@ onmessage = function (event) {
         //   msg: 'write'
         //   data: the data (string) to write
         //   pipe: ptr to pipe
+
+        if (event.data.pipe == null) {
+          createNpeError();
+          return;
+        }
         writePipe(event.data.pipe, event.data.data);
         postMessage({msg: "info", data: "WriteOK"});
         break;
     case "close":
         postMessage({msg: "debug", data: "closing stdin\n"});
+
+        if (event.data.pipe == null) {
+          createNpeError();
+          return;
+        }
 
         closePipe(event.data.pipe);
         postMessage({msg: "info", data: "ClosedOK"});
