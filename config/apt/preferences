@@ -1,13 +1,5 @@
 # Remove extra package
 
-Package: icedove
-Pin: version *
-Pin-Priority: -1
-
-Package: iceweasel
-Pin: version *
-Pin-Priority: -1
-
 Package: brasero
 Pin: version *
 Pin-Priority: -1
