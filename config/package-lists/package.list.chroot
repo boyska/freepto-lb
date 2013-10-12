@@ -75,7 +75,7 @@ signing-party
 
 # Tools
 macchanger
-macchanger-gtk
+zenity
 bleachbit
 secure-delete
 gnome-disk-utility
