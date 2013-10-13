@@ -1,4 +1,4 @@
-WebBrowser=firefox
+WebBrowser=iceweasel
 FileManager=Thunar
 TerminalEmulator=Terminal
-MailReader=thunderbird
+MailReader=icedove
