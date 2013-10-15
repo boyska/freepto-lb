@@ -24,7 +24,6 @@ dnsutils
 
 # XFCE4
 task-laptop
-task-print-server
 xfce4-utils
 task-xfce-desktop
 
