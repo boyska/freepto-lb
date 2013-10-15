@@ -40,9 +40,13 @@ Run make-freepto.sh:
 Documentation
 =============
 
-https://we.riseup.net/avana/freepto-docs
+Italiano:
+* https://we.riseup.net/avana/freepto-docs
+* http://avana.forteprenestino.net/freepto
 
-http://avana.forteprenestino.net/freepto
+Castellano:
+* https://we.riseup.net/avana/freepto-docs-es
+* http://avana.forteprenestino.net/freepto/index.es.html
 
 
 Screenshots
