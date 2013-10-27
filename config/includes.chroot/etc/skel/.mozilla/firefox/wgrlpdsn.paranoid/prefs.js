@@ -7,10 +7,6 @@
  *
  * To make a manual change to preferences, you can visit the URL about:config
  */
-/* Impostate a mano dagli sviluppatori freepto */
-user_pref("browser.cache.disk.capacity", 0);
-user_pref("browser.sessionhistory.max_entries", 5);
-user_pref("extensions.https_everywhere.Autistici/inventati", true);
 
 /* Generate automaticamente */
 user_pref("app.update.auto", false);
@@ -35,15 +31,10 @@ user_pref("browser.privatebrowsing.autostart", true);
 user_pref("browser.rights.3.shown", true);
 user_pref("browser.slowStartup.averageTime", 3247);
 user_pref("browser.slowStartup.samples", 1);
-user_pref("browser.startup.homepage", "http://avana.forteprenestino.net/freepto/");
-user_pref("browser.startup.homepage_override.buildID", "20130511120803");
-user_pref("browser.startup.homepage_override.mstone", "21.0");
 user_pref("browser.syncPromoViewsLeftMap", "{\"addons\":0,\"bookmarks\":4}");
 user_pref("browser.tabs.autoHide", true);
 user_pref("browser.urlbar.autocomplete.enabled", false);
 user_pref("browser.urlbar.default.behavior", 2);
-user_pref("capability.policy.maonoscript.javascript.enabled", "allAccess");
-user_pref("capability.policy.maonoscript.sites", "autistici.org google.com googleapis.com indymedia.org maone.net mozilla.net noscript.net paypal.com paypalobjects.com persona.org riseup.net securecode.com securesuite.net yahoo.com yahooapis.com youtube.com ytimg.com about: about:addons about:blank about:blocked about:certerror about:config about:crashes about:home about:memory about:neterror about:plugins about:privatebrowsing about:sessionrestore about:support blob: chrome: http://autistici.org http://google.com http://googleapis.com http://indymedia.org http://maone.net http://mozilla.net http://noscript.net http://paypal.com http://paypalobjects.com http://persona.org http://riseup.net http://securecode.com http://securesuite.net http://yahoo.com http://yahooapis.com http://youtube.com http://ytimg.com https://autistici.org https://google.com https://googleapis.com https://indymedia.org https://maone.net https://mozilla.net https://noscript.net https://paypal.com https://paypalobjects.com https://persona.org https://riseup.net https://securecode.com https://securesuite.net https://yahoo.com https://yahooapis.com https://youtube.com https://ytimg.com resource:");
 user_pref("datareporting.healthreport.lastDataSubmissionRequestedTime", "1371201318597");
 user_pref("datareporting.healthreport.nextDataSubmissionTime", "1371201318597");
 user_pref("datareporting.healthreport.service.firstRun", true);
@@ -112,6 +103,7 @@ user_pref("extensions.foxyproxy.socks_version", 5);
 user_pref("extensions.foxyproxy.ssl", "");
 user_pref("extensions.foxyproxy.ssl_port", 0);
 user_pref("extensions.foxyproxy.type", 0);
+user_pref("extensions.https_everywhere.Autistici/inventati", true);
 user_pref("extensions.https-everywhere@eff.org.install-event-fired", true);
 user_pref("extensions.https_everywhere.01.org", true);
 user_pref("extensions.https_everywhere.1&1 Internet", true);
@@ -3194,11 +3186,6 @@ user_pref("places.history.expiration.transient_current_max_pages", 5536);
 user_pref("plugin.disable_full_page_plugin_for_types", "application/pdf");
 user_pref("pref.browser.homepage.disable_button.current_page", false);
 user_pref("pref.privacy.disable_button.view_passwords", false);
-user_pref("privacy.cpd.offlineApps", true);
-user_pref("privacy.cpd.siteSettings", true);
-user_pref("privacy.donottrackheader.enabled", true);
-user_pref("privacy.sanitize.migrateFx3Prefs", true);
-user_pref("security.disable_button.openCertManager", false);
 user_pref("services.sync.clients.lastSync", "0");
 user_pref("services.sync.clients.lastSyncLocal", "0");
 user_pref("services.sync.globalScore", 0);
