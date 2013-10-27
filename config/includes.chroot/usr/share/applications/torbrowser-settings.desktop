@@ -6,4 +6,4 @@ Exec=/usr/bin/torbrowser-launcher -settings
 Terminal=false
 Type=Application
 Icon=/usr/share/pixmaps/torbrowser80.xpm
-Categories=Freepto
+Categories=Paranoid

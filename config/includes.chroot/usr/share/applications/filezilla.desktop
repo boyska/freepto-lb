@@ -6,5 +6,5 @@ Exec=filezilla
 Terminal=false
 Icon=filezilla
 Type=Application
-Categories=Freepto;
+Categories=Paranoid;
 Version=1.0

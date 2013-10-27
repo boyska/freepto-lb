@@ -163,10 +163,10 @@
     </Menu>
 
     <Menu>
-        <Name>Freepto</Name>
-        <Directory>xfce-freepto.directory</Directory>
+        <Name>Paranoid</Name>
+        <Directory>xfce-paranoid.directory</Directory>
         <Include>
-            <Category>Freepto</Category>
+            <Category>Paranoid</Category>
         </Include>
     </Menu>
 

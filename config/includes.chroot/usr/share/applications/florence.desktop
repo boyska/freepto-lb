@@ -10,5 +10,5 @@ Exec=florence
 Terminal=false
 Type=Application
 Icon=/usr/share/pixmaps/florence.svg
-Categories=Freepto;
+Categories=Paranoid;
 
