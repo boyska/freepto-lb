@@ -1,0 +1,21 @@
+0.1.2
+======
+
+Hardware support
+-----------------
+
+* 32-bit, non-PAE PCs are supported
+* EFI boot is supported on x86-64 (recent Mac fall in this category)
+
+Software changes
+---------------------
+* Added a "secure delete" action in thunar
+* spanish and euskadi localization included
+* Persistence uses ext4 by default
+* MAT (Metadata Anonymization Toolkit) added
+* macchanger-gtk removed
+
+Bugfixes
+---------
+* numlock at startup prevents errors typing passphrase
+* tty autologin
