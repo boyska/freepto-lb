@@ -85,7 +85,6 @@ secure-delete
 gnome-disk-utility
 gparted
 florence
-tomb
 
 # Multimedia
 deb-multimedia-keyring
