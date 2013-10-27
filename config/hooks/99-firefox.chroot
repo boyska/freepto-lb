@@ -1,3 +1,0 @@
-#!/bin/sh
-set -e
-update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/firefox 100

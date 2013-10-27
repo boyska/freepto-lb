@@ -1,4 +1,4 @@
-WebBrowser=iceweasel
+WebBrowser=debian-sensible-browser
 FileManager=Thunar
-TerminalEmulator=Terminal
+TerminalEmulator=debian-x-terminal-emulator
 MailReader=icedove
