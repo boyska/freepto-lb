@@ -1115,6 +1115,10 @@ pref("security.disable_button.openCertManager", false);
 pref("browser.cache.disk.capacity", 0);                                                                                                                             
 pref("browser.sessionhistory.max_entries", 5); 
 
+// default browser
+
+pref("browser.shell.checkDefaultBrowser", false);
+
 // extensions
 
 pref("extensions.autoDisableScopes", 0);
