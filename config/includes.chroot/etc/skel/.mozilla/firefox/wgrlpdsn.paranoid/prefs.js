@@ -334,7 +334,7 @@ user_pref("extensions.https_everywhere.AusGamers.com (buggy)", false);
 user_pref("extensions.https_everywhere.Australian Koala Foundation", true);
 user_pref("extensions.https_everywhere.Austrian Airlines", true);
 user_pref("extensions.https_everywhere.Authorize.Net", true);
-user_pref("extensions.https_everywhere.Autistici/inventati", true);
+user_pref("extensions.https_everywhere.rule_toggle.Autistici/inventati", true);
 user_pref("extensions.https_everywhere.Automotive Industries", true);
 user_pref("extensions.https_everywhere.Avaaz", true);
 user_pref("extensions.https_everywhere.Avadirect", true);
