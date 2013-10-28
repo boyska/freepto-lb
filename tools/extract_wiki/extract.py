@@ -29,7 +29,7 @@ def download_url(pageurl, target):
         target = os.path.join(imgdir, base)
         if not os.path.exists(target):
             urlretrieve(resource_url, filename=target)
-        el[tag] = target
+        el[tag] = os.path.join(os.path.basename(imgdir), base)
 
     p = BeautifulSoup(urlopen(pageurl))
     head = p.find('head')
