@@ -14,6 +14,8 @@ Software changes
 * Persistence uses ext4 by default
 * MAT (Metadata Anonymization Toolkit) added
 * macchanger-gtk removed
+* freepto-password-changer added
+* gpg-key2ps added
 
 Bugfixes
 ---------
