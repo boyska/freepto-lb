@@ -158,6 +158,7 @@ lb config noauto \
     persistence-encryption=luks \
     persistence-media=removable-usb \
     username=$USERNAME \
+    nottyautologin \
     hostname=freepto \
     user-fullname=$USERNAME \
     persistence \
