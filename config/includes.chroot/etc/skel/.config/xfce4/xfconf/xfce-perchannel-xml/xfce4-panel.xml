@@ -28,7 +28,9 @@
     </property>
     <property name="plugin-2" type="string" value="actions"/>
     <property name="plugin-3" type="string" value="tasklist"/>
-    <property name="plugin-4" type="string" value="pager"/>
+    <property name="plugin-4" type="string" value="pager">
+      <property name="rows" type="uint" value="1"/>
+    </property>
     <property name="plugin-5" type="string" value="clock"/>
     <property name="plugin-6" type="string" value="systray">
       <property name="names-visible" type="array">
