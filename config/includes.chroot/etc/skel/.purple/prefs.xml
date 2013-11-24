@@ -443,9 +443,9 @@
 		</pref>
 		<pref name='docklet'>
 			<pref name='blink' type='bool' value='0'/>
-			<pref name='show' type='string' value='never'/>
+			<pref name='show' type='string' value='always'/>
 			<pref name='gtk'>
-				<pref name='embedded' type='bool' value='0'/>
+				<pref name='embedded' type='bool' value='1'/>
 			</pref>
 		</pref>
 	</pref>
