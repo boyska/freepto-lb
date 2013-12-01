@@ -106,3 +106,8 @@ python-psutil
 python-twisted 
 python-lzma
 wmctrl
+
+## deb.freepto.mx
+freepto-passwords-changer
+tomb
+torbrowser-launcher
