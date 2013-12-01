@@ -1,8 +1,11 @@
-0.1.2
+FREEPTO
+
+version:  0.1.2
+codename: arancina
 ======
 
 Hardware support
------------------
+---------------------
 
 * 32-bit, non-PAE PCs are supported
 * EFI boot is supported on x86-64 (recent Mac fall in this category)
@@ -16,8 +19,9 @@ Software changes
 * macchanger-gtk removed
 * freepto-password-changer added
 * gpg-key2ps added
+* added freepto repository
 
 Bugfixes
----------
+----------------------
 * numlock at startup prevents errors typing passphrase
 * tty autologin
