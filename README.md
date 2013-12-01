@@ -42,11 +42,11 @@ Documentation
 
 Italiano:
 * https://we.riseup.net/avana/freepto-docs
-* http://avana.forteprenestino.net/freepto
+* https://www.freepto.mx/
 
 Castellano:
 * https://we.riseup.net/avana/freepto-docs-es
-* http://avana.forteprenestino.net/freepto/index.es.html
+* https://www.freepto.mx/es/
 
 
 Screenshots
