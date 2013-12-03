@@ -105,7 +105,7 @@ python-gtk2
 python-psutil 
 python-twisted 
 python-lzma
-wmctr
+wmctrl
 
 ## deb.freepto.mx
 freepto-passwords-changer
