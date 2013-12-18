@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+RET_PERSISTENCE_FOUND=0
+RET_SYNTAX_ERROR=1
+RET_NOPERSISTENCE=10
+VERBOSE=0
+
+verbose() {
+  if [ "$VERBOSE" -eq 1 ]; then
+    echo $* >&2
+  fi
+}
+
+main() {
+  dfrow=$(df |grep /lib/live/mount/persistence)
+  if [ -z "$dfrow" ]; then
+    verbose "No persistence mounted"
+    exit ${RET_NOPERSISTENCE}
+  fi
+  mapper=$(awk '{ print $1 }' <<<$dfrow)
+  #device=$(dmsetup TODO)
+  #mountpoint=$(awk '{ print $NF }' <<<$dfrow)
+  echo "$mapper"
+  exit ${RET_PERSISTENCE_FOUND}
+}
+
+while getopts v opt; do
+  case $opt in
+    v)
+      VERBOSE=1
+      ;;
+    \?)
+      exit ${RET_SYNTAX_ERROR}
+      ;;
+  esac
+done
+main

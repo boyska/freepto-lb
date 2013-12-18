@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+#CHECKER="$(dirname $0)/check-persistence"
+CHECKER="check-persistence"
+out=$($CHECKER)
+ret=$?
+if [ "$ret" -eq 10 ]; then
+  # No persistence mounted
+  zenity --info --title "Freepto live helper" --text "No persistence mounted"
+elif [ "$ret" -eq 0 ]; then
+  # Ok, persistence mounted
+  zenity --info \
+    --title "Freepto live helper" \
+    --text "This devices have been mounted as persistence: $out"
+else # Errors during detection
+  zenity --error --title "Freepto live helper"
+fi
+
