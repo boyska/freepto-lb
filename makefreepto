@@ -20,6 +20,46 @@ Example:
 
 EOF
 }
+_fatal() {
+    echo -e "$LRED[!]$1 $Z" >&2
+    exit 1
+}
+_error() {
+    echo -e "$LRED[-]$1 $Z" >&2
+}
+_ok() {
+    echo -e "$LGREEN[+]$Z $1" >&2
+}
+nphase=0
+phasestart=
+phasetitle=
+nphases=5
+_phase() {
+    if [[ -n "$phasestart" ]]; then
+        _ok "$phasetitle SUCCESS (in $(($(date '+%s') - $phasestart)) seconds)"
+    fi
+    phasestart=$(date '+%s')
+    nphase=$((nphase + 1))
+    phasetitle="$1"
+    echo -e "${LGREEN}[$nphase/$nphases]$Z $phasetitle"
+}
+_check_dep() {
+    #$1 is the binary to check, $2 is the debian package
+    if ! which "$1" &> /dev/null; then
+        if ! which apt-get &> /dev/null; then
+            _fatal "$1 is missing; please install and retry"
+        fi
+        apt-get --force-yes --yes install $2 >> $log 2>&1
+    fi
+}
+_write_monitor() {
+    ddpid="$1"
+    while kill -0 $ddpid &> /dev/null; do
+        wchar=$(egrep '^wchar:' /proc/$ddpid/io | awk '{ print $2 }')
+        echo -en "\rWriting $((wchar / 1024 / 1024))MB"
+        sleep 5
+    done
+}
 
 # set color:
 export LRED="\e[1;31m"
@@ -28,8 +68,7 @@ export Z="\e[0m"
 
 # check if user is root:
 if [ "$(id -u)" != "0" ]; then
-   echo -e "$LRED[-] Only root can do that! $Z" 1>&2
-   exit 1
+   _fatal "Only root can do that!"
 fi
 
 # set default:
@@ -45,9 +84,11 @@ while getopts 'brf:R:p:si:' opt; do
     case $opt in
     b)
         skip_badblocks=1
+        nphases=$((nphases - 1))
         ;;
     r)
         skip_random=1
+        nphases=$((nphases - 1))
         ;;
     f)  
         fs=$OPTARG
@@ -60,13 +101,13 @@ while getopts 'brf:R:p:si:' opt; do
         ;;
     R)
         random_device=$OPTARG
-	;;
+    ;;
     s)
-        password=`tr -dc 'a-zA-H0-9' < "${random_device}" | head -c 12`
-        echo -e "$LGREEN[+]$Z Your LUKS random passphrase is: $LRED$password$Z"
+        password=`tr -dc 'a-zA-H0-9' < /dev/urandom | head -c 12`
+        _ok "Your LUKS random passphrase is: $LRED$password$Z"
         ;;
     \?)
-        echo -e "$LRED[-] Invalid option: -$OPTARG $Z" >&2
+        _error "Invalid option: -$OPTARG"
         usage
         exit 1
         ;;
@@ -76,23 +117,20 @@ shift $((OPTIND-1))
 
 # some control check
 if ! [[ -f "$img" ]]; then
-    echo -e "$LRED[-] Image $img not exist or is not valid $Z"
-    exit 1
+    _fatal "Image $img not exist or is not valid"
 fi
 
 if [ $# != 1 ];then
-    echo -e "$LRED[-] Wrong argument number $Z"
+    _error "Wrong argument number"
     usage
     exit 1
 fi
 
 if ! [[ -b $1 ]]; then
-    echo -e "$LRED[-]$1 should be a block special device $Z"
-    usage
-    exit 1
+    _fatal "$1 should be a block special device"
 fi
 if [ "${random_device}" != /dev/urandom ]; then
-	echo "ATTENZIONE: STAI USANDO UN GENERATORE RANDOM ERETICO" ${random_device}
+    echo "ATTENZIONE: STAI USANDO UN GENERATORE RANDOM ERETICO" ${random_device}
 fi
 
 
@@ -100,70 +138,62 @@ fi
 device=$1
 
 # check dependencies
-if ! which mkfs.btrfs &> /dev/null; then
-     echo -e "$LRED[-] No btrfs. Setting up btrfs-tools $Z"
-     sudo apt-get --force-yes --yes install btrfs-tools >> $log 2>&1
-     echo -e "$LGREEN[+] $Z btrfs-tools package installed!"
+if [[ "$fs" = "btrfs" ]]; then
+    _check_dep mkfs.btrfs btrfs-tools
 fi
-if ! which cryptsetup &> /dev/null; then
-     echo -e "$LRED[-] No cryptsetup. Setting up cryptsetup $Z"
-     sudo apt-get --force-yes --yes install cryptsetup >> $log 2>&1
-     echo -e "$LGREEN[+]$Z cryptsetup pakcage installed!"
-fi
-if ! which parted &> /dev/null; then
-     echo -e "$LRED[-] No parted. Setting up parted $Z"
-     sudo apt-get --force-yes --yes install parted >> $log 2>&1
-     echo -e "$LGREEN[+]$Z parted pakcage installed!"
-fi
+_check_dep cryptsetup cryptsetup
+_check_dep parted parted
 
 # umount device and clean all partition:
-if mount | grep -q "${device}1"; then
-     echo -e "$LGREEN[+]$Z Umount device ${device}1"
-     umount "${device}1" > $log 2>&1
-fi
-if mount | grep -q "${device}2"; then
-     echo -e "$LGREEN[+]$Z Umount device ${device}2"
-     umount "${device}2" > $log 2>&1
+if mount | egrep -q "^${device}"; then
+    _fatal "Device is mounted; please umount"
 fi
 
 # check for bad block on the device:
 if [[ $skip_badblocks -eq 0 ]]; then
-    echo -e "$LGREEN[+]$Z Badblock check started..."
+    _phase "Badblock check"
     badblocks -c 10240 -s -w -v "${device}"
-    echo -e "$LGREEN[+]$Z Badblock check completed!"
 fi
 
-# write random data on crypto partition:
-if [[ $skip_random -eq 0 ]]; then
-    echo -e "$LGREEN[+]$Z Writing random data on crypto partition!"
-    dd "if=${random_device}" of="${device}2"
-    echo -e "$LGREEN[+]$Z Random writing completed!"
-fi
 
 # copy binay image with dd:
-echo -e "$LGREEN[+]$Z Starting copy"
+_phase "Image copy"
 dd "if=$img" of="${device}" &
 ddpid=$!
 echo " with PID $ddpid"
 totchar=$(stat -c '%s' "$img")
 humansize=$(du -h "$img" | cut -f1)
-while kill -0 $ddpid; do
+while kill -0 $ddpid &> /dev/null; do
     wchar=$(egrep '^wchar:' /proc/$ddpid/io | awk '{ print $2 }')
     echo -en "\rWriting $humansize: $((wchar * 100 / totchar))%"
     sleep 10
 done
 wait
-echo -e "$LGREEN[+]$Z Completed!"
 
 # make the partition:
-echo -e "$LGREEN[+]$Z Make encrypted persistent partition"
+_phase "Make encrypted persistent partition"
 img_bytes=$(stat -c %s "$img")
 img_bytes=$((img_bytes+1))
 
 partprobe 
 parted "${device}" -- mkpart primary "${img_bytes}B" -1
+sleep 1
 partprobe 
 
+if ! [[ -b "${device}2" ]]; then
+    _fatal "Encrypted partition not found"
+fi
+# write random data on crypto partition:
+if [[ $skip_random -eq 0 ]]; then
+    _phase "Writing random data on crypto partition!"
+    dd if=/dev/urandom of="${device}2" &
+    ddpid=$!
+    _write_monitor "$ddpid"
+    wait
+fi
+
+_phase "Create persistence"
+sleep 2
 # encrypt partition
 cryptsetup --verbose --batch-mode --key-size 512 --hash sha512 --cipher aes-xts-plain --use-random luksFormat "${device}2" <<<${password} || exit 1
 
@@ -198,6 +228,5 @@ umount /mnt/freepto.$$ >> $log 2>&1 && cryptsetup luksClose /dev/mapper/my_usb.$
 rm -rf /mnt/freepto.$$ >> $log 2>&1
 
 # stop
-echo -e "$LGREEN[+]$Z Freepto is ready for use"
-
+_ok "Freepto is ready for use"
 # vim: set ts=4 sw=4 et:
