@@ -14,7 +14,7 @@ Options can be:
 COMMAND can be one of:
 \tis-mounted\tcheck if persistence is mounted
 \tget-root-device\treturns the device from where freepto is running
-\thas-avail-persistence\tcheck if there is a 
+\thas-avail-persistence\tcheck if there is a persistence partition
 
 Exit codes are:
 0\ton success
@@ -30,7 +30,7 @@ verbose() {
 }
 
 is_mounted() {
-  mapper=$(awk '$2 ~ /^\/lib\live\/mount\/persistence$/ { print $1 }' \
+  mapper=$(awk '$2 ~ /^\/lib\/live\/mount\/persistence$/ { print $1 }' \
 	  /proc/mounts | head -n1)
   if [ -z "$mapper" ]; then
     verbose "No persistence mounted"
@@ -43,7 +43,7 @@ is_mounted() {
 }
 
 get_root_partition() {
-	partition=$(awk '$2 ~ /^\/lib\live\/mount\/medium$/ { print $1 }' \
+	partition=$(awk '$2 ~ /^\/lib\/live\/mount\/medium$/ { print $1 }' \
 		/proc/mounts | head -n1)
 	if [ -z "$partition" ]; then
 		verbose "No root partition found; are you inside freepto?"
@@ -55,13 +55,13 @@ get_root_partition() {
 		return 1
 	fi
 	echo $partition
-	return ${RET_NOPERSISTENCE}
+	return ${RET_PERSISTENCE_FOUND}
 }
 
 get_root_device() {
 	partition=$(get_root_partition)
 	ret=$?
-	if [[ $ret -ne 0 ]]; then
+	if [[ $ret -ne ${RET_PERSISTENCE_FOUND} ]]; then
 		return $ret
 	fi
 	dev=${partition:0:$(( ${#partition} - 1 ))}
@@ -73,8 +73,12 @@ get_root_device() {
 		return 1
 	fi
 	echo $dev
+	return ${RET_PERSISTENCE_FOUND}
 }
 
+# check if there is a partition that seems to be a persistence
+# if process is privileged enough, deeper checks will be done
+# if found, output the partition device (ie: /dev/sdb2)
 has_avail_persistence() {
 	dev=$(get_root_device)
 	ret=$?
@@ -82,8 +86,27 @@ has_avail_persistence() {
 		return $ret
 	fi
 	persistence="${dev}2"
-	[[ -b "$persistence" ]] || return ${RET_NOPERSISTENCE}
-	cryptsetup isLuks "$persistence" || return ${RET_NOPERSISTENCE}
+	if [[ ! -b "$persistence" ]]; then
+	  verbose "There is no persistence partition"
+	  return ${RET_NOPERSISTENCE}
+	fi
+	if which cryptsetup &> /dev/null; then
+	  cryptsetup=cryptsetup
+	elif [[ -x /sbin/cryptsetup ]]; then
+	  cryptsetup=/sbin/cryptsetup
+	else
+	  echo "Cryptsetup not found!" >&2
+	  exit 1
+	fi
+	if [[ ! -r "$persistence" ]]; then
+	  echo "Not able to check encryption; maybe you should be root?" >&2
+	  echo $persistence
+	  return ${RET_PERSISTENCE_FOUND}
+	fi
+	if ! $cryptsetup isLuks "$persistence"; then
+	  verbose "$persistence is not an encrypted partition"
+	  return ${RET_NOPERSISTENCE}
+	fi
 	echo $persistence
 	return ${RET_PERSISTENCE_FOUND}
 }
@@ -121,7 +144,7 @@ case "$cmd" in
 		get_root_device
 		exit $?
 		;;
-	
+
 	has-avail-persistence)
 		if [ $# != 0 ]; then
 			usage
@@ -137,3 +160,5 @@ case "$cmd" in
 		exit 2
 		;;
 esac
+
+# vim: set noet:
