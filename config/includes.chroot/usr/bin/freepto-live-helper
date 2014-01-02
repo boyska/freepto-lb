@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #CHECKER="$(dirname $0)/check-persistence"
-CHECKER="check-persistence"
+CHECKER="check-persistence is-mounted"
 out=$($CHECKER)
 ret=$?
 if [ "$ret" -eq 10 ]; then

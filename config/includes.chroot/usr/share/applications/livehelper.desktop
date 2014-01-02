@@ -5,4 +5,4 @@ Name=Freepto Live Helper
 Comment=Give information about persistence status of Freepto
 Categories=Freepto;System
 # Icon=anonymous.ico
-Exec=/usr/bin/freepto-live-helper
+Exec=/usr/bin/freepto-live-tray

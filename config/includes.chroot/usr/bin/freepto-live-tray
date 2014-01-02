@@ -1,0 +1,64 @@
+#!/usr/bin/env python2
+'''
+GTK helper to know persistence status
+'''
+from subprocess import call
+
+import gtk
+
+
+def get_persistence_status():
+    '''return one of MOUNTED, LIVE, ABSENT'''
+    def sub_check(subcmd):
+        ret = call(['check-persistence', subcmd])
+        if ret == 0:
+            return True
+        if ret == 10:
+            return False
+        raise Exception('Error checking persistence status')
+    if sub_check('is-mounted'):
+        return 'MOUNTED'
+    if sub_check('has-avail-persistence'):
+        return 'LIVE'
+    return 'ABSENT'
+
+
+class LiveIcon:
+    '''
+    A status icon with 3 possible statuses:
+        MOUNTED
+        LIVE
+        ABSENT
+    '''
+    def __init__(self):
+        self.icon = gtk.StatusIcon()
+        self.status = None
+        self.refresh_icon()
+        try:
+            self.status = get_persistence_status()
+        except Exception as exc:
+            print exc
+            print "Status unknown"
+        self.refresh_icon()
+
+    def refresh_icon(self):
+        if self.status == 'MOUNTED':
+            self.icon.set_from_stock(gtk.STOCK_YES)
+            self.icon.set_tooltip("Persistence mounted")
+        elif self.status == 'LIVE':
+            self.icon.set_from_stock(gtk.STOCK_NO)
+            self.icon.set_tooltip("Persistence not mounted, but available " +
+                                  "(maybe you want to reboot?)")
+        elif self.status == 'ABSENT':
+            self.icon.set_from_stock(gtk.STOCK_CDROM)
+            self.icon.set_tooltip("Persistence not available " +
+                                  "(do you want to create it?)")
+        else:
+            self.icon.set_from_stock(gtk.STOCK_NEW)
+            self.icon.set_tooltip('Checking...')
+
+if __name__ == '__main__':
+    import os
+    os.environ['PATH'] += ':.'
+    icon = LiveIcon()
+    gtk.main()

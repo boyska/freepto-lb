@@ -4,24 +4,90 @@ RET_SYNTAX_ERROR=1
 RET_NOPERSISTENCE=10
 VERBOSE=0
 
+usage() {
+	# the -n and the trailing backslash are to avoid useless newlines
+	echo -en "\
+Usage: $0 [options] COMMAND
+Options can be:
+\t-v\tverbose (without this, there is barely any output)
+
+COMMAND can be one of:
+\tis-mounted\tcheck if persistence is mounted
+\tget-root-device\treturns the device from where freepto is running
+\thas-avail-persistence\tcheck if there is a 
+
+Exit codes are:
+0\ton success
+10\tfor 'not found'
+1\tfor generic errors
+2\tfor syntax errors
+"
+}
 verbose() {
   if [ "$VERBOSE" -eq 1 ]; then
     echo $* >&2
   fi
 }
 
-main() {
-  dfrow=$(df |grep /lib/live/mount/persistence)
-  if [ -z "$dfrow" ]; then
+is_mounted() {
+  mapper=$(awk '$2 ~ /^\/lib\live\/mount\/persistence$/ { print $1 }' \
+	  /proc/mounts | head -n1)
+  if [ -z "$mapper" ]; then
     verbose "No persistence mounted"
-    exit ${RET_NOPERSISTENCE}
+    return ${RET_NOPERSISTENCE}
   fi
-  mapper=$(awk '{ print $1 }' <<<$dfrow)
   #device=$(dmsetup TODO)
   #mountpoint=$(awk '{ print $NF }' <<<$dfrow)
   echo "$mapper"
-  exit ${RET_PERSISTENCE_FOUND}
+  return ${RET_PERSISTENCE_FOUND}
 }
+
+get_root_partition() {
+	partition=$(awk '$2 ~ /^\/lib\live\/mount\/medium$/ { print $1 }' \
+		/proc/mounts | head -n1)
+	if [ -z "$partition" ]; then
+		verbose "No root partition found; are you inside freepto?"
+		return ${RET_NOPERSISTENCE}
+	fi
+	if [ ! -b "$partition" ]; then
+		verbose "We found $partition, which doesn't look like a block" \
+			"device"
+		return 1
+	fi
+	echo $partition
+	return ${RET_NOPERSISTENCE}
+}
+
+get_root_device() {
+	partition=$(get_root_partition)
+	ret=$?
+	if [[ $ret -ne 0 ]]; then
+		return $ret
+	fi
+	dev=${partition:0:$(( ${#partition} - 1 ))}
+	if [[ "$dev" = "$partition" ]]; then
+		verbose "Some error occurred going from partition to device"
+		return 1
+	elif [[ ! -b "$dev" ]]; then
+		verbose "Device '$dev' is not a proper block file"
+		return 1
+	fi
+	echo $dev
+}
+
+has_avail_persistence() {
+	dev=$(get_root_device)
+	ret=$?
+	if [[ $ret -ne 0 ]]; then
+		return $ret
+	fi
+	persistence="${dev}2"
+	[[ -b "$persistence" ]] || return ${RET_NOPERSISTENCE}
+	cryptsetup isLuks "$persistence" || return ${RET_NOPERSISTENCE}
+	echo $persistence
+	return ${RET_PERSISTENCE_FOUND}
+}
+
 
 while getopts v opt; do
   case $opt in
@@ -33,4 +99,41 @@ while getopts v opt; do
       ;;
   esac
 done
-main
+shift $((OPTIND - 1))
+
+cmd=$1
+shift
+case "$cmd" in
+	is-mounted)
+		if [ $# != 0 ]; then
+			usage
+			exit 1
+		fi
+		is_mounted
+		exit $?
+		;;
+
+	get-root-device)
+		if [ $# != 0 ]; then
+			usage
+			exit 1
+		fi
+		get_root_device
+		exit $?
+		;;
+	
+	has-avail-persistence)
+		if [ $# != 0 ]; then
+			usage
+			exit 1
+		fi
+		has_avail_persistence
+		exit $?
+		;;
+
+	*)
+		echo "Command '$cmd' not found" >&2
+		usage
+		exit 2
+		;;
+esac
