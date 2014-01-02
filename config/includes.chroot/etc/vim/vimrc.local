@@ -1,0 +1,5 @@
+syntax enable
+set bg=dark
+set modeline
+
+" vim: set ft=vim:

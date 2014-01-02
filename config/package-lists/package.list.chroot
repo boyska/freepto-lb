@@ -5,22 +5,13 @@ linux-image-486
 aptitude
 firmware-linux-free
 firmware-linux-nonfree
-user-setup 
-sudo 
-cryptsetup 
+user-setup
+sudo
+cryptsetup
 apt-utils
-vim
-screen
-git
-curl
-wget
 gksu
-lsof
-unrar
 btrfs-tools
-htop
 ca-certificates
-dnsutils
 ntp
 
 # XFCE4
@@ -65,28 +56,6 @@ reaver
 pyrit
 aircrack-ng
 
-# Firefox:
-iceweasel
-xul-ext-adblock-plus
-xul-ext-https-everywhere
-xul-ext-foxyproxy-standard
-
-# Mail and GPG
-icedove
-enigmail
-seahorse
-signing-party
-gnupg-curl
-
-# Tools
-macchanger
-zenity
-bleachbit
-secure-delete
-gnome-disk-utility
-gparted
-florence
-
 # Multimedia
 deb-multimedia-keyring
 w32codecs
@@ -98,17 +67,3 @@ mat
 
 # Local Wiki
 zim
-
-## Torbrowser-launcher
-python-stdeb
-python-gtk2 
-python-psutil 
-python-twisted 
-python-lzma
-wmctrl
-
-## deb.freepto.mx
-freepto-passwords-changer
-tomb
-torbrowser-launcher
-tortp

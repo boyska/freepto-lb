@@ -1,0 +1,17 @@
+# command line
+bash-completion
+zenity
+screen
+git
+curl
+wget
+lsof
+unrar
+dnsutils
+htop
+vim
+
+# disk, filesystems...
+secure-delete
+gnome-disk-utility
+gparted

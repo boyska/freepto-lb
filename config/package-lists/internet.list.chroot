@@ -1,0 +1,14 @@
+# Firefox:
+iceweasel
+xul-ext-adblock-plus
+xul-ext-https-everywhere
+xul-ext-foxyproxy-standard
+
+# Mail and GPG
+icedove
+enigmail
+seahorse
+signing-party
+gnupg-curl
+
+
