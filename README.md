@@ -26,7 +26,7 @@ For users: Burn Freepto on a USB
 ================================
 
 You can download the latest images from
-https://avana.forteprenestino.net/freepto
+https://download.freepto.mx
 
 Use "dmesg" to identify the usb device:
 > $ dmesg
@@ -52,6 +52,5 @@ Castellano:
 Screenshots
 ============
 
-![](http://avana.forteprenestino.net/freepto/materiale/screenshot/011/boot.png)
-![](http://avana.forteprenestino.net/freepto/materiale/screenshot/011/menu.png)
-![](http://avana.forteprenestino.net/freepto/materiale/screenshot/011/desktop.png)
+![](http://www.freepto.mx/static/boot.png)
+![](http://www.freepto.mx/static/desktop.png)
