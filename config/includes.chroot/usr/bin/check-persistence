@@ -30,7 +30,7 @@ verbose() {
 }
 
 is_mounted() {
-  mapper=$(awk '$2 ~ /^\/lib\/live\/mount\/persistence$/ { print $1 }' \
+  mapper=$(awk '$2 ~ /^\/lib\/live\/mount\/persistence/ { print $1 }' \
 	  /proc/mounts | head -n1)
   if [ -z "$mapper" ]; then
     verbose "No persistence mounted"
