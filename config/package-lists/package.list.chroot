@@ -39,6 +39,7 @@ libreoffice-impress
 # Network:
 tor
 tor-arm
+dnsmasq
 pidgin
 pidgin-otr
 deb.torproject.org-keyring
