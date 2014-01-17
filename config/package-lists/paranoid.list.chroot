@@ -15,5 +15,8 @@ wmctrl
 freepto-passwords-changer
 tomb
 torbrowser-launcher
-tortp
 
+## TORtp
+python-stem
+tortp-gtk
+python-tortp

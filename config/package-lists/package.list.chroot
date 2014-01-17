@@ -30,6 +30,7 @@ libreoffice-impress
 # Network:
 tor
 tor-arm
+dnsmasq
 pidgin
 pidgin-otr
 deb.torproject.org-keyring
@@ -43,6 +44,7 @@ transmission
 network-manager
 network-manager-gnome
 network-manager-openvpn
+network-manager-openvpn-gnome
 network-manager-vpnc
 network-manager-strongswan
 network-manager-pptp
