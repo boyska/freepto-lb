@@ -15,3 +15,7 @@ vim
 secure-delete
 gnome-disk-utility
 gparted
+
+# mouse
+xserver-xorg-input-synaptics
+synclient-tools
