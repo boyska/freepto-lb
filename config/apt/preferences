@@ -1,3 +1,9 @@
+# Allow wheezy-updates
+
+Package: *
+Pin: release o=Debian,n=wheezy-updates
+Pin-Priority: 990
+
 # Remove extra package
 
 Package: brasero
