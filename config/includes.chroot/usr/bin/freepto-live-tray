@@ -2,9 +2,63 @@
 '''
 GTK helper to know persistence status
 '''
-from subprocess import call
+from subprocess import call, check_output, CalledProcessError
+import logging
+logging.basicConfig(level=logging.INFO)
 
 import gtk
+
+messages = {'ABSENT_expl': {}, 'MOUNTED_expl': {}, 'LIVE_expl': {},
+            'misc_info': {}}
+messages['misc_info'] = {
+    'it_IT': """Il tuo disco e' <tt>%(disk)s</tt>""",
+    'en_US': """Your disk is <tt>%(disk)s</tt>"""
+}
+messages['ABSENT_expl'] = {
+    'it_IT': """Non abbiamo rilevato alcuna persistenza, dovresti crearla.
+
+Scopri come su <a href="http://wiki.freepto.mx/it/Contrib/FixPersistenza">http://wiki.freepto.mx/it/Contrib/FixPersistenza</a>.
+""" + messages['misc_info']['it_IT'],
+    'en_US': """No persistence detected, you should create one.
+
+""" + messages['misc_info']['en_US']
+}
+messages['MOUNTED_expl'] = {
+    'it_IT': "La persistenza e' montata correttamente, perfetto!",
+    'en_US': "Persistence is correctly mounted, everything is fine"
+}
+messages['MOUNTED_expl'] = {
+    'it_IT': """Sembra che ci sia una persistenza, ma non la hai montata.
+
+Riavviare potrebbe risolvere""",
+    'en_US': """It seems that there is a persistence, but you didn't mount it.
+
+Reboot may be helpful"""
+}
+
+
+def get_message(key, lang=None):
+    if lang is None:
+        lang = os.environ['LANG'].split('.')[0] if 'LANG' in os.environ else 'en_US'
+    if key in messages:
+        localizations = messages[key]
+        if lang in localizations:
+            return localizations[lang]
+        logging.warn("Can't found %s localization for '%s'" % (lang, key))
+        if 'en_US' in localizations:
+            return localizations['en_US']
+        if localizations.keys():
+            return localizations[localizations.keys()[0]]
+        return 'No valid localization for "%s"' % key
+    logging.warn("Message key not found: '%s'" % key)
+    return key
+
+
+def get_root_device():
+    try:
+        return check_output(["check-persistence", "get-root-device"])
+    except CalledProcessError:
+        return None
 
 
 def get_persistence_status():
@@ -37,9 +91,10 @@ class LiveIcon:
         try:
             self.status = get_persistence_status()
         except Exception as exc:
-            print exc
-            print "Status unknown"
+            logging.exception("Status unknown")
+        self.dialog = None
         self.refresh_icon()
+        self.icon.connect("activate", self.show_popup)
 
     def refresh_icon(self):
         if self.status == 'MOUNTED':
@@ -56,6 +111,25 @@ class LiveIcon:
         else:
             self.icon.set_from_stock(gtk.STOCK_NEW)
             self.icon.set_tooltip('Checking...')
+
+    def show_popup(self, widget):
+        if self.dialog:
+            logging.debug("already open")
+            self.dialog.destroy()
+            return
+
+        values = {'disk': get_root_device()}
+
+        self.dialog = gtk.Dialog("Persistence helper", flags=gtk.DIALOG_MODAL,
+                                 buttons=(gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+        label = gtk.Label()
+        label.set_markup(get_message("%s_expl" % self.status) % values)
+        self.dialog.vbox.pack_start(label)
+
+        self.dialog.vbox.show_all()
+        self.dialog.run()
+        self.dialog.destroy()
+        self.dialog = None
 
 if __name__ == '__main__':
     import os
