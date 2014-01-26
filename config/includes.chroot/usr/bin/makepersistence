@@ -77,7 +77,6 @@ fi
 if [[ ! -b "$partition" ]]; then
     _fatal "Partition $partition is not a valid block device; aborting"
 fi
-exit 0
 
 # write random data on crypto partition:
 if [[ $skip_random -eq 0 ]]; then
