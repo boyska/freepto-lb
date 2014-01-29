@@ -20,3 +20,6 @@ torbrowser-launcher
 python-stem
 tortp-gtk
 python-tortp
+
+## freepto-live-helper
+python-vte
