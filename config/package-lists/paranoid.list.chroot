@@ -17,6 +17,7 @@ tomb
 torbrowser-launcher
 
 ## TORtp
+tortp
 python-stem
 tortp-gtk
 python-tortp
