@@ -8,6 +8,20 @@ logging.basicConfig(level=logging.INFO)
 
 import gtk
 
+try:
+    import vte
+except:
+    error = gtk.MessageDialog(None, flags=gtk.DIALOG_MODAL,
+                              type=gtk.MESSAGE_ERROR,
+                              buttons=gtk.BUTTONS_OK,
+                              message_format=
+                              'You need to install python bindings for libvte'
+                              )
+    error.run()
+    import sys
+    sys.exit(1)
+
+
 messages = {'ABSENT_expl': {}, 'MOUNTED_expl': {}, 'LIVE_expl': {},
             'misc_info': {}}
 messages['misc_info'] = {
@@ -15,11 +29,10 @@ messages['misc_info'] = {
     'en_US': """Your disk is <tt>%(disk)s</tt>"""
 }
 messages['ABSENT_expl'] = {
-    'it_IT': """Non abbiamo rilevato alcuna persistenza, dovresti crearla.
+    'it_IT': """Non abbiamo rilevato alcuna persistenza, vuoi crearla ?
 
-Scopri come su <a href="http://wiki.freepto.mx/it/Contrib/FixPersistenza">http://wiki.freepto.mx/it/Contrib/FixPersistenza</a>.
 """ + messages['misc_info']['it_IT'],
-    'en_US': """No persistence detected, you should create one.
+    'en_US': """No persistence detected, do you want to create it ?
 
 """ + messages['misc_info']['en_US']
 }
@@ -27,7 +40,7 @@ messages['MOUNTED_expl'] = {
     'it_IT': "La persistenza e' montata correttamente, perfetto!",
     'en_US': "Persistence is correctly mounted, everything is fine"
 }
-messages['MOUNTED_expl'] = {
+messages['LIVE_expl'] = {
     'it_IT': """Sembra che ci sia una persistenza, ma non la hai montata.
 
 Riavviare potrebbe risolvere""",
@@ -70,11 +83,71 @@ def get_persistence_status():
         if ret == 10:
             return False
         raise Exception('Error checking persistence status')
+    #esco subito con ABSENT per semplificarmi la vita durante i test
+    #return 'ABSENT'
     if sub_check('is-mounted'):
         return 'MOUNTED'
     if sub_check('has-avail-persistence'):
         return 'LIVE'
     return 'ABSENT'
+
+
+def post_persistence(icon, window, term):
+    '''
+    cose da fare dopo che lo script makepersistence ha fatto il suo sporco
+    lavoro.
+    attualmente ricontrollo lo status della persistenza, aggiorno
+    l'icona e chiudo il terminale
+    '''
+    icon.status = get_persistence_status()
+    icon.refresh_icon()
+    ret = term.get_child_exit_status()
+    if ret == 0:
+        msg = gtk.MessageDialog(window, buttons=gtk.BUTTONS_OK)
+        msg.set_markup("Esecuzione completa\n\n" +
+                       "sembra essere andato tutto bene\n" +
+                       "guarda la finestra per esserne sicuro")
+        msg.set_title("makepersistence complete")
+    else:
+        msg = gtk.MessageDialog(window, type=gtk.MESSAGE_ERROR,
+                                buttons=gtk.BUTTONS_OK)
+        msg.set_markup("Errori nell'esecuzione\n\n" +
+                       "codice %d" % ret)
+        msg.set_title("makepersistence complete")
+
+    msg.run()
+    msg.destroy()
+    window.destroy()
+
+
+def make_persistence(icon):
+    '''apre un terminale ed esegue lo script indicato in command'''
+    #TODO: muovere dentro LiveIcon ?
+    emulation = "xterm"
+    #command = "/usr/bin/find /root -type d"
+    #command = "/usr/bin/makepersistence"
+    command = "echo makepersistence non e' ancora completo"
+    command = command.split()
+    term = vte.Terminal()
+    term.set_emulation(emulation)
+    term.connect("child-exited",
+                 lambda term: post_persistence(icon, window, term))
+    term.fork_command(command[0], command)
+
+    window = gtk.Window()
+    scrollbar = gtk.VScrollbar()
+    scrollbar.set_adjustment(term.get_adjustment())
+
+    box = gtk.HBox()
+    box.pack_start(term)
+    box.pack_start(scrollbar)
+
+    window.add(box)
+
+    window.connect('delete-event', lambda window, event: window.destroy())
+    window.show_all()
+
+    gtk.main()
 
 
 class LiveIcon:
@@ -84,17 +157,19 @@ class LiveIcon:
         LIVE
         ABSENT
     '''
+
     def __init__(self):
         self.icon = gtk.StatusIcon()
         self.status = None
         self.refresh_icon()
         try:
             self.status = get_persistence_status()
-        except Exception as exc:
+        except Exception:
             logging.exception("Status unknown")
         self.dialog = None
         self.refresh_icon()
         self.icon.connect("activate", self.show_popup)
+        self.icon.connect("popup-menu", self.right_click_event)
 
     def refresh_icon(self):
         if self.status == 'MOUNTED':
@@ -112,7 +187,20 @@ class LiveIcon:
             self.icon.set_from_stock(gtk.STOCK_NEW)
             self.icon.set_tooltip('Checking...')
 
+    def right_click_event(self, icon, button, time):
+        menu = gtk.Menu()
+        quit = gtk.MenuItem("Quit")
+        quit.connect("activate", gtk.main_quit)
+        menu.append(quit)
+        menu.show_all()
+        menu.popup(None, None, gtk.status_icon_position_menu,
+                   button, time, self.icon)
+
     def show_popup(self, widget):
+        '''
+        this is the main informational popup; will show basic informational
+        and act as "wizard"
+        '''
         if self.dialog:
             logging.debug("already open")
             self.dialog.destroy()
@@ -120,16 +208,35 @@ class LiveIcon:
 
         values = {'disk': get_root_device()}
 
-        self.dialog = gtk.Dialog("Persistence helper", flags=gtk.DIALOG_MODAL,
-                                 buttons=(gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
-        label = gtk.Label()
-        label.set_markup(get_message("%s_expl" % self.status) % values)
-        self.dialog.vbox.pack_start(label)
-
-        self.dialog.vbox.show_all()
-        self.dialog.run()
-        self.dialog.destroy()
-        self.dialog = None
+        msg = get_message("%s_expl" % self.status) % values
+        if self.status == 'ABSENT':
+            self.dialog = gtk.MessageDialog(None, flags=gtk.DIALOG_MODAL,
+                                            type=gtk.MESSAGE_QUESTION,
+                                            buttons=gtk.BUTTONS_YES_NO)
+            self.dialog.set_markup(msg)
+            self.dialog.set_title("Persistence helper")
+            response = self.dialog.run()
+            self.dialog.destroy()
+            self.dialog = None
+            if response == gtk.RESPONSE_YES:
+                if get_root_device() is not None:
+                    make_persistence(self)
+                else:
+                    err = gtk.MessageDialog(None, type=gtk.MESSAGE_ERROR,
+                                            buttons=gtk.BUTTONS_OK)
+                    err.set_markup("Can't detect disk, aborting")
+                    err.set_title("Error: disk not detected")
+                    err.run()
+                    err.destroy()
+        else:
+            self.dialog = gtk.MessageDialog(None,
+                                            flags=gtk.DIALOG_MODAL,
+                                            buttons=gtk.BUTTONS_OK)
+            self.dialog.set_markup(msg)
+            self.dialog.set_title("Persistence helper")
+            self.dialog.run()
+            self.dialog.destroy()
+            self.dialog = None
 
 if __name__ == '__main__':
     import os
