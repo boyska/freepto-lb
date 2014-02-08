@@ -24,3 +24,5 @@ python-tortp
 
 ## freepto-live-helper
 python-vte
+python-parted
+python-pyudev
