@@ -1,0 +1,16 @@
+[Default Applications]
+audio/x-wav=vlc.desktop
+audio/mpeg=vlc.desktop
+video/mpeg=vlc.desktop
+text/plain=mousepad.desktop
+video/x-msvideo=vlc.desktop
+audio/ogg=vlc.desktop
+application/pdf=epdfview.desktop
+
+[Added Associations]
+audio/x-wav=vlc.desktop;
+video/mpeg=vlc.desktop;
+text/plain=mousepad.desktop;
+video/x-msvideo=vlc.desktop;
+audio/ogg=vlc.desktop;
+application/pdf=epdfview.desktop;
