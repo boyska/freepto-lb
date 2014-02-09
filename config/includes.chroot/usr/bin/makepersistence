@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 whereami=$(dirname $0)
 if [[ -f "$whereami/makefreepto" ]]; then
-    source ./makefreepto source
+    source "${whereami}/makefreepto" source
 elif [[ -f "/usr/bin/makefreepto" ]]; then
-    source ./makefreepto source
+    source './makefreepto' source
 else
     echo "Can't find makefreepto" >&2
     exit 1
 fi
 
 #3 phases: make partition, randomfill, create
-nphases=3
+nphases=4
 
 makepersistence_usage() {
 cat <<EOF
@@ -66,6 +66,7 @@ fi
 
 partition="$1"
 partnum="${partition:$((${#partition}-1)):1}"
+device=${partition%?}
 if ! [ $partnum -eq $partnum ]; then ### ugly trick
     _fatal "$partition does not end with a number; are you giving a whole device as argument?"
 fi
@@ -75,7 +76,15 @@ fi
 
 ###TODO: create $partition
 if [[ ! -b "$partition" ]]; then
-    _fatal "Partition $partition is not a valid block device; aborting"
+    _phase "Creating partition"
+    echo -e "n\np\n${partnum}\n\n\nw" | fdisk ${device}
+    sleep 1 
+    partprobe
+    sleep 1
+    if [[ ! -b "$partition" ]]; then
+        _fatal "The creation of partition ${partition} on ${device} has
+        failed. Aborting"
+    fi
 fi
 
 # write random data on crypto partition:
