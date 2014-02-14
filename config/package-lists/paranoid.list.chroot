@@ -23,7 +23,5 @@ python-stem
 tortp-gtk
 python-tortp
 
-## freepto-live-helper
-python-vte
-python-parted
-python-pyudev
+## freepto-specific tools
+freepto-usb-utils
