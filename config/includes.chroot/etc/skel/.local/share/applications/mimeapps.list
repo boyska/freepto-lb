@@ -6,6 +6,7 @@ text/plain=mousepad.desktop
 video/x-msvideo=vlc.desktop
 audio/ogg=vlc.desktop
 application/pdf=epdfview.desktop
+audio/x-ms-wma=vlc.desktop
 
 [Added Associations]
 audio/x-wav=vlc.desktop;
@@ -14,3 +15,4 @@ text/plain=mousepad.desktop;
 video/x-msvideo=vlc.desktop;
 audio/ogg=vlc.desktop;
 application/pdf=epdfview.desktop;
+audio/x-ms-wma=vlc.desktop;
