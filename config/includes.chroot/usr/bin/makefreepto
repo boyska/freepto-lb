@@ -112,13 +112,18 @@ persistence_create() {
 
     mkdir -p "$mountpoint"
     if [[ $fs == "btrfs" ]]; then
-        # make FS with label: "persistence"
+        # make btrfs fs with label: "persistence"
         mkfs.btrfs -L persistence "$mapper" 2>&1 || exit 1
-        # mount the partition
+        # mount the partition with lzo compression
         mount "$mapper" "$mountpoint" -o noatime,nodiratime,compress=lzo
     elif [[ $fs == "ext4" ]]; then
-        # make FS with label: "persistence"
+        # make ext4 fs with label: "persistence"
         mkfs.ext4 -L persistence "$mapper" 2>&1 || exit 1
+        # mount the partition
+        mount "$mapper" "$mountpoint" -o noatime,nodiratime
+    elif [[ $fs == "reiserfs" ]]; then
+        # make reiserfs fs with label: "persistence"
+        mkfs.reiserfs -f -l persistence "$mapper" 2>&1 || exit 1
         # mount the partition
         mount "$mapper" "$mountpoint" -o noatime,nodiratime
     fi

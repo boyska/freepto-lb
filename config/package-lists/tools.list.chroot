@@ -16,6 +16,10 @@ secure-delete
 gnome-disk-utility
 parted
 gparted
+reiserfsprogs
+btrfs-tools
+lvm2
+hfsplus
 
 # mouse
 xserver-xorg-input-synaptics
