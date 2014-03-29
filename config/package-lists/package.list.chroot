@@ -13,6 +13,7 @@ gksu
 btrfs-tools
 ca-certificates
 ntp
+gigolo
 
 # XFCE4
 task-laptop
