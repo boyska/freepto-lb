@@ -11,7 +11,7 @@ dnsutils
 htop
 vim
 
-# disk, filesystems...
+# disk and filesystems
 secure-delete
 gnome-disk-utility
 parted
@@ -24,3 +24,7 @@ hfsplus
 # mouse
 xserver-xorg-input-synaptics
 synclient-tools
+
+# qemu
+xserver-xorg-video-qxl
+spice-vdagent
