@@ -20,6 +20,7 @@ reiserfsprogs
 btrfs-tools
 lvm2
 hfsplus
+catfish
 
 # mouse
 xserver-xorg-input-synaptics
