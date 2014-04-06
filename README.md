@@ -17,9 +17,8 @@ Just clone a repository and run
 
 and you'll find a binary.img file :)
 
-We are also providing fabric taks to build freepto only
-https://github.com/AvANa-BBS/freepto-buildtools
-Check it out! With those it's easy to build a buildsystem for freepto in minutes inside a dedicated VM.
+We are also providing a Vagrantfile to create quickly a Freepto development environment
+https://github.com/AvANa-BBS/freepto-vagrant
 
 
 For users: Burn Freepto on a USB
