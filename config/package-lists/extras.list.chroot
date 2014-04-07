@@ -23,5 +23,5 @@ ffmpeg
 avidemux
 
 #Programming
-#gedit
-
+gedit
+zenity # see config/includes.chroot/etc/skel/.config/Thunar/uca.xml
