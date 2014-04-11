@@ -1,6 +1,4 @@
-##############
-### Extras ###
-##############
+#Extras
 
 #Graphics
 inkscape
@@ -15,13 +13,12 @@ w3m
 netcat
 nmap
 
-#Audio & Video
+#Audio Video
 jackd2
 audacity
-#gladish
 ffmpeg
 avidemux
 
 #Programming
 gedit
-zenity # see config/includes.chroot/etc/skel/.config/Thunar/uca.xml
+zenity
