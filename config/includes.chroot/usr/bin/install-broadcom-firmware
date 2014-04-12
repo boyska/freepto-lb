@@ -1,0 +1,4 @@
+#!/bin/bash
+#
+#For MacBook Pro wireless network interface
+sudo apt-get install firmware-b43-installer

@@ -5,13 +5,23 @@
     <property name="screen0" type="empty">
       <property name="monitor0" type="empty">
         <property name="brightness" type="empty"/>
-        <property name="color1" type="empty"/>
-        <property name="color2" type="empty"/>
+        <property name="color1" type="array">
+          <value type="uint" value="0"/>
+          <value type="uint" value="0"/>
+          <value type="uint" value="0"/>
+          <value type="uint" value="65535"/>
+        </property>
+        <property name="color2" type="array">
+          <value type="uint" value="0"/>
+          <value type="uint" value="0"/>
+          <value type="uint" value="0"/>
+          <value type="uint" value="65535"/>
+        </property>
         <property name="color-style" type="empty"/>
-        <property name="image-path" type="string" value="/usr/share/xfce4/backdrops/freepto-wp.png"/>
+        <property name="image-path" type="string" value="/usr/share/xfce4/backdrops/subaddiction_wem_2014.png"/>
         <property name="image-show" type="empty"/>
-        <property name="last-image" type="string" value="/usr/share/xfce4/backdrops/freepto-wp.png"/>
-        <property name="last-single-image" type="string" value="/usr/share/xfce4/backdrops/freepto-wp.png"/>
+        <property name="last-image" type="string" value="/usr/share/xfce4/backdrops/subaddiction_wem_2014.png"/>
+        <property name="last-single-image" type="string" value="/usr/share/xfce4/backdrops/subaddiction_wem_2014.png"/>
       </property>
     </property>
   </property>

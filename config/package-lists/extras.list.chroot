@@ -1,0 +1,24 @@
+#Extras
+
+#Graphics
+inkscape
+blender
+gimp-plugin-registry
+gimp-gap
+create-resources
+
+#Console utilities
+byobu
+w3m
+netcat
+nmap
+
+#Audio Video
+jackd2
+audacity
+ffmpeg
+avidemux
+
+#Programming
+gedit
+zenity
