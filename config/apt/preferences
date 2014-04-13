@@ -31,3 +31,11 @@ Pin-Priority: -1
 Package: libreoffice-base
 Pin: version *
 Pin-Priority: -1
+
+Package: exim4-daemon-light
+Pin: version *
+Pin-Priority: -1
+
+Package: exim4-daemon-heavy
+Pin: version *
+Pin-Priority: -1
