@@ -39,3 +39,7 @@ Pin-Priority: -1
 Package: exim4-daemon-heavy
 Pin: version *
 Pin-Priority: -1
+
+Package: minissdpd
+Pin: version *
+Pin-Priority: -1
