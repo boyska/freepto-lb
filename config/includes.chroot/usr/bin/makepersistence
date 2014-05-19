@@ -9,8 +9,8 @@ else
     exit 1
 fi
 
-#3 phases: make partition, randomfill, create
-nphases=4
+#3 phases: make partition, randomfill[optional], create
+nphases=3
 
 makepersistence_usage() {
 cat <<EOF
@@ -19,9 +19,11 @@ $0 [options] PARTITION
 where options can be:
     -r         skip random filling (use only if you know what you are doing)
     -R DEV     use DEV as random source instead of urandom (i.e.: /dev/frandom)
-    -p         set password (defaul is "freepto")
-    -s         set secure random password (default is "freepto")
-    -f         set filesystem type: ext4 or btrfs (with lzo) (default is "ext4")
+    -p PASS    set PASS as password (defaul is "freepto")
+    -s         set a random password (default is "freepto")
+    -f TYPE    set filesystem; TYPE can be one of {ext4,btrfs}
+               btrfs will have lzo enabled by default
+               (default is "ext4")
 EOF
 }
 
@@ -36,7 +38,7 @@ while getopts 'rf:R:p:si:' opt; do
             skip_random=1
             nphases=$((nphases - 1))
             ;;
-        f)  
+        f)
             fs=$OPTARG
             ;;
         p)
@@ -78,7 +80,7 @@ fi
 if [[ ! -b "$partition" ]]; then
     _phase "Creating partition"
     echo -e "n\np\n${partnum}\n\n\nw" | fdisk ${device}
-    sleep 1 
+    sleep 1
     partprobe
     sleep 1
     if [[ ! -b "$partition" ]]; then
