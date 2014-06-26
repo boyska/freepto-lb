@@ -28,11 +28,15 @@ getTempFile()
 }
 
 # Set defaults values
-USERNAME="paranoid"
-LINUX_FLAVOURS="amd64 486"
-LOCALE="it_IT.UTF-8"
-ZONE="Europe/Rome"
-KEYMAP="it"
+USERNAME='paranoid'
+LINUX_FLAVOURS='amd64 486'
+LOCALE='it_IT.UTF-8'
+ZONE='Europe/Rome'
+KEYMAP='it'
+MIRROR='http://http.debian.net/debian/'
+if [ ! -z "$http_proxy" ]; then
+	proxyoption="--apt-http-proxy $http_proxy"
+fi
 
 # Get config params
 # If there's at least one arg, the UI dialog will not be lunched
@@ -151,20 +155,23 @@ lb config noauto \
     --debian-installer false \
     --debian-installer-gui false \
     --bootappend-install noprompt \
+    --mirror-bootstrap $MIRROR \
+    --mirror-chroot $MIRROR \
+    $proxyoption \
     --bootappend-live "\
     boot=live \
     config \
     noeject \
     persistence-encryption=luks \
-    persistence-media=removable-usb \
     username=$USERNAME \
     nottyautologin \
     hostname=freepto \
     user-fullname=$USERNAME \
     persistence \
+    live-config.hooks=filesystem \
     live-config.timezone='$ZONE' \
     live-config.locales=$LOCALE live-config.timezone=$ZONE live-config.keyboard-layouts=$KEYMAP \
-    live-config.hooks=filesystem \
+    persistence-media=removable-usb \
     " \
     --archive-areas "main contrib non-free" \
     --apt-recommends true
