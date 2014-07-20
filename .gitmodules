@@ -1,3 +1,6 @@
 [submodule "pkgs/freepto-docs"]
 	path = pkgs/freepto-docs
 	url = https://github.com/avana-bbs/freepto-docs
+[submodule "pkgs/truecrypt-anche-no"]
+	path = pkgs/truecrypt-anche-no
+	url = https://github.com/avana-bbs/truecrypt-anche-no
