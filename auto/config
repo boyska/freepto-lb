@@ -1,0 +1,108 @@
+#!/bin/bash
+#set -x
+
+## LOAD CONFIGURATION:
+
+if [ -r config/freepto ]
+then
+  echo "Reading freepto configuration file...." >&2
+  . config/freepto
+fi
+
+if [ ! -n "$http_proxy" ]
+then
+    proxyoption="--apt-http-proxy $http_proxy"
+fi
+
+if [ "$PERSISTENCE" -eq "0" ]
+then
+    persistence_media="persistence-media=removable-usb"
+fi
+
+## UPDATED /ETC/FREEPTO DIRECTORY:
+
+# build info
+cat > config/includes.chroot/etc/freepto/build <<EOF
+date=$BUILDING_DATE
+live-build_version=$LIVE_BUILD_VERSION
+git_commit=$GIT_HEAD
+git_tag=$GIT_DESCRIBE
+EOF
+# os-version
+cat > config/includes.chroot/etc/freepto/version <<EOF
+release=$FREEPTO_RELEASE
+codename=$FREEPTO_CODENAME
+EOF
+
+
+## SHOW CONFIGURATION:
+
+cat << EOF
+Used config
+===========
+
+Username        $USERNAME
+Linux flavours  $LINUX_FLAVOURS
+Locale          $LOCALE
+Timezone        $ZONE
+Keymap          $KEYMAP
+
+EOF
+
+
+## RUN LB CONFIG:
+
+lb config noauto \
+    -a i386 \
+    -b hdd \
+    -d wheezy \
+    --linux-flavours "$LINUX_FLAVOURS" \
+    --security true \
+    --apt-indices false \
+    --mode debian \
+    --memtest none \
+    --source false \
+    --backports true \
+    --checksums sha256 \
+    --system live \
+    --hdd-label $HDD_LABEL \
+    --apt-source-archives false \
+    --debian-installer false \
+    --debian-installer-gui false \
+    --bootappend-install noprompt \
+    --mirror-bootstrap $MIRROR \
+    --mirror-chroot $MIRROR \
+    $proxyoption \
+    --bootappend-live "\
+    boot=live \
+    config \
+    noeject \
+    persistence-encryption=luks \
+    username=$USERNAME \
+    nottyautologin \
+    hostname=freepto \
+    user-fullname=$USERNAME \
+    persistence \
+    live-config.hooks=filesystem \
+    live-config.timezone='$ZONE' \
+    live-config.locales=$LOCALE live-config.timezone=$ZONE live-config.keyboard-layouts=$KEYMAP \
+    $persistence_media \
+    " \
+    --archive-areas "main contrib non-free" \
+    --apt-recommends true
+
+cd config/package-lists
+
+LOCALE_PACKAGES="locale.list.chroot"
+
+if [ -f $LOCALE_PACKAGES ]
+then
+    rm $LOCALE_PACKAGES
+fi
+
+LINKED_LOCALE="$LOCALE"
+
+if [ -f $LINKED_LOCALE ]
+then
+    ln -s $LINKED_LOCALE $LOCALE_PACKAGES
+fi

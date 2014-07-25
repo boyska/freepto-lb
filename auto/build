@@ -1,3 +1,64 @@
-#!/bin/sh
+#!/bin/bash
 
+# LOAD CONFIGURATION:
+if [ -r config/freepto ]; then
+  echo "Reading freepto configuration file...." >&2
+  . config/freepto
+fi
+
+# DEFINE FUNCTION:
+_check_dependencies(){
+    fdisk -v | grep util-linux >/dev/null 2>&1
+    if [ $? -eq 1 ]; then
+        echo "Please install util-linux and/or remove gnu-fdisk"
+        exit 1
+    fi
+}
+
+_persistence() {
+    if [ ! -e $IMG ]; then exit 1; fi
+
+    fdisk -l $IMG
+    dd if=/dev/zero bs=$((1024*1024)) count=$SIZE >> $IMG
+    fdisk $IMG <<EOF
+n
+p
+
+
+
+w
+EOF
+    fdisk -l $IMG
+
+    if [ ! -d /mnt/loop ];
+    then
+        mkdir /mnt/loop
+        mountpoint="/mnt/loop"
+    else
+        mountpoint="/mnt/loop"
+    fi
+
+    kpartx -a -f -s -v $IMG
+
+    persistence_loop=`kpartx -l $IMG | grep p2 | awk '{print $1}'`
+
+    cryptsetup --verbose --batch-mode --key-size 512 --hash sha512 --cipher aes-xts-plain --use-random luksFormat /dev/mapper/${persistence_loop} <<<${PASSPHRASE} || exit 1
+    cryptsetup luksOpen /dev/mapper/${persistence_loop} persistence <<<${PASSPHRASE}
+    mkfs.ext4 -q -L persistence /dev/mapper/persistence
+    mount /dev/mapper/persistence ${mountpoint} -o noatime,nodiratime
+    echo "/ union" > "${mountpoint}/persistence.conf"
+    sync
+    umount ${mountpoint}
+    cryptsetup luksClose /dev/mapper/persistence
+
+    kpartx -d $IMG
+}
+
+# CREATE IMG:
 lb build noauto "${@}" 2>&1 | tee build.log
+
+# CREATE PERSISTENCE:
+if [ "$PERSISTENCE" -eq 1 ]; then
+    _check_dependencies 2>&1 | tee build.log
+    _persistence 2>&1 | tee build.log
+fi

@@ -12,8 +12,13 @@ For developers: build Freepto
 You need a debian wheezy  and some packages installed:
 `aptitude install live-build python git-core debootstrap`
 
-Just clone a repository and run
-`freepto-config.sh -l it_IT.UTF-8 && lb build`
+Just clone a repository, edit the configuration file:
+
+ vim config/freepto
+
+and run:
+
+`lb config && lb build`
 
 and you'll find a binary.img file :)
 

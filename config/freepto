@@ -1,0 +1,30 @@
+# Freepto Building configuration file
+
+# [auto/config]
+
+USERNAME='paranoid'
+LINUX_FLAVOURS='amd64 486'
+LOCALE='it_IT.UTF-8'
+ZONE='Europe/Rome'
+KEYMAP='it'
+MIRROR='http://http.debian.net/debian/'
+HDD_LABEL="FREEPTO"
+
+BUILDING_DATE="`date '+%Y%m%d'`"
+GIT_HEAD="`git rev-list HEAD | head -n 1`"
+LIVE_BUILD_VERSION="`dpkg -p live-build | grep Version | awk '{print $2}'`"
+GIT_DESCRIBE="`git describe`"
+
+FREEPTO_RELEASE="1.0"
+FREEPTO_CODENAME="berenjena"
+
+# [auto/build]
+
+# Setting PERSISTENCE=1 is a TREMENDOUS security error
+# Use it ONLY for testing. No, really.
+PERSISTENCE=0
+SIZE=500
+# IMG is _not_ the name of the image that you want to build. It is the name of the image that will be build,
+# and is used to make _persistence() aware of this. You should probably leave it that way
+IMG="binary.img"
+PASSPHRASE="freepto"
