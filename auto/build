@@ -54,7 +54,36 @@ EOF
     kpartx -d $IMG
 }
 
+_build_packages() {
+	mkdir -p config/packages.chroot/
+	find -L pkgs -maxdepth 1 -mindepth 1 -type d | \
+		while read pkg; do
+			_build_package "$pkg" || exit 1
+			deb=$(find "$pkg" -maxdepth 1 -type f -name '*.deb' -print0 |xargs -r0 ls -t1|head -n1)
+			if [ -z "$deb" ]; then
+				echo "deb generation failed for $pkg"
+				continue
+			fi
+			mv -f "$deb" "config/packages.chroot/"
+		done
+}
+
+_build_package() {
+	olddir=$(pwd)
+	dir=$1
+	cd "$dir"
+	if [ -x make_deb ]; then
+		./make_deb
+	elif [ -f deb ]; then
+		equivs-build deb
+		#TODO: if debian/rules blabla
+	fi
+	cd "$olddir"
+}
+
 # CREATE IMG:
+#TODO: make it optional
+_build_packages
 lb build noauto "${@}" 2>&1 | tee build.log
 
 # CREATE PERSISTENCE:
