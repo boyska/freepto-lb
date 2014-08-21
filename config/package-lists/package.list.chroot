@@ -15,6 +15,7 @@ ca-certificates
 ntp
 gigolo
 haveged
+laptop-mode-tools
 
 # XFCE4
 task-laptop

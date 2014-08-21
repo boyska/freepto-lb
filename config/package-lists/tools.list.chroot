@@ -7,9 +7,14 @@ curl
 wget
 lsof
 unrar
+p7zip
+p7zip-full
 dnsutils
 htop
 vim
+usbutils
+lshw
+lshw-gtk
 
 # disk and filesystems
 secure-delete
