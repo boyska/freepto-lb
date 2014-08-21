@@ -1,0 +1,12 @@
+# Source: <source package name; defaults to package name>
+Section: misc
+Priority: optional
+Homepage: http://www.freepto.mx
+
+Package: fix-tor-ntp
+Version: 0.1
+Maintainer: boyska <piuttosto@logorroici.org>
+Depends: htpdate-perl,tor
+Files: tor-restart /etc/network/if-up.d/
+
+Description: When you connect to a network, ensure that tor is working properly.
