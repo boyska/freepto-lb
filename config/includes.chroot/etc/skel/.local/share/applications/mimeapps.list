@@ -5,7 +5,7 @@ video/mpeg=vlc.desktop
 text/plain=mousepad.desktop
 video/x-msvideo=vlc.desktop
 audio/ogg=vlc.desktop
-application/pdf=epdfview.desktop
+application/pdf=evince.desktop
 audio/x-ms-wma=vlc.desktop
 
 [Added Associations]
@@ -14,5 +14,5 @@ video/mpeg=vlc.desktop;
 text/plain=mousepad.desktop;
 video/x-msvideo=vlc.desktop;
 audio/ogg=vlc.desktop;
-application/pdf=epdfview.desktop;
+application/pdf=evince.desktop;
 audio/x-ms-wma=vlc.desktop;

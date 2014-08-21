@@ -14,7 +14,6 @@ htop
 vim
 usbutils
 lshw
-lshw-gtk
 
 # disk and filesystems
 secure-delete
@@ -34,3 +33,7 @@ synclient-tools
 # qemu
 xserver-xorg-video-qxl
 spice-vdagent
+
+# graphical tools
+lshw-gtk
+evince-gtk
