@@ -1,0 +1,3 @@
+[submodule "pkgs/wiperam"]
+	path = pkgs/wiperam
+	url = git://git.tails.boum.org/wiperam
