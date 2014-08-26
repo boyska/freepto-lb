@@ -15,6 +15,7 @@ ca-certificates
 ntp
 haveged
 laptop-mode-tools
+console-data
 
 # X system taken from x.list.chroot
 # main GUI software taken from gui.list.chroot

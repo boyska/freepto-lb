@@ -1,0 +1,25 @@
+# shell script (sourced, not run)
+
+set -e
+
+PREREQ=""
+
+prereqs() {
+	   echo "${PREREQ}"
+}
+
+case "${1}" in
+	prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+
+
+. /usr/share/initramfs-tools/hook-functions
+
+mkdir -p ${DESTDIR}/usr/share/keymaps
+cp -r /usr/share/keymaps/include ${DESTDIR}/usr/share/keymaps
+cp -r /usr/share/keymaps/i386 ${DESTDIR}/usr/share/keymaps
+
