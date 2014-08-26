@@ -35,3 +35,4 @@ source*.zsync
 config/includes.chroot/etc/skel/.thunderbird/Crash Reports/
 config/includes.chroot/etc/freepto/build
 config/includes.chroot/etc/freepto/version
+config/freepto.local

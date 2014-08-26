@@ -8,6 +8,11 @@ then
   echo "Reading freepto configuration file...." >&2
   . config/freepto
 fi
+if [ -r config/freepto.local ]; then
+  echo "Reading freepto local configuration file...." >&2
+  . config/freepto.local
+fi
+
 
 if [ ! -n "$http_proxy" ]
 then
