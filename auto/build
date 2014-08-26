@@ -83,7 +83,7 @@ _build_package() {
 
 # CREATE IMG:
 #TODO: make it optional
-_build_packages
+_build_packages | tee pkgs.log
 lb build noauto "${@}" 2>&1 | tee build.log
 
 # CREATE PERSISTENCE:
