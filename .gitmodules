@@ -7,3 +7,7 @@
 [submodule "pkgs/freepto-graphics"]
 	path = pkgs/freepto-graphics
 	url = https://github.com/avana-bbs/freepto-graphics
+[submodule "pkgs/freepto-usb-utils"]
+	path = pkgs/freepto-usb-utils
+	url = https://github.com/avana-bbs/freepto-usb-utils
+	branch = pask

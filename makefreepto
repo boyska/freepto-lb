@@ -1,1 +1,5 @@
-config/includes.chroot/usr/bin/makefreepto
+cat <<EOF
+this file is no longer distributed with freepto
+instead, it is fetched from 
+https://github.com/boyska/freepto-usb-utils
+EOF
