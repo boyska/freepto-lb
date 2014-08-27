@@ -1,0 +1,26 @@
+# These package list contains packages that are network-related
+# this is NOT for chat software, email, or www
+# this is for VPNs, wireless handling, tor, etc
+# Similar tools, but with an UI, goes into networkgui.list.chroot
+
+tor
+tor-arm
+dnsmasq
+deb.torproject.org-keyring
+openvpn
+iodine
+obfsproxy
+ufw
+network-manager
+network-manager-openvpn
+network-manager-vpnc
+network-manager-strongswan
+network-manager-pptp
+network-manager-iodine
+
+# Wireless Tools:
+wifite
+tshark
+reaver
+pyrit
+aircrack-ng

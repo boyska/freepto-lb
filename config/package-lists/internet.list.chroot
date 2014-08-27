@@ -1,3 +1,6 @@
+### This file contains packages that are both GUI & Internet related
+### Browsers, mail clients, chat, etc
+
 # Firefox:
 iceweasel
 xul-ext-adblock-plus
@@ -11,4 +14,9 @@ seahorse
 signing-party
 gnupg-curl
 
+pidgin
+pidgin-otr
+xchat
+transmission
+filezilla
 

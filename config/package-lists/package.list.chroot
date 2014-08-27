@@ -13,65 +13,8 @@ gksu
 btrfs-tools
 ca-certificates
 ntp
-gigolo
 haveged
 laptop-mode-tools
 
-# XFCE4
-task-laptop
-xfce4-utils
-task-xfce-desktop
-
-# Flash (Shit!)
-flashplugin-nonfree
-
-# LibreOffice
-libreoffice-writer
-libreoffice-calc
-libreoffice-impress
-
-# Network:
-tor
-tor-arm
-dnsmasq
-pidgin
-pidgin-otr
-deb.torproject.org-keyring
-xchat
-openvpn
-iodine
-obfsproxy
-ufw
-gufw
-transmission
-network-manager
-network-manager-gnome
-network-manager-openvpn
-network-manager-openvpn-gnome
-network-manager-vpnc
-network-manager-vpnc-gnome
-network-manager-strongswan
-network-manager-pptp
-network-manager-pptp-gnome
-network-manager-iodine
-network-manager-iodine-gnome
-filezilla
-
-# Wireless Tools:
-wifite
-tshark
-reaver
-pyrit
-aircrack-ng
-
-# Multimedia
-deb-multimedia-keyring
-w32codecs
-libdvdcss2
-vlc
-audacity
-sox
-mat
-
-# Local Wiki
-zim
+# X system taken from x.list.chroot
+# main GUI software taken from gui.list.chroot

@@ -1,0 +1,9 @@
+# These package list contains packages that provide UI
+# to manage network aspects. See also network.list.chroot
+gufw
+
+network-manager-gnome
+network-manager-openvpn-gnome
+network-manager-vpnc-gnome
+network-manager-pptp-gnome
+network-manager-iodine-gnome

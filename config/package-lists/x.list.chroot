@@ -1,0 +1,6 @@
+# base X software; without these, expect X not to be working
+
+# XFCE4
+task-laptop
+xfce4-utils
+task-xfce-desktop
