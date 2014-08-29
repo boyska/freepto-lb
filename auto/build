@@ -60,33 +60,50 @@ EOF
 
 _build_packages() {
 	mkdir -p config/packages.chroot/
+	find -L pkgs -maxdepth 2 -type f -name '*.deb' -delete
 	find -L pkgs -maxdepth 1 -mindepth 1 -type d | \
 		while read pkg; do
-			_build_package "$pkg"
+			_build_package "$pkg" || return 1
 			if [[ "$?" -ne 0 ]]; then
-				echo "ERROR: build for package $pkg failed"
+				echo "ERROR: build for package $pkg failed" >&2
 			fi
+			echo "### Installing deb for $pkg"
+			deb=$(find -L pkgs -maxdepth 2 -type f -name '*.deb' -print)
+			if [[ -z "$deb" ]]; then
+				echo "Error: after building $pkg there is no deb" >&2
+				return 2
+			fi
+			mv -f "$deb" "config/packages.chroot/"
 		done
-	find -L pkgs -maxdepth 2 -type f -name '*.deb' \
-		-exec mv -f {} "config/packages.chroot/" \;
 }
 
 _build_package() {
 	olddir=$(pwd)
 	dir=$1
+	echo "### Build pkg in $dir"
 	cd "$dir"
+	set -e
+	old_proxy=$http_proxy
+	export http_proxy=
 	if [ -x make_deb ]; then
 		./make_deb
 	elif [ -f deb ]; then
 		equivs-build deb
 		#TODO: if debian/rules blabla
 	fi
+	http_proxy=$old_proxy
 	cd "$olddir"
 }
 
 # CREATE IMG:
 #TODO: make it optional
-_build_packages | tee pkgs.log
+set -o pipefail
+echo "### Build sub-packages"
+_build_packages 2>&1 | tee pkgs.log
+if [ $? -ne 0 ]; then
+	echo "Error: Failure at build-packages phase" >&2
+	exit 1
+fi
 lb build noauto "${@}" 2>&1 | tee build.log
 
 # CREATE PERSISTENCE:
