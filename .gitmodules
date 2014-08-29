@@ -1,0 +1,3 @@
+[submodule "pkgs/freepto-docs"]
+	path = pkgs/freepto-docs
+	url = https://github.com/avana-bbs/freepto-docs
