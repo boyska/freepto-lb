@@ -95,15 +95,16 @@ _build_package() {
 	cd "$olddir"
 }
 
-# CREATE IMG:
-#TODO: make it optional
-set -o pipefail
-echo "### Build sub-packages"
-_build_packages 2>&1 | tee pkgs.log
-if [ $? -ne 0 ]; then
-	echo "Error: Failure at build-packages phase" >&2
-	exit 1
+if [[ -d pkgs/ ]]; then
+	set -o pipefail
+	echo "### Build sub-packages"
+	_build_packages 2>&1 | tee pkgs.log
+	if [ $? -ne 0 ]; then
+		echo "Error: Failure at build-packages phase" >&2
+		exit 1
+	fi
 fi
+# CREATE IMG:
 lb build noauto "${@}" 2>&1 | tee build.log
 
 # CREATE PERSISTENCE:
