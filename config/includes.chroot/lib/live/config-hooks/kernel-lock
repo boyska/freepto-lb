@@ -1,6 +1,2 @@
 #!/bin/sh
-apt-mark hold linux-image-`uname -r`
-apt-mark hold linux-image-486 2> /dev/null
-apt-mark hold linux-image-amd64 2> /dev/null
-apt-mark hold linux-header-`uname -r` 2> /dev/null
-apt-mark hold linux-source-`uname -r` 2> /dev/null
+dpkg -l 'linux-image-*' | awk '{ print $2 }' | grep linux-image- | xargs apt-mark hold
