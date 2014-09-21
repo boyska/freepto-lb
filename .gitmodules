@@ -17,3 +17,12 @@
 [submodule "pkgs/certificates"]
 	path = pkgs/certificates
 	url = https://github.com/AvANa-BBS/freepto-certificates.git
+[submodule "pkgs/synclient-tools"]
+	path = pkgs/synclient-tools
+	url = https://github.com/avana-bbs/synclient-tools
+[submodule "pkgs/freepto-passwords-changer"]
+	path = pkgs/freepto-passwords-changer
+	url = https://github.com/avana-bbs/freepto-passwords-changer
+[submodule "pkgs/tomb"]
+	path = pkgs/tomb
+	url = https://github.com/avana-bbs/Tomb
