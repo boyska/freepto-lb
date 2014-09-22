@@ -4,14 +4,6 @@ bleachbit
 florence
 parcimonie
 
-## Torbrowser-launcher
-python-stdeb
-python-gtk2
-python-psutil
-python-twisted
-python-lzma
-wmctrl
-
 ## deb.freepto.mx
 freepto-passwords-changer
 tomb
