@@ -11,3 +11,6 @@
 	path = pkgs/freepto-usb-utils
 	url = https://github.com/avana-bbs/freepto-usb-utils
 	branch = pask
+[submodule "pkgs/tortp_stem"]
+	path = pkgs/tortp_stem
+	url = https://github.com/avana-bbs/stem-tortp
