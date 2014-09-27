@@ -68,12 +68,14 @@ _build_packages() {
 				echo "ERROR: build for package $pkg failed" >&2
 			fi
 			echo "### Installing deb for $pkg"
-			deb=$(find -L pkgs -maxdepth 2 -type f -name '*.deb' -print)
-			if [[ -z "$deb" ]]; then
+			debs=$(find -L pkgs -maxdepth 2 -type f -name '*.deb' -print)
+			if [[ -z "$debs" ]]; then
 				echo "Error: after building $pkg there is no deb" >&2
 				return 2
 			fi
-			mv -f "$deb" "config/packages.chroot/"
+            		for deb in $debs; do
+    				mv -f "$deb" "config/packages.chroot/"
+		        done
 		done
 }
 
