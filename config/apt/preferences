@@ -43,3 +43,7 @@ Pin-Priority: -1
 Package: minissdpd
 Pin: version *
 Pin-Priority: -1
+
+Package: epdfview
+Pin: version *
+Pin-Priority: -1
