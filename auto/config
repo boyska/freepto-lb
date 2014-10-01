@@ -67,7 +67,6 @@ lb config noauto \
     --mode debian \
     --memtest none \
     --source false \
-    --backports true \
     --checksums sha256 \
     --system live \
     --hdd-label $HDD_LABEL \

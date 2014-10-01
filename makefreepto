@@ -1,5 +1,5 @@
 cat <<EOF
 this file is no longer distributed with freepto
 instead, it is fetched from 
-https://github.com/boyska/freepto-usb-utils
+https://github.com/AvANa-BBS/freepto-usb-utils
 EOF
