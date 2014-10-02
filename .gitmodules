@@ -14,3 +14,6 @@
 [submodule "pkgs/tortp_stem"]
 	path = pkgs/tortp_stem
 	url = https://github.com/avana-bbs/stem-tortp
+[submodule "pkgs/certificates"]
+	path = pkgs/certificates
+	url = https://github.com/AvANa-BBS/freepto-certificates.git
