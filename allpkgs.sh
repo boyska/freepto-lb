@@ -53,6 +53,8 @@ _build_package() {
 	elif [ -f deb ]; then
 		equivs-build -f deb
 		#TODO: if debian/rules blabla
+	elif [ -d debian ]; then
+		debuild -i -F
 	fi
 	http_proxy=$old_proxy
 	cd "$olddir"
