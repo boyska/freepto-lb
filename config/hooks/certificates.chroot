@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+dpkg -L freepto-certificates |
+egrep '^/usr/share/ca-certificates/.*\.crt$' |
+while read crt; do
+	find /etc/skel/.icedove/*/ /etc/skel/.mozilla/firefox/*/ \
+		-maxdepth 0 -type d \
+	       	-exec add-cert-to-firefox "$crt" {} \;
+done
+

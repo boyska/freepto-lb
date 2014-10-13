@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+usage() {
+	echo "Usage: $0 CRT PROFILEDIR"
+	echo "add a certificate to the specified profile directory"
+}
+
+if [[ $# -ne 2 ]]; then
+	usage
+	exit 2
+fi
+
+crt=$1
+dir=$2
+shift 2
+
+if [[ ! -f "$crt" ]]; then
+	echo "Certificate file not found" >&2
+	exit 1
+fi
+if [[ ! -d "$dir" ]]; then
+	echo "Not valid profiledir: $dir" >&2
+	exit 1
+fi
+name=$(basename "$crt" .crt)
+certutil -A -n "$name" -t TC,, -i "$crt" -d "$dir"

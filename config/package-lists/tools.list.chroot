@@ -37,3 +37,6 @@ spice-vdagent
 # graphical tools
 lshw-gtk
 evince-gtk
+
+# security
+libnss3-tools
