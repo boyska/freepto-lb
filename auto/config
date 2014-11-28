@@ -63,7 +63,6 @@ lb config noauto \
     -d wheezy \
     --linux-flavours "$LINUX_FLAVOURS" \
     --security true \
-    --apt-indices false \
     --mode debian \
     --memtest none \
     --source false \
