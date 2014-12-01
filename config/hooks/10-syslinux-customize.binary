@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# This script will setup syslinux properly
+# all credit goes to tails developers ;)
+
+# Including common functions
+[ -e "${LIVE_BUILD}/scripts/build.sh" ] && . "${LIVE_BUILD}/scripts/build.sh" || . /usr/lib/live/build.sh
+
+# Setting static variables
+DESCRIPTION="$(Echo 'Theme syslinux')"
+HELP=""
+USAGE="${PROGRAM}"
+
+
+# TODO: make it more generic (using alternatives!) so that it can be promptly
+# reused by other debian-live systems
+
+# Reading configuration files
+Read_conffiles config/all config/common config/binary
+Set_defaults
+
+if [ "${LB_BOOTLOADER}" != "syslinux" ]
+then
+	exit 0
+fi
+
+# Setting boot method specific variables
+case "${LB_BINARY_IMAGES}" in
+	iso|iso-hybrid)
+		SYSLINUX_PATH="binary/isolinux"
+		;;
+	hdd|usb-hdd)
+		SYSLINUX_PATH="binary/syslinux"
+		;;
+esac
+
+Echo_message "Customize syslinux theme"
+menu=chroot/usr/share/images/freepto-graphics/freepto-syslinux-menu.cfg
+if [[ -f "$menu" ]]; then
+	cp "$menu" "${SYSLINUX_PATH}/custom-menu.cfg"
+else
+	Echo_error "Cannot find custom menu"
+	exit 0
+fi
+
+img=chroot/usr/share/images/freepto-graphics/freepto-syslinux-splash.png
+if [[ -f "$img" ]]; then
+	cp "$img" "${SYSLINUX_PATH}/custom-splash.png"
+else
+	Echo_warning "cannot find splash image"
+fi
+
+sed -i -e 's/stdmenu\.cfg/custom-menu.cfg/' "${SYSLINUX_PATH}/menu.cfg"
+sed -i -e 's/stdmenu\.cfg/custom-menu.cfg/' "${SYSLINUX_PATH}/syslinux.cfg"
