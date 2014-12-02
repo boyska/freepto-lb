@@ -8,6 +8,10 @@ then
   echo "Reading freepto configuration file...." >&2
   . config/freepto
 fi
+if [ -n "${LB_ADDITIONAL_CONF}" ] && [ -r "${LB_ADDITIONAL_CONF}" ]; then
+    echo "Reading additional configuration files..." >&2
+    cat "${LB_ADDITIONAL_CONF}" >> config/freepto.local
+fi
 if [ -r config/freepto.local ]; then
   echo "Reading freepto local configuration file...." >&2
   . config/freepto.local
