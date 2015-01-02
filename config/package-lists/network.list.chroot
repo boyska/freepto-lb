@@ -14,7 +14,7 @@ ufw
 network-manager
 network-manager-openvpn
 network-manager-vpnc
-network-manager-strongswan
+strongswan
 network-manager-pptp
 network-manager-iodine
 

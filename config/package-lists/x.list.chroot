@@ -2,5 +2,7 @@
 
 # XFCE4
 task-laptop
-xfce4-utils
+xfce4-appfinder
+libxfce4ui-utils
 task-xfce-desktop
+xfce4-session
