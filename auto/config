@@ -65,6 +65,7 @@ lb config noauto \
     -a i386 \
     -b hdd \
     -d jessie \
+    --initsystem systemd \
     --linux-flavours "$LINUX_FLAVOURS" \
     --security true \
     --mode debian \
