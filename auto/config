@@ -64,7 +64,7 @@ EOF
 lb config noauto \
     -a i386 \
     -b hdd \
-    -d wheezy \
+    -d jessie \
     --linux-flavours "$LINUX_FLAVOURS" \
     --security true \
     --mode debian \

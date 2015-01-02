@@ -1,7 +1,0 @@
-Package: python-twisted*
-Pin: release n=wheezy-backports
-Pin-Priority: 995
-
-Package: *
-Pin: release n=wheezy-backports
-Pin-Priority: 500
