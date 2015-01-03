@@ -2,6 +2,8 @@ linux-image-amd64
 linux-image-486
 
 # SO
+syslinux-common
+syslinux-efi
 aptitude
 firmware-linux-free
 firmware-linux-nonfree
