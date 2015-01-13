@@ -92,7 +92,7 @@ lb config noauto \
     persistence \
     live-config.hooks=filesystem \
     live-config.timezone='$ZONE' \
-    live-config.locales=$LOCALE live-config.timezone=$ZONE live-config.keyboard-layouts=$KEYMAP live-boot.keymap=$KEYMAP \
+    live-config.locales=$LOCALE live-config.timezone=$ZONE live-config.keyboard-layouts=${KEYMAP} live-boot.keymap=${LIVEBOOT_KEYMAP} \
     $persistence_media \
     " \
     --archive-areas "main contrib non-free" \
