@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=Tor Browser Settings
 Comment=Tor Browser Launcher Settings
-Exec=/usr/bin/torbrowser-launcher -settings
+Exec=/usr/bin/torbrowser-launcher --settings
 Terminal=false
 Type=Application
 Icon=/usr/share/pixmaps/torbrowser80.xpm
