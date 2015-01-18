@@ -1,2 +1,3 @@
 #!/bin/sh
 dpkg -l 'linux-image-*' | awk '{ print $2 }' | grep linux-image- | xargs apt-mark hold
+apt-mark hold intel-microcode
