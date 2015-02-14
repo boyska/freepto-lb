@@ -28,6 +28,10 @@ then
     persistence_media="persistence-media=removable-usb"
 fi
 
+if [ -z "$LIVEBOOT_KEYMAP" ]; then
+	LIVEBOOT_KEYMAP="$KEYMAP"
+fi
+
 ## UPDATED /ETC/FREEPTO DIRECTORY:
 
 # build info

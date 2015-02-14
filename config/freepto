@@ -7,6 +7,8 @@ LINUX_FLAVOURS='amd64 486'
 LOCALE='it_IT.UTF-8'
 ZONE='Europe/Rome'
 KEYMAP='it'
+# If you leave LIVEBOOT_KEYMAP empty, it will default to KEYMAP
+LIVEBOOT_KEYMAP=
 MIRROR='http://http.debian.net/debian/'
 HDD_LABEL="FREEPTO"
 
