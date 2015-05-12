@@ -9,7 +9,7 @@ ZONE='Europe/Rome'
 KEYMAP='it'
 # If you leave LIVEBOOT_KEYMAP empty, it will default to KEYMAP
 LIVEBOOT_KEYMAP=
-MIRROR='http://http.debian.net/debian/'
+MIRROR='http://ftp.debian.org/debian/'
 HDD_LABEL="FREEPTO"
 
 BUILDING_DATE="`date '+%Y%m%d'`"
