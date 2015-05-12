@@ -24,7 +24,7 @@ user_pref("extensions.blocklist.pingCountVersion", 2);
 user_pref("extensions.bootstrappedAddons", "{\"es-es@dictionaries.addons.mozilla.org\":{\"version\":\"1.7\",\"type\":\"dictionary\",\"descriptor\":\"/home/paranoid/.icedove/a0wcqjkh.default/extensions/es-es@dictionaries.addons.mozilla.org\"}}");
 user_pref("extensions.databaseSchema", 14);
 user_pref("extensions.enabledAddons", "langpack-it%40thunderbird.mozilla.org:17.0.7,%7B847b3a00-7ab1-11d4-8f02-006008948af5%7D:1.5.1,%7B972ce4c6-7e08-4474-a285-3208198ce6fd%7D:17.0.9");
-user_pref("extensions.enigmail.agentAdditionalParam", "--keyserver-options ca-cert-files=/home/paranoid/.gnupg/sks-keyservers.netCA");
+user_pref("extensions.enigmail.agentAdditionalParam", "--keyserver-options ca-cert-files=/usr/share/ca-certificates/sks-keyservers.crt");
 user_pref("extensions.enigmail.configuredVersion", "1.5.1");
 user_pref("extensions.enigmail.keyserver", "hkps://pool.sks-keyservers.net");
 user_pref("extensions.enigmail.warnGpgAgentAndIdleTime", false);
