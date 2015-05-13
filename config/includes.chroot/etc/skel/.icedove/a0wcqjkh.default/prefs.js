@@ -83,3 +83,9 @@ user_pref("spellchecker.dictionary", "it_IT");
 user_pref("toolkit.telemetry.prompted", true);
 user_pref("xpinstall.whitelist.add", "");
 user_pref("xpinstall.whitelist.add.36", "");
+
+
+// disable ad for gandi.net and hover.com
+pref("mail.provider.enabled", false);
+// don't waste vertical space for useless tab
+pref ("mail.tabs.autoHide", true);
