@@ -64,7 +64,7 @@ _build_packages() {
 	find -L pkgs -maxdepth 1 -mindepth 1 -type d | \
 		while read pkg; do
             skipbuild=0
-            for toskip in "${LB_SKIP_PKGS:-}"; do
+            for toskip in ${LB_SKIP_PKGS:-}; do
                 [[ "$(basename $pkg)" = $toskip ]] && skipbuild=1
             done
             if [[ $skipbuild -eq 1 ]] ; then
