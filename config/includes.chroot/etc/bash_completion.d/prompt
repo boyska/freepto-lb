@@ -1,0 +1,33 @@
+promptunicode=1
+
+freeptoprompt() {
+    local exit_=$?
+    if [[ $promptunicode -eq 1  ]]; then
+        local ok_symbol=$'\u2713'
+        local no_symbol=$'\u2717'
+    else
+        local ok_symbol="."
+        local no_symbol="x"
+    fi
+    local LGREEN="\[\033[1;32m\]"
+    local LRED="\[\033[1;31m\]"
+    local CYAN='\e[0;36m'
+    local WHITE="\[\033[1;37m\]"
+    local RESET="\[\033[0;00m\]"
+    local user_color
+    local last
+    if [[ $EUID -eq 0  ]]; then
+        user_color="$LRED"
+    else
+        user_color="$WHITE"
+    fi
+    if [[ $exit_ -eq 0  ]]; then
+        last="${LGREEN}$ok_symbol$RESET"
+    else
+        last="${LRED}$no_symbol:$exit_$RESET"
+    fi
+    PS1="$user_color\u$RESET [$CYAN\w$RESET]$last $user_color\$${RESET} "
+}
+PROMPT_COMMAND=freeptoprompt
+
+# vim: set ft=sh:
