@@ -2,9 +2,6 @@
 # where "functional" means that you can use it to do simple tests
 gigolo
 
-# Flash (Shit!)
-flashplugin-nonfree
-
 # LibreOffice
 libreoffice-writer
 libreoffice-calc
