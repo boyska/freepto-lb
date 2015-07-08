@@ -101,7 +101,7 @@ _build_package() {
 	elif [ -f deb ]; then
 		equivs-build deb
 	elif [ -d debian ]; then                                                
-		debuild -i -F                   
+		${DEBUILDER:-debuild} -i -F
 	fi
 	http_proxy=$old_proxy
 	cd "$olddir"
