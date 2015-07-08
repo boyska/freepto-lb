@@ -97,11 +97,13 @@ _build_package() {
 	old_proxy=$http_proxy
 	export http_proxy=
 	if [ -x make_deb ]; then
+		echo "D: packages built with make_deb are deprecated"
 		./make_deb
 	elif [ -f deb ]; then
+		echo "D: packages built with equivs are deprecated"
 		equivs-build deb
-	elif [ -d debian ]; then                                                
-		debuild -i -F                   
+	elif [ -d debian ]; then
+		${DEBUILDER:-debuild -i -F}
 	fi
 	http_proxy=$old_proxy
 	cd "$olddir"
