@@ -12,8 +12,6 @@ torbrowser-launcher
 ## TORtp
 tortp
 python-stem
-tortp-gtk
-python-tortp
 
 ## freepto-specific tools
 freepto-usb-utils
