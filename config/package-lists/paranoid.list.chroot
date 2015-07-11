@@ -8,10 +8,7 @@ parcimonie
 freepto-passwords-changer
 tomb
 torbrowser-launcher
-
-## TORtp
 tortp
-python-stem
 
 ## freepto-specific tools
 freepto-usb-utils
