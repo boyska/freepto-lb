@@ -1,4 +1,5 @@
 #!/bin/sh
 dpkg -l 'linux-image-*' | awk '{ print $2 }' | grep linux-image- | xargs apt-mark hold
 apt-mark hold intel-microcode
+apt-mark hold amd64-microcode
 apt-mark hold fuse ntfs-3g
